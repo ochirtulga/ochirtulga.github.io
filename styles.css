@@ -24,9 +24,16 @@
     margin: auto;
 }
 
-#body-first-div {
+#body-div{
+    border-radius: 10px;
+    display:flex;
     margin: auto;
     width: 70%;
+}
+
+#body-first-div {
+    margin: auto;
+    width: 69%;
     text-align:left;
     background-color: white;
 
@@ -40,13 +47,6 @@
     text-align:right;
 
     border-radius: 10px;
-}
-
-#body-div{
-    border-radius: 10px;
-    display:flex;
-    margin: auto;
-    width: 50%;
 }
 
 .html-checker {
