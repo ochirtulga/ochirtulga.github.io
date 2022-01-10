@@ -16,10 +16,35 @@
     background-color: white;
     border: 10px;
     width: 50%;
-    
+    border-radius: 10px;
 }
 
 #main-div {
     background-color: #F5F6F7;
     margin: auto;
+}
+
+#body-first-div {
+    margin: auto;
+    width: 70%;
+    text-align:left;
+    background-color: white;
+
+    border-radius: 10px;
+}
+#body-second-div {
+    margin: auto;
+    background-color: white;
+    width: 29%;
+    height: 193px;
+    text-align:right;
+
+    border-radius: 10px;
+}
+
+#body-div{
+    border-radius: 10px;
+    display:flex;
+    margin: auto;
+    width: 50%;
 }
