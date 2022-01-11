@@ -1,0 +1,65 @@
+body{
+    background-color: #F5F6F7;
+}
+
+h3 {
+    color: #4267B2;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 20px;
+}
+
+h1 {
+    text-align: center;
+    font-style: oblique;
+    padding-top: 50px;
+    color:cornflowerblue;
+}
+
+li {
+    font-family: Tahoma;
+    font-size: 15px;
+}
+
+.main-div {
+    margin: auto;
+    width: 60%;
+    text-align:left;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 12px 28px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+    padding-bottom: 20px;
+}
+
+p > img {
+    width: 250px;
+    height: 250px;
+}
+
+.main-div > h3, p {
+    padding-left:60px;
+}
+
+.main-div > ol,ul {
+    padding-left: 100px;
+}
+
+a:default {
+    text-decoration: none;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+p {
+    display:inline-block;
+}
+
+p::first-letter {
+    font-weight: bold;
+    font-size: 1.5em;
+}

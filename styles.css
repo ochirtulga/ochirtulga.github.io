@@ -75,6 +75,7 @@ h2 {
 }
 
 .footer-left {
+    line-height: 15px;
     float: left;
     margin: auto;
     position: relative;
@@ -82,3 +83,4 @@ h2 {
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
 }
+
