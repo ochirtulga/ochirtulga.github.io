@@ -1,5 +1,15 @@
+
+/* Body background color changed */
 body{
     background-color: #F5F6F7;
+}
+
+/* changed the color of words that describes me */
+.changed-span {
+    color: green;
+    font-size: 1.1em;
+    font-weight: bold;
+    font-style: italic;
 }
 
 h3 {
@@ -20,6 +30,7 @@ li {
     font-size: 15px;
 }
 
+/* Text alignment of main-div class is changed to LEFT */
 .main-div {
     margin: auto;
     width: 60%;
@@ -28,6 +39,7 @@ li {
     border-radius: 10px;
     box-shadow: 0 12px 28px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
     padding-bottom: 20px;
+    padding-right: 20px;
 }
 
 p > img {
@@ -43,6 +55,7 @@ p > img {
     padding-left: 100px;
 }
 
+/* a tag default, link, hover states text-decorations are changed */
 a:default {
     text-decoration: none;
 }
@@ -59,7 +72,26 @@ p {
     display:inline-block;
 }
 
+
+/* First letter of paragraphs are 1.5 times larger and bold */
 p::first-letter {
     font-weight: bold;
     font-size: 1.5em;
 }
+
+dt {
+    color: orange;
+    font-weight: bold;
+}
+
+dd {
+    display:grid;
+    inline-size: 85%;
+    text-align: justify;
+}
+
+/* reversed ordered list */
+ol {
+    display: flex;
+    flex-direction: column-reverse;
+  }
