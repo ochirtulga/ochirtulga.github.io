@@ -17,7 +17,7 @@ h1 {
 
 .main-section{
     width: 800px;
-    height: 800px;
+    height: 1100px;
     text-align: center;
     border-radius: 20px;
     border: grey 4px;
@@ -34,6 +34,9 @@ h1 {
 #right-section {
     float: right;
     width: 250px;
+    height: 1100px;
+    background-color: #A2B964;
+    border-bottom-right-radius: 15px;
 }
 
 #right-section > img {
@@ -65,4 +68,13 @@ h1 {
 #percent {
     font-size: 48pt;
     color: red;
+}
+
+.html-checker {
+    float: right;
+    margin: 0;
+    position: relative;
+    /* top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%); */
 }
