@@ -17,35 +17,20 @@ h1 {
 
 .main-section{
     width: 800px;
-    height: 1100px;
-    text-align: center;
     border-radius: 20px;
     border: grey 4px;
     border-style: solid;
     margin: auto;
 }
 
+#left-section {
+    float: left;
+    width: 550px;
+}
 #header-section, #header-section > img {
     background-image: url('../images/hw2/rbg.png');
     text-align: left;
     border-top-left-radius: 15px;
-}
-
-#right-section {
-    float: right;
-    width: 250px;
-    height: 1100px;
-    background-color: #A2B964;
-    border-bottom-right-radius: 15px;
-}
-
-#right-section > img {
-    border-top-right-radius: 15px;
-}
-
-#left-section {
-    float: left;
-    width: 550px;
 }
 
 #header-section {
@@ -54,18 +39,29 @@ h1 {
 }
 
 #first-section {
-    float: left;
+    float:left;
     width: 275px;
     text-align: center;
 }
 
 #second-section {
-    float: right;
+    float:right;
     width: 275px;
     text-align: center;
 }
 
-#percent {
+#right-section {
+    float: right;
+    width: 250px;
+    background-color: #A2B964;
+    border-top-right-radius: 15px;
+}
+
+#right-section > img {
+    border-top-right-radius: 15px;
+}
+
+#rotten-percent {
     font-size: 48pt;
     color: red;
 }
@@ -77,4 +73,16 @@ h1 {
     /* top: 50%;
     -ms-transform: translateY(-50%);
     transform: translateY(-50%); */
+}
+
+#footer-section {
+    text-align: center;
+    bottom: auto;
+    position: relative;
+    clear: right;
+    background-color: #A2B964;
+}
+
+.all-images {
+    float: left;
 }
