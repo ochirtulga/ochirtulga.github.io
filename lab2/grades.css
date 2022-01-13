@@ -32,20 +32,20 @@
 }
 
 .form-line {
-    width: 60%;
+    width: 65%;
     display:inline-flex;
     margin-bottom: 20px;
 }
 
 .form-label {
     text-align: left;
-    width: 40%;
+    width: 50%;
     margin: auto;
 }
 
 .form-input {
     text-align: right;
-    width: 60%;
+    width: 50%;
     margin: auto;
 }
 
