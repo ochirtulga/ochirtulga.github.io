@@ -103,6 +103,11 @@ h1 {
     border-bottom-right-radius: 15px;
 }
 
+#footer-section > p {
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+}
+
 
 .all-images {
     float: left;
