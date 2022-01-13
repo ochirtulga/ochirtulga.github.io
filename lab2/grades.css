@@ -1,0 +1,66 @@
+.main-div {
+    margin: auto;
+    width: 40%;
+    text-align:center;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 12px 28px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+}
+
+.html-checker {
+    float: right;
+    margin: 0;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    opacity: 0.5;
+    /* top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%); */
+}
+
+.submit-div {
+    text-align: center;
+    padding-bottom: 10px;
+}
+.submit-div > input[type="submit"] {
+    padding: 7px;
+    border-width: 2px;
+    border-radius: 3px;
+    border-color: rgb(209, 209, 209);
+    box-shadow: 0 12px 28px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+}
+
+.form-line {
+    width: 60%;
+    display:inline-flex;
+    margin-bottom: 20px;
+}
+
+.form-label {
+    text-align: left;
+    width: 40%;
+    margin: auto;
+}
+
+.form-input {
+    text-align: right;
+    width: 60%;
+    margin: auto;
+}
+
+.student-form {
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+
+input[type="text"], select{
+    padding: 5px;
+    border-radius: 5px;
+    border-width: 2px;
+    border-color: #E8E8E8;
+}

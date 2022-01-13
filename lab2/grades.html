@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="grades.css" type="text/css" rel="stylesheet" />
+    <title>Retrieve Grade</title>
+</head>
+<body>
+    <div class="main-div">
+        <form class="student-form" action="http://mumstudents.org/params.php" method="post">
+            <h1>Retrieve your grade</h1>
+            <div class="form-line">
+                <div class="form-label"><label for="name">Student Name:</label></div>
+                    <div class="form-input">
+                        <input type="text" name="name" placeholder="Student name"/>
+                    </div>
+            </div>
+            <div class="form-line">
+                <div class="form-label"><label for="name">Student ID:</label></div>
+                    <div class="form-input">
+                        <input type="text" name="id" placeholder="Student ID"/> 
+                    </div>
+            </div>
+            <div class="form-line">
+                <div class="form-label"><label for="assignment">Choose a assignment:</label></div>
+                <div class="form-input">
+                    <select name="assignment">
+                        <option value="lab1">Lab 1</option>
+                        <option value="lab2">Lab 2</option>
+                        <option value="homework1" selected>Homework 1</option>
+                        <option value="homework2">Homework 2</option>
+                    </select> 
+                </div> 
+            </div>
+            <div class="form-line">
+                <div class="form-label"><label for="entry">Choose a entry:</label></div>
+                <div class="form-input">
+                    <input type="radio" name="entry" value="feb21" /> <label for="feb21">Feb</label>
+                    <input type="radio" name="entry" value="may21" /> <label for="may21">May</label>
+                    <input type="radio" name="entry" value="nov21" /> <label for="nov21">Nov</label>
+                </div>
+            </div>
+            <div class="form-line">
+                <div class="form-label"><label for="entry">Check if above informations are correct:</label></div>
+                <div class="form-input">
+                    <input type="checkbox" name="yes" value="Yes" /> <label for="yes">Yes</label>
+                </div>
+            </div>
+
+            <div class="submit-div"><input type="submit" name="submit" value="Get Grade"/></div>
+        </form>
+    </div>
+    <div class="html-checker">
+		<a href="https://validator.w3.org/nu/?doc=https://ochirtulga.github.io/lab2/grades.html"> <img class="all-images" src="../images/w3c-html.png" alt="Valid HTML5" /></a> <br />
+    	<a href="https://jigsaw.w3.org/css-validator/validator?uri=ochirtulga.github.io/lab2/grades.css"><img class="all-images" src="../images/w3c-css.png" alt="Valid CSS" /></a>
+	</div>
+</body>
+</html>
