@@ -29,7 +29,6 @@ h1 {
 }
 #header-section, #header-section > img {
     background-image: url('../images/hw2/rbg.png');
-    text-align: left;
     border-top-left-radius: 15px;
 }
 
@@ -63,6 +62,13 @@ h1 {
     font-family: Arial, sans-serif;
 }
 
+#rotten-percent {
+    height: 83px;
+    padding-top: 6px;
+    font-size: 48pt;
+    color: red;
+}
+
 #overview-image {
     height: 412px;
     width: 100%;
@@ -74,11 +80,6 @@ h1 {
 
 #overview-content {
     padding: 10pt;
-}
-
-#rotten-percent {
-    font-size: 48pt;
-    color: red;
 }
 
 .html-checker {
@@ -95,7 +96,6 @@ h1 {
 
 #footer-section {
     text-align: center;
-    position: relative;
     clear: right;
     background-color: #A2B964;
     padding: 5px;
@@ -144,6 +144,8 @@ h1 {
 }
 
 dl,dd {
+    margin-block-start: 0em;
+    margin-block-end: 0em;
     font-weight: bold;
     margin-bottom: 10pt;
 }
