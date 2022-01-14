@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html>
+	<!--
+	CSE 190M, Summer 2012
+	This file is a tip calculator page using JavaScript.
+	-->
+<script>
+function calcTip() {
+	let sub = document.getElementById("subtotal");
+	let tip = document.getElementById("tip");
+	let total = document.getElementById("total");
+	let overall = parseInt(sub.value) + (parseInt(sub.value) * parseInt(tip.value) / 100);
+	total.innerHTML = "$" + overall;
+}
+
+</script>
+	<head>
+		<title>Tip Calculator</title>
+		<link href="tip.css" type="text/css" rel="stylesheet" />
+		<!-- <script src="tip.js" type="text/javascript"></script> -->
+	</head>
+
+
+	<body>
+		<h1>
+			<img id="logo" src="../images/w1d5/calc.jpeg" alt="++--**//" />
+			  Tip Calculator
+		</h1>
+
+		<div>
+			<label><input id="subtotal" type="text" /> $ Subtotal</label>
+		</div>
+
+		<div>
+			<label><input id="tip" type="text" /> % Tip</label>
+		</div>
+
+		<div>
+			<button id="btn"  onclick="calcTip();">Calculate Tip</button>
+		</div>
+
+		<hr />
+
+		<div>
+			<h2>Your total:</h2>
+			<p id="total">$0.00</p>
+		</div>
+	</body>
+</html>
