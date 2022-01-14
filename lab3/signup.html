@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="signup.css" type="text/css" rel="stylesheet" />
+    <title>nerdLuv - Where meek geeks meek</title>
+</head>
+<body>
+    <div class="main-section">
+        <span id="nerd">nerd</span><span id="luv">Luv&trade;</span><br />
+        <span>where meek geeks meet</span> <br /><br />
+        
+        <form action="http://mumstudents.org/params.php" method="post"> 
+            <fieldset>
+                <legend>New User Signup:</legend>
+                <div class="form-line">
+                    <div class="form-label"><label for="name">Name:</label></div>
+                        <div class="form-input">
+                            <input type="text" id="name" name="name" size="16" placeholder=""/>
+                        </div>
+                </div>
+                <div class="form-line">
+                    <div class="form-label"><label>Gender:</label></div>
+                        <div class="form-input">
+                            <input type="radio" id="male" name="gender" value="male" /> <label for="male">Male</label>
+                            <input type="radio" id="female" name="gender" value="female" /> <label for="female">Female</label>
+                        </div>
+                </div>
+                <div class="form-line">
+                    <div class="form-label"><label for="age">Age:</label></div>
+                        <div class="form-input">
+                            <input type="text" id="age" name="age" size="6" maxlength="2" placeholder=""/>
+                        </div>
+                </div>
+                <div class="form-line">
+                    <div class="form-label"><label for="ptype">Personality type:</label></div>
+                        <div class="form-input">
+                            <input type="text" id="ptype" name="ptype" size="6" maxlength="4" placeholder=""/> 
+                            <label>(<a href="http://www.humanmetrics.com/cgi-win/JTypes2.asp">Don't know your type?</a>)</label>
+                        </div>
+                </div>
+                <div class="form-line">
+                    <div class="form-label"><label for="favos">Favorite OS:</label></div>
+                    <div class="form-input">
+                        <select name="favos" id="favos">
+                            <option value="win" selected>Windows</option>
+                            <option value="mac">Mac OS X</option>
+                            <option value="linux">Linux</option>
+                        </select> 
+                    </div> 
+                </div>
+                <div class="form-line">
+                    <div class="form-label"><label>Seeking age:</label></div>
+                        <div class="form-input">
+                            <input type="text" id="agemin" name="agemin" size="6" maxlength="2" placeholder="min"/> 
+                            <label>to</label>
+                            <input type="text" id="agemax" name="agemax" size="6" maxlength="2" placeholder="max"/> 
+                        </div>
+                </div>
+                <div class="submit-div"><input type="submit" name="submit" value="Sign Up"/></div>
+            </fieldset>
+
+            <p>
+                This page is for single nerds to meet and date each other! Type in <br />
+                your personal information and wait for the nerdly luv to begin! <br />
+                Thank you for using our site. <br /><br />
+                Results and page (C) Copyright NerdLuv Inc.
+            </p>
+        </form>
+    </div>
+    <div class="html-checker">
+		<a href="https://validator.w3.org/nu/?doc=https://ochirtulga.github.io/lab3/signup.html"> <img class="all-images" src="../images/w3c-html.png" alt="Valid HTML5" /></a> 
+    	<a href="https://jigsaw.w3.org/css-validator/validator?uri=ochirtulga.github.io/lab3/signup.css"><img class="all-images" src="../images/w3c-css.png" alt="Valid CSS" /></a>
+	</div>
+</body>
+</html>
