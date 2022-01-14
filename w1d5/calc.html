@@ -10,7 +10,7 @@ function calcTip() {
 	let sub = document.getElementById("subtotal");
 	let tip = document.getElementById("tip");
 	let total = document.getElementById("total");
-	let overall = parseInt(sub.value) + (parseInt(sub.value) * parseInt(tip.value) / 100);
+	let overall = Math.floor(parseFloat(sub.value) + (parseFloat(sub.value) * parseFloat(tip.value) / 100));
 	total.innerHTML = "$" + overall;
 }
 
