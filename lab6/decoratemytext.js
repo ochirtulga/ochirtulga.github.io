@@ -66,5 +66,37 @@ window.onload = function() {
         textArea.value = context;
     }
 
+
+
+    // var ok = document.getElementById("ok");
+    // ok.onclick = function() {
+    //     setTimeout(booyah(), 2000);
+    //     // setTimeout(booyah, 2000);
+    // }
+
+    // function booyah() {
+    //     alert("BOOYAH!");
+    // }
 };
 
+
+// var myfunc = function(a, x) {  
+//         return a * x;    
+//     };  
+    
+// var x = myfunc(2, 3);  
+// var y = myfunc;  
+// alert(x);  
+// alert(y(2,3)); 
+
+// setTimeout(booyah1, 2000);  
+// setTimeout(booyah2(), 2000); 
+
+
+// function booyah1() { 
+// 	alert("BOOYAH!"); 
+// } 
+
+// function booyah2() { 
+// 	setTimeout(booyah1, 2000); 
+// } 
