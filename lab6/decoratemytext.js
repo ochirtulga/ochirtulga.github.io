@@ -29,42 +29,56 @@ window.onload = function() {
     };
 
     checkBox.onchange = function() {
-        if(checkBox.checked) {
-            textArea.style.fontWeight = "bold";    
-            textArea.style.color = "green";
-            textArea.style.textDecoration = "underline";
-            document.body.style.backgroundImage = "url('../images/lab6/hundred-dollar-bill.jpeg')";
+        let hasText = textArea.value;
+        if(hasText) {   
+            if(checkBox.checked) {
+                textArea.style.fontWeight = "bold";    
+                textArea.style.color = "green";
+                textArea.style.textDecoration = "underline";
+                document.body.style.backgroundImage = "url('../images/lab6/hundred-dollar-bill.jpeg')";
+            } else {
+                textArea.style.fontWeight = "normal";
+                textArea.style.color = "black";
+                textArea.style.textDecoration = "none";
+                document.body.style.backgroundImage = "none";
+            } 
         } else {
-            textArea.style.fontWeight = "normal";
-            textArea.style.color = "black";
-            textArea.style.textDecoration = "none";
-            document.body.style.backgroundImage = "none";
-        }
+            checkBox.checked = false;
+            alert("Please add some text..");
+        }         
     }
 
     pigLatin.onclick = function () { 
         let context = textArea.value;
-        let words = context.split(" ");
-        for(let i = 0; i < words.length; i++) {
-            let f = words[i].charAt(0);
-            if (f != 'a' && f != 'e' && f != 'i' && f != 'o' && f != 'u') {
-                words[i] = words[i].substr(1,words[i].length) + f + "ay";
+        if(context) {
+            let words = context.split(" ");
+            for(let i = 0; i < words.length; i++) {
+                let f = words[i].charAt(0);
+                if (f != 'a' && f != 'e' && f != 'i' && f != 'o' && f != 'u') {
+                    words[i] = words[i].substr(1,words[i].length) + f + "ay";
+                }
             }
+            context = words.join(" ");
+            textArea.value = context;
+        } else {
+            alert("Please add some text..");
         }
-        context = words.join(" ");
-        textArea.value = context;
     }
 
     malkovitch.onclick = function() {
         let context = textArea.value;
-        let words = context.split(" ");
-        for(let i = 0; i < words.length; i++) {
-            if (words[i].length >= 5) {
-                words[i] = "Malkovitch";
+        if(context) {
+            let words = context.split(" ");
+            for(let i = 0; i < words.length; i++) {
+                if (words[i].length >= 5) {
+                    words[i] = "Malkovitch";
+                }
             }
+            context = words.join(" ");
+            textArea.value = context;
+        } else {
+            alert("Please add some text..");
         }
-        context = words.join(" ");
-        textArea.value = context;
     }
 
 };
