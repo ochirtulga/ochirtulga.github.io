@@ -5,7 +5,26 @@
 }());
 
 window.onload = () => {
+    //Task#1
+    var rudyBtn = document.getElementById("rudy");
+    var para = document.getElementById("rudii");
 
+    var timer = null;
+
+    rudyBtn.onclick = rudyTimer;
+
+    function rudyTimer() {
+        if(timer == null) {
+            timer = setInterval(function() {
+                para.innerHTML += "Rudy!";
+            },1000);
+        } else {
+            clearInterval(timer);
+            timer = null;
+        }
+    }
+
+    //Task#2
     var createBtn = document.getElementById("createNew");
     const accountInfoList = [];
 
