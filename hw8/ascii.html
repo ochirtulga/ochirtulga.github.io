@@ -11,7 +11,7 @@
 </head>
 <body>
     <h1>CS472: ASCII Animation Viewer</h1>
-    <textarea cols="80" rows="20"></textarea> </br>
+    <textarea id="textArea" cols="80" rows="20"></textarea> <br />
     <fieldset>
         <legend>Play Controls:</legend>
         <button id="start">Start</button>
@@ -20,28 +20,32 @@
     <fieldset>
         <legend>Animation:</legend>
         <select id="animation">
-            <option value="blank">Blank</option>
-            <option value="exercise">Exercise</option>
-            <option value="juggler">Juggler</option>
-            <option value="bike">Bike</option>
-            <option value="dive">Dive</option>
-            <option value="custom">Custom</option>
+            <option value="Blank">Blank</option>
+            <option value="Exercise">Exercise</option>
+            <option value="Juggler">Juggler</option>
+            <option value="Bike">Bike</option>
+            <option value="Dive">Dive</option>
+            <option value="Custom">Custom</option>
         </select>
     </fieldset>
     <fieldset>
         <legend>Size:</legend>
         <select id="size">
-            <option value="tiny">Tiny</option>
-            <option value="small">Small</option>
-            <option value="medium">Medium</option>
-            <option value="large">Large</option>
-            <option value="xl">Extra Large</option>
-            <option value="xxl">XXL</option>
+            <option value="7pt">Tiny</option>
+            <option value="10pt">Small</option>
+            <option value="12pt" selected>Medium</option>
+            <option value="16pt">Large</option>
+            <option value="24pt">Extra Large</option>
+            <option value="32pt">XXL</option>
         </select>
     </fieldset>
     <fieldset>
         <legend>Speed:</legend>
         <input type="checkbox" id="speed" name="speed" value="turbo"><label>Turbo</label>
     </fieldset>
+    <div class="html-checker">
+        <a href="https://validator.w3.org/nu/?doc=https://ochirtulga.github.io/hw8/ascii.html"> <img class="all-images" src="../images/w3c-html.png" alt="Valid HTML5" /></a> 
+        <a href="https://jigsaw.w3.org/css-validator/validator?uri=ochirtulga.github.io/hw8/ascii.css"><img class="all-images" src="../images/w3c-css.png" alt="Valid CSS" /></a>
+    </div>
 </body>
 </html>

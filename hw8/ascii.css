@@ -24,7 +24,14 @@ fieldset {
     border-color: black;
     display: inline-block;
     vertical-align: top;
-    /* top: 420px; */
+}
 
-    /* padding: 2px; */
+.html-checker {
+    margin: 0;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    opacity: 0.5;
+    /* -ms-transform: translateY(-50%);
+    transform: translateY(-50%); */
 }
