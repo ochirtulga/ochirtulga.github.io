@@ -66,7 +66,6 @@ window.onload = function () {
 
     function displayFrames() {
         textArea.value = splited[currentFrame];
-        console.log(splited[currentFrame]);
         currentFrame++;
         if (currentFrame == splited.length) currentFrame = 0;
     }
