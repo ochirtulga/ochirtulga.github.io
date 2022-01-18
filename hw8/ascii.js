@@ -1,13 +1,13 @@
 "use strict";
 
-window.onload = function() {
+window.onload = function () {
     var textArea = document.getElementById("textArea");
     var startBtn = document.getElementById("start");
     var stopBtn = document.getElementById("stop");
     var animationOpt = document.getElementById("animation");
     var sizeOpt = document.getElementById("size");
     var speed = document.getElementById("speed");
-    
+
     var timer = null;
     var interval = 250;
     var choosen;
@@ -16,22 +16,22 @@ window.onload = function() {
     var currentFrame = 0;
     var splited;
 
-    startBtn.onclick = () => { 
+    startBtn.onclick = () => {
         choosen = getAnimation();
         selectedIndex = animationOpt.selectedIndex;
-            if(timer == null) {
-                changeAnimation(interval);
-            }
+        if (timer == null) {
+            changeAnimation(interval);
+        }
     }
 
-    stopBtn.onclick = () => { 
+    stopBtn.onclick = () => {
         clearInterval(timer);
         timer = null;
         textArea.value = firstFigure;
     }
 
-    animationOpt.onchange = () => { 
-        if(timer) {
+    animationOpt.onchange = () => {
+        if (timer) {
             alert("Stop existing animation before changing to a new one.");
             animationOpt.options[selectedIndex].selected = true;
         } else {
@@ -41,13 +41,13 @@ window.onload = function() {
         }
     }
 
-    sizeOpt.onchange = () => { 
+    sizeOpt.onchange = () => {
         let size = sizeOpt.value;
         textArea.style.fontSize = size;
     }
 
     speed.onchange = () => {
-        if(speed.checked) {
+        if (speed.checked) {
             interval = 50;
             clearInterval(timer);
             changeAnimation(interval);
@@ -55,13 +55,13 @@ window.onload = function() {
             interval = 250;
             clearInterval(timer);
             changeAnimation(interval);
-        } 
+        }
     }
 
     function changeAnimation(interval) {
         splited = choosen.split("=====\n");
-            firstFigure = splited[0];
-            timer = setInterval(displayFrames, interval);
+        firstFigure = splited[0];
+        timer = setInterval(displayFrames, interval);
     }
 
     function displayFrames() {
