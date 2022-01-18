@@ -1,0 +1,10 @@
+div {
+    margin-bottom: 10px;
+}
+label {
+    /* position: absolute; */
+}
+input {
+    /* position: relative; */
+    left: 50px;
+}
