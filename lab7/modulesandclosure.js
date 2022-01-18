@@ -1,11 +1,22 @@
-"use strict";
+/*jshint esversion: 6 */
+
+(function () {
+    'use strict';
+}());
 
 window.onload = () => {
 
     var createBtn = document.getElementById("createNew");
+    const accountInfoList = [];
 
-    var accountFactory = (accountName, balance) => {
-        return new Account(accountName, balance);;
+    function createAccount() {
+        var creatingNewAccount = function () {
+            let accountName = document.getElementById("accName").value;
+            let balance = document.getElementById("deposit").value;
+            accountInfoList.push(new Account(accountName, balance));
+            return accountInfoList.slice(-1);
+        };
+        return creatingNewAccount();
     }
 
     class Account {
@@ -16,22 +27,12 @@ window.onload = () => {
     }
 
     createBtn.onclick = () => {
+        createAccount();
+        console.log(accountInfoList);
+        updateTextArea();
+    };
 
-        const accountName = document.getElementById("accName");
-        const balance = document.getElementById("deposit");
-        var account = accountFactory(accountName.value, balance.value);
-
-        updateTextArea(account);
+    function updateTextArea() {
+        document.getElementById("textArea").value += "Account Name:  " + accountInfoList[accountInfoList.length - 1].accountName + " Balance:  " + accountInfoList[accountInfoList.length - 1].balance + "\n";
     }
-
-    function updateTextArea(account) {
-        if (document.getElementById("textArea").value.length == 0) {
-            document.getElementById("textArea").value = document.getElementById("textArea").value +
-                "Account Name:  " + account.accountName + " Balance:  " + account.balance;
-        } else {
-            document.getElementById("textArea").value = document.getElementById("textArea").value +
-                "\n" +
-                "Account Name:  " + account.accountName + " Balance:  " + account.balance;
-        }
-    }
-}
+};
