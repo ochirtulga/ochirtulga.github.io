@@ -5,6 +5,7 @@
 }());
 
 window.onload = () => {
+    
     //Task#1
     var rudyBtn = document.getElementById("rudy");
     var para = document.getElementById("rudii");
@@ -14,10 +15,10 @@ window.onload = () => {
     rudyBtn.onclick = rudyTimer;
 
     function rudyTimer() {
-        if(timer == null) {
-            timer = setInterval(function() {
+        if (timer == null) {
+            timer = setInterval(function () {
                 para.innerHTML += "Rudy!";
-            },1000);
+            }, 1000);
         } else {
             clearInterval(timer);
             timer = null;
@@ -28,15 +29,14 @@ window.onload = () => {
     var createBtn = document.getElementById("createNew");
     const accountInfoList = [];
 
-    function createAccount() {
-        var creatingNewAccount = function () {
+    var accountFactory = {
+        createAccount: function () {
             let accountName = document.getElementById("accName").value;
             let balance = document.getElementById("deposit").value;
             accountInfoList.push(new Account(accountName, balance));
             return accountInfoList.slice(-1);
-        };
-        return creatingNewAccount();
-    }
+        }
+    };
 
     class Account {
         constructor(accountName, balance) {
@@ -46,7 +46,7 @@ window.onload = () => {
     }
 
     createBtn.onclick = () => {
-        createAccount();
+        accountFactory.createAccount();
         console.log(accountInfoList);
         updateTextArea();
     };
