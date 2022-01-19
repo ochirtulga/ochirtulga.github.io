@@ -5,23 +5,25 @@
 }());
 
 window.onload = () => {
-    
+
     //Task#1
     var rudyBtn = document.getElementById("rudy");
     var para = document.getElementById("rudii");
 
     var timer = null;
 
-    rudyBtn.onclick = rudyTimer;
+    rudyBtn.onclick = () => varrudyTimer.rudyTimer();
 
-    function rudyTimer() {
-        if (timer == null) {
-            timer = setInterval(function () {
-                para.innerHTML += "Rudy!";
-            }, 1000);
-        } else {
-            clearInterval(timer);
-            timer = null;
+    var varrudyTimer = {
+        rudyTimer : function() {
+            if (timer == null) {
+                timer = setInterval(function () {
+                    para.innerHTML += "Rudy!";
+                }, 1000);
+            } else {
+                clearInterval(timer);
+                timer = null;
+            }
         }
     }
 
@@ -47,7 +49,7 @@ window.onload = () => {
 
     createBtn.onclick = () => {
         accountFactory.createAccount();
-        console.log(accountInfoList);
+        // console.log(accountInfoList);
         updateTextArea();
     };
 
