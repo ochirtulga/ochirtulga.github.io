@@ -15,7 +15,7 @@ window.onload = () => {
     rudyBtn.onclick = () => varrudyTimer.rudyTimer();
 
     var varrudyTimer = {
-        rudyTimer : function() {
+        rudyTimer: function () {
             if (timer == null) {
                 timer = setInterval(function () {
                     para.innerHTML += "Rudy!";
@@ -28,7 +28,6 @@ window.onload = () => {
     }
 
     //Task#2
-    var createBtn = document.getElementById("createNew");
     const accountInfoList = [];
 
     var accountFactory = {
@@ -47,7 +46,7 @@ window.onload = () => {
         }
     }
 
-    createBtn.onclick = () => {
+    document.getElementById("createNew").onclick = () => {
         accountFactory.createAccount();
         // console.log(accountInfoList);
         updateTextArea();
