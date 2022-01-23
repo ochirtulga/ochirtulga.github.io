@@ -1,4 +1,4 @@
-/*jshint esversion: 6 */
+
 $(document).ready(function () {
 
     var flag = (function () {
@@ -35,14 +35,17 @@ $(document).ready(function () {
     $("#start").click(function () {
         $("#maze div.boundary").removeClass("youlose");
         flag.changeStarted();
+        flag.resetFlag();
         $("#status").text("Mouse maze has begun!");
     });
 
     $("#end").mouseover(function () {
-        if (flag.getFlag() == true) {
-            lost();
-        } else {
-            won();
+        if(flag.getStarted() == true) {
+            if(flag.getFlag() == false) {
+                won();
+            } else {
+                lost();
+            }
         }
     });
 
@@ -59,6 +62,6 @@ $(document).ready(function () {
     }
 
     function won() {
-        $("#status").text("You win! -> -> Click the \"S\" to play again.");
+        $("#status").text("You win! -> Click the \"S\" to play again.");
     }
 });
