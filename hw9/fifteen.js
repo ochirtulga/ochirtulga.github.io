@@ -99,8 +99,8 @@ $(document).ready(function () {
     function randomGenerate() {
         var nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
         var result = [];
-        for (let i = 1; i < nums.size() + 1; i++) {
-            const random = parseInt(Math.random() * (nums.size() - i));
+        for (let i = 1; i < nums.length + 1; i++) {
+            const random = parseInt(Math.random() * (nums.length - i));
             result.push(nums[random]);
             nums[random] = nums[nums.size() - i];
         }
