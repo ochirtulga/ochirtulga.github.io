@@ -61,26 +61,51 @@ $(document).ready(function () {
     function checkMovable(piece) {
         let currX = parseInt($(piece).css("left"));
         let currY = parseInt($(piece).css("top"));
-        if (Math.abs(Math.abs(empty.getX() - currX) + Math.abs(empty.getY()) - currY) == 100) {
+        // console.log("Empty: " + empty.getX() + " | " + empty.getY());
+        // console.log("Current: " + currX + " | " + currY);
+        // console.log("X :" + Math.abs(Math.abs(empty.getX() - currX)));
+        // console.log("Y :" + Math.abs(Math.abs(empty.getY() - currY)));
+        // console.log("SUM :" + (Math.abs(Math.abs(empty.getX() - currX)) + Math.abs(Math.abs(empty.getY() - currY))));
+        if (Math.abs((Math.abs(empty.getX() - currX)) + Math.abs(Math.abs(empty.getY() - currY))) == 100) {
             return true;
         } else {
             return false
         };
     }
 
-    // randomShuffle();
-    // function randomShuffle() {
-    //     var nums = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
-    // }
+    $("#shufflebutton").click(function () {
+        randomShuffle();
+    });
 
-    // function randomness(nums) {
-    //     for (let i = 1; i < nums.size(); i++) {
-    //       const random = Math.floor(Math.random() * (range - i));
-    //       result.push(arr[random]);
-    //       arr[random] = arr[range - i];
-    //     }
-    //     return result;
-    // }
+    // 16 element tei function iig function
+    function randomShuffle() {
+        var pieces = randomGenerate();
+        let i = 0;
+        let c;
+        $(divs).each(function (idx, e) {
+            if (i == 0) {
+                c = i;
+                i += 1;
+            }
+            let x = ((pieces[i] % 4) * 100);
+            let y = (Math.floor(pieces[i] / 4) * 100);
+            $(e).css("left", x + 'px')
+                .css("top", y + 'px')
+            i++;
+        });
+        empty.changePosition((pieces[c] % 4) * 100, (Math.floor(pieces[c] / 4) * 100));
+    }
+
+    function randomGenerate() {
+        var nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+        var result = [];
+        for (let i = 1; i < nums.size() + 1; i++) {
+            const random = parseInt(Math.random() * (nums.size() - i));
+            result.push(nums[random]);
+            nums[random] = nums[nums.size() - i];
+        }
+        return result;
+    }
 
 
     // initialize each piece
