@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    
+
     var empty = (function () {
         let x = 300;
         let y = 300;
@@ -55,7 +55,25 @@ $(document).ready(function () {
         } else {
             return false;
         }
+
+        if (checkWin() == true) {
+            alert("You win!");
+        } else {
+            return false;
+        }
     });
+
+    function checkWin() {
+        $(divs).each(function (idx) {
+            let count = 0;
+            if ($(this).get(0).id == idx) {
+                count++;
+            }
+            if (count == 15) {
+                alert("You win!");
+            }
+        })
+    }
 
     function checkMovable(piece) {
         let currX = parseInt($(piece).css("left"));
@@ -73,20 +91,56 @@ $(document).ready(function () {
 
     function randomShuffle() {
         var pieces = randomGenerate();
-        let i = 0;
-        let c;
-        $(divs).each(function (idx, e) {
-            if (i == 0) {
-                c = i;
-                i += 1;
+
+        if (isSolvable(pieces) == true) {
+            let i = 0;
+            let c;
+            $(divs).each(function (idx, e) {
+                if (i == 0) {
+                    c = i;
+                    i += 1;
+                }
+                let x = ((pieces[i] % 4) * 100);
+                let y = (Math.floor(pieces[i] / 4) * 100);
+                $(e).css("left", x + 'px')
+                    .css("top", y + 'px')
+                i++;
+            });
+            empty.changePosition((pieces[c] % 4) * 100, (Math.floor(pieces[c] / 4) * 100));
+        }
+
+        
+    }
+
+    function isSolvable(puzzle) {
+        let parity = 0;
+        let gridWidth = parseInt(Math.sqrt(puzzle.length));
+        let row = 0; // the current row we are on
+        let blankRow = 0; // the row with the blank tile
+
+        for (let i = 0; i < puzzle.length; i++) {
+            if (i % gridWidth == 0) row++;
+            if (puzzle[i] == 0) { // the blank tile
+                blankRow = row; // save the row on which encountered
+                continue;
             }
-            let x = ((pieces[i] % 4) * 100);
-            let y = (Math.floor(pieces[i] / 4) * 100);
-            $(e).css("left", x + 'px')
-                .css("top", y + 'px')
-            i++;
-        });
-        empty.changePosition((pieces[c] % 4) * 100, (Math.floor(pieces[c] / 4) * 100));
+            for (let j = i + 1; j < puzzle.length; j++) {
+                if (puzzle[i] > puzzle[j] && puzzle[j] != 0) parity++;
+            }
+        }
+
+        if (gridWidth % 2 == 0) { // even grid
+            if (blankRow % 2 == 0) { // blank on odd row; counting from bottom
+                if (parity % 2 == 0) return true;
+                else isSolvable(randomGenerate());
+            } else { // blank on even row; counting from bottom
+                if (parity % 2 != 0) return true;
+                else isSolvable(randomGenerate());
+            }
+        } else { // odd grid
+            if (parity % 2 == 0) return true;
+            else isSolvable(randomGenerate());
+        }
     }
 
     function randomGenerate() {
