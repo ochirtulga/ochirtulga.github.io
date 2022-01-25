@@ -102,7 +102,7 @@ $(document).ready(function () {
         for (let i = 1; i < nums.length + 1; i++) {
             const random = parseInt(Math.random() * (nums.length - i));
             result.push(nums[random]);
-            nums[random] = nums[nums.size() - i];
+            nums[random] = nums[nums.length - i];
         }
         return result;
     }
