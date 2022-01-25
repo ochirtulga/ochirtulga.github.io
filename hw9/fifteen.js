@@ -1,6 +1,5 @@
 $(document).ready(function () {
-    // var puzzleArea = $("puzzlearea");
-    // var divs = $("#puzzlearea > div");
+    
     var empty = (function () {
         let x = 300;
         let y = 300;
@@ -61,11 +60,6 @@ $(document).ready(function () {
     function checkMovable(piece) {
         let currX = parseInt($(piece).css("left"));
         let currY = parseInt($(piece).css("top"));
-        // console.log("Empty: " + empty.getX() + " | " + empty.getY());
-        // console.log("Current: " + currX + " | " + currY);
-        // console.log("X :" + Math.abs(Math.abs(empty.getX() - currX)));
-        // console.log("Y :" + Math.abs(Math.abs(empty.getY() - currY)));
-        // console.log("SUM :" + (Math.abs(Math.abs(empty.getX() - currX)) + Math.abs(Math.abs(empty.getY() - currY))));
         if (Math.abs((Math.abs(empty.getX() - currX)) + Math.abs(Math.abs(empty.getY() - currY))) == 100) {
             return true;
         } else {
@@ -77,7 +71,6 @@ $(document).ready(function () {
         randomShuffle();
     });
 
-    // 16 element tei function iig function
     function randomShuffle() {
         var pieces = randomGenerate();
         let i = 0;
@@ -106,26 +99,4 @@ $(document).ready(function () {
         }
         return result;
     }
-
-
-    // initialize each piece
-    // for (var i=0; i< divs.length; i++) {
-    //     var div = divs[i];
-
-    //     // calculate x and y for this piece
-    //     var x = ((i % 4) * 100) ;
-    //     var y = (Math.floor(i / 4) * 100) ;
-
-    //     // set basic style and background
-    //     div.className = "puzzlepiece";
-    //     div.style.left = x + 'px';
-    //     div.style.top = y + 'px';
-    //     div.style.backgroundImage = 'url("../images/hw9/background.jpeg")';
-    //     div.style.backgroundPosition = -x + 'px ' + (-y) + 'px';
-
-    //     // store x and y for later
-    //     div.x = x;
-    //     div.y = y; 
-    // }  
-
 });
