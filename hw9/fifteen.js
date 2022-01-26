@@ -90,26 +90,26 @@ $(document).ready(function () {
     });
 
     function randomShuffle() {
-        var pieces = randomGenerate();
-
-        if (isSolvable(pieces) == true) {
-            let i = 0;
-            let c;
-            $(divs).each(function (idx, e) {
-                if (i == 0) {
-                    c = i;
-                    i += 1;
-                }
-                let x = ((pieces[i] % 4) * 100);
-                let y = (Math.floor(pieces[i] / 4) * 100);
-                $(e).css("left", x + 'px')
-                    .css("top", y + 'px')
-                i++;
-            });
-            empty.changePosition((pieces[c] % 4) * 100, (Math.floor(pieces[c] / 4) * 100));
+        var pieces = [];
+        for (let i = 0; i < 10; i++) {
+            pieces = randomGenerate();
+            if (isSolvable(pieces) == true) break;
+            continue;
         }
-
-
+        let i = 0;
+        let c;
+        $(divs).each(function (idx, e) {
+            if (i == 0) {
+                c = i;
+                i += 1;
+            }
+            let x = ((pieces[i] % 4) * 100);
+            let y = (Math.floor(pieces[i] / 4) * 100);
+            $(e).css("left", x + 'px')
+                .css("top", y + 'px')
+            i++;
+        });
+        empty.changePosition((pieces[c] % 4) * 100, (Math.floor(pieces[c] / 4) * 100));
     }
 
     function isSolvable(puzzle) {
@@ -128,24 +128,16 @@ $(document).ready(function () {
                 if (puzzle[i] > puzzle[j] && puzzle[j] != 0) parity++;
             }
         }
-
         if (gridWidth % 2 == 0) {
-            if (blankRow % 2 == 0) {
-                if (parity % 2 == 0) return true;
-                else isSolvable(randomGenerate());
-            } else {
-                if (parity % 2 != 0) return true;
-                else isSolvable(randomGenerate());
-            }
-        } else {
-            if (parity % 2 == 0) return true;
-            else isSolvable(randomGenerate());
-        }
+            if (blankRow % 2 == 0) return parity % 2 == 0;
+            else return parity % 2 != 0;
+        } else return parity % 2 == 0;
+
     }
 
     function randomGenerate() {
-        var nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
-        var result = [];
+        let nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+        const result = [];
         for (let i = 1; i < nums.length + 1; i++) {
             const random = parseInt(Math.random() * (nums.length - i));
             result.push(nums[random]);
