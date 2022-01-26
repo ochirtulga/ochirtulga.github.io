@@ -109,19 +109,19 @@ $(document).ready(function () {
             empty.changePosition((pieces[c] % 4) * 100, (Math.floor(pieces[c] / 4) * 100));
         }
 
-        
+
     }
 
     function isSolvable(puzzle) {
         let parity = 0;
         let gridWidth = parseInt(Math.sqrt(puzzle.length));
-        let row = 0; // the current row we are on
-        let blankRow = 0; // the row with the blank tile
+        let row = 0;
+        let blankRow = 0;
 
         for (let i = 0; i < puzzle.length; i++) {
             if (i % gridWidth == 0) row++;
-            if (puzzle[i] == 0) { // the blank tile
-                blankRow = row; // save the row on which encountered
+            if (puzzle[i] == 0) {
+                blankRow = row;
                 continue;
             }
             for (let j = i + 1; j < puzzle.length; j++) {
@@ -129,15 +129,15 @@ $(document).ready(function () {
             }
         }
 
-        if (gridWidth % 2 == 0) { // even grid
-            if (blankRow % 2 == 0) { // blank on odd row; counting from bottom
+        if (gridWidth % 2 == 0) {
+            if (blankRow % 2 == 0) {
                 if (parity % 2 == 0) return true;
                 else isSolvable(randomGenerate());
-            } else { // blank on even row; counting from bottom
+            } else {
                 if (parity % 2 != 0) return true;
                 else isSolvable(randomGenerate());
             }
-        } else { // odd grid
+        } else {
             if (parity % 2 == 0) return true;
             else isSolvable(randomGenerate());
         }
