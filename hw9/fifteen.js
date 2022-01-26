@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 $(document).ready(function () {
 
     var empty = (function () {
@@ -9,15 +10,15 @@ $(document).ready(function () {
         };
         let getX = () => {
             return x;
-        }
+        };
         let getY = () => {
             return y;
-        }
+        };
         return {
             changePosition: changePosition,
             getX: getX,
             getY: getY
-        }
+        };
     })();
 
     const divs = "#puzzlearea > div";
@@ -72,7 +73,7 @@ $(document).ready(function () {
             if (count == 15) {
                 alert("You win!");
             }
-        })
+        });
     }
 
     function checkMovable(piece) {
@@ -81,8 +82,8 @@ $(document).ready(function () {
         if (Math.abs((Math.abs(empty.getX() - currX)) + Math.abs(Math.abs(empty.getY() - currY))) == 100) {
             return true;
         } else {
-            return false
-        };
+            return false;
+        }
     }
 
     $("#shufflebutton").click(function () {
@@ -106,7 +107,7 @@ $(document).ready(function () {
             let x = ((pieces[i] % 4) * 100);
             let y = (Math.floor(pieces[i] / 4) * 100);
             $(e).css("left", x + 'px')
-                .css("top", y + 'px')
+                .css("top", y + 'px');
             i++;
         });
         empty.changePosition((pieces[c] % 4) * 100, (Math.floor(pieces[c] / 4) * 100));
