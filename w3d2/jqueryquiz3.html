@@ -17,27 +17,52 @@
 <body>
     <p><span>Test</span> Paragraph.</p>
     <p></p>
-    <script>
-        $text = $("p").text();
-        $("p").last().text($text);
-    </script>
     <ul class="level-1">
         <li class="item-i">I</li>
         <li class="item-ii">II
-        <ul class="level-2">
-        <li class="item-a">A</li>
-        <li class="item-b">B
-        <ul class="level-3">
-        <li class="item-1">1</li>
-        <li class="item-2">2</li>
-        <li class="item-3">3</li>
-        </ul>
-        </li>
-        <li class="item-c">C</li>
-        </ul>
+            <ul class="level-2">
+                <li class="item-a">A</li>
+                <li class="item-b">B
+                    <ul class="level-3">
+                        <li class="item-1">1</li>
+                        <li class="item-2">2</li>
+                        <li class="item-3">3</li>
+                    </ul>
+                </li>
+                <li class="item-c">C</li>
+            </ul>
         </li>
         <li class="item-iii">III</li>
     </ul>
+    <ul>
+        <li>list item 1</li>
+        <li>list item 2</li>
+        <li class="third-item">list item 3</li>
+        <li>list item 4</li>
+        <li>list item 5</li>
+    </ul>
+    <div class="ancestors">
+        <div> (great-grandparent)
+            <ul> (grandparent)
+                <li> (direct parent)
+                    <span>some text</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function() { 
+            $text = $("p").text();
+            $("p").last().text($text);
+
+            $(".level-2").children().css("backgroundColor","red");
+
+            $(".third-item").prev().css("backgroundColor","blue");
+
+            $("#turkey").replaceWith("<li class='potatoes'><em>Mashed Potatoes</em></li>");
+        });
+    </script>
+    
 </body>
 </html>
 
