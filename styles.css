@@ -5,9 +5,8 @@
 }
 
 #footer-div {
-    margin-top: 8px;
+    /* margin-top: 8px; */
     height: 85px;
-    position: relative;
 }
 
 h2 {
@@ -30,7 +29,7 @@ h2 {
     width: 50%;
     height: 100%;
     border-radius: 10px;
-    background-image: url("images/lab0/cover.jpeg");
+    background-image: url("WAP/images/lab0/cover.jpeg");
     box-shadow: 0 12px 28px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
 }
 
@@ -43,15 +42,16 @@ h2 {
 }
 
 #body-div {
+    text-align: center;
     border-radius: 10px;
-    display: flex;
+    display: block;
     margin: auto;
     width: 70%;
 }
 
 #body-first-div {
     margin: auto;
-    width: 49%;
+    width: 46%;
     text-align: left;
     background-color: white;
     border-radius: 10px;
@@ -60,9 +60,10 @@ h2 {
 }
 
 #body-second-div {
+    text-align: left;
     margin: auto;
     background-color: white;
-    width: 49%;
+    width: 53%;
     height: 100%;
     float: right;
     border-radius: 10px;
@@ -87,4 +88,19 @@ h2 {
     top: 55%;
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
+}
+
+#body-course {
+    margin: auto;
+    display: inline-block;
+    background-color: antiquewhite;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 20px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+a {
+    text-decoration: none;
 }
