@@ -1,0 +1,10 @@
+input, select {
+    padding: 10px;
+    box-shadow: antiquewhite;
+    display: inline-block;
+}
+
+input[type="submit"] {
+    border-radius: 3px;
+}
+

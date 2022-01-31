@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' type='text/css' media='screen' href="./simplecalc.css">
+    <title>Simple Calculator Lab</title>
+</head>
+<body>
+    <form method="POST" action="http://localhost:3000/calculate">
+        <input type="text" name="first" placeholder="enter first number"/>
+        <select name="operation">
+            <option value="add">+</option>
+            <option value="subtract">-</option>
+            <option value="multiply">*</option>
+            <option value="divide">/</option>
+        </select>
+        <input type="text" name="second" placeholder="enter second number"/>
+        <input type="submit" name="submit" value="Calculate"/>
+    </form>
+</body>
+</html>

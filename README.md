@@ -1,1 +1,1 @@
-# ochirtulga.github.io - WAP
+# ochirtulga.github.io

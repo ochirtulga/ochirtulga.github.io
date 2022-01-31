@@ -1,0 +1,39 @@
+input, label {
+    padding: 10px;
+    margin-right: 5px;
+    border-radius: 5px;
+    border-style: solid;
+}
+
+input[type="text"] {
+    width: 200px;
+}
+
+h1 {
+    padding-top: 10px;
+    margin-block-end: 1px;
+    margin-block-start: 1px;
+    text-align: center;
+}
+
+.search {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    float: left;
+    margin-bottom: 20px;
+}
+.main {
+    margin: auto;
+    width: 60%;
+    text-align: center;
+}
+
+.result {
+    padding: 30px;
+    border-width: 2px;
+    border-radius: 3px;
+    border-color: rgb(209, 209, 209);
+    box-shadow: 0 12px 28px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+    clear: both;
+    text-align: left;
+}
