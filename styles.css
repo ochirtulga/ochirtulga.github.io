@@ -1,0 +1,604 @@
+/* ==========================================================================
+   Ochi (N. Ochirtulga) — portfolio
+   Direction: "Calibration Record" — a datasheet, not a brochure.
+   Signature: the bagana — his name in vertical Mongolian script on the left
+   edge, filling with khadag sky-blue as the reader scrolls.
+
+   Tokens
+   Enclosure  #F2F4F3  page ground (cool instrument white)
+   Ink        #171D26  primary text (blue-black drafting ink)
+   Khadag     #1F5FA8  the only accent — Mongolian sky-scarf blue
+   Graphite   #525B66  secondary text, mono layer
+   Trace      #DCE1E1  hairlines — one weight, 1px, always
+   Signal     #2E7D5B  used once: the status dot
+   ========================================================================== */
+
+:root {
+  --bg: #F2F4F3;
+  --ink: #171D26;
+  --accent: #1F5FA8;
+  --muted: #525B66;
+  --hairline: #DCE1E1;
+  --signal: #2E7D5B;
+  --bagana-base: rgba(82, 91, 102, 0.38);
+  --grid-line: rgba(23, 29, 38, 0.03);
+  --band-bg: #171D26;
+
+  --font-sans: "Instrument Sans", -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --font-mong: "Noto Sans Mongolian", var(--font-sans);
+
+  --rail-w: 84px;
+  --measure: 62ch;
+  --pad-x: clamp(24px, 6vw, 64px);
+  --scroll: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #14181D;
+    --ink: #E7EAEE;
+    --accent: #7FB2E5;
+    --muted: #98A2AD;
+    --hairline: #262C33;
+    --signal: #4AA57D;
+    --bagana-base: rgba(152, 162, 173, 0.32);
+    --grid-line: rgba(231, 234, 238, 0.025);
+    --band-bg: #1A2028;
+  }
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  background: var(--bg);
+  scrollbar-gutter: stable;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--ink);
+  background-color: var(--bg);
+  /* Faint drafting-sheet grid: keeps large light areas from reading as
+     empty white without adding any actual ornament. */
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 44px 44px;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: var(--accent); color: var(--bg); }
+
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--hairline);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+a:hover {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+}
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 1px;
+}
+@media (prefers-reduced-motion: no-preference) {
+  a { transition: color 120ms ease-out, text-decoration-color 120ms ease-out; }
+}
+
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 12px;
+  z-index: 10;
+  background: var(--ink);
+  color: var(--bg);
+  padding: 8px 14px;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+}
+.skip:focus-visible { left: calc(var(--rail-w) + 12px); }
+
+/* --------------------------------------------------------------------------
+   The bagana — fixed left column, vertical Mongolian script.
+   Two stacked copies of the name: graphite base, khadag fill clipped to
+   scroll progress. Scroll-driven animation where supported (exact browser-
+   native progress mapping); JS fallback elsewhere. Degrades to a thin
+   progress rule if the font fails.
+   -------------------------------------------------------------------------- */
+
+.bagana {
+  position: fixed;
+  inset: 0 auto 0 0;
+  width: var(--rail-w);
+  border-right: 1px solid var(--hairline);
+  display: flex;
+  justify-content: center;
+  padding-block: 28px;
+  overflow: hidden;
+  z-index: 5;
+}
+
+.bagana__script {
+  position: relative;
+  writing-mode: vertical-lr;
+  font-family: var(--font-mong);
+  font-size: 2.125rem;
+  line-height: 1;
+  user-select: none;
+}
+.bagana__base { color: var(--bagana-base); }
+.bagana__fill {
+  position: absolute;
+  inset: 0;
+  color: var(--accent);
+  clip-path: inset(0 0 calc((1 - var(--scroll)) * 100%) 0);
+}
+
+.bagana__rule { display: none; }
+
+/* Font failed to load: swap the script for a plain progress rule. */
+.bagana--fallback .bagana__script { display: none; }
+.bagana--fallback .bagana__rule {
+  display: block;
+  position: relative;
+  width: 2px;
+  background: var(--hairline);
+}
+.bagana--fallback .bagana__rule-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  clip-path: inset(0 0 calc((1 - var(--scroll)) * 100%) 0);
+}
+
+/* Browser-native scroll progress: exact from page top to page end. */
+@supports (animation-timeline: scroll()) {
+  .bagana__fill,
+  .bagana--fallback .bagana__rule-fill {
+    clip-path: inset(0 0 100% 0);
+    animation: bagana-fill linear both;
+    animation-timeline: scroll(root block);
+  }
+  @keyframes bagana-fill {
+    to { clip-path: inset(0 0 0 0); }
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Page frame
+   -------------------------------------------------------------------------- */
+
+.page {
+  margin-left: var(--rail-w);
+  padding-inline: var(--pad-x);
+}
+
+.masthead,
+main {
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+.masthead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding-block: 28px 0;
+}
+.masthead__name {
+  font-weight: 600;
+  font-size: 1.375rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+.masthead__links {
+  display: flex;
+  gap: 20px;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* --------------------------------------------------------------------------
+   Hero
+   -------------------------------------------------------------------------- */
+
+.hero {
+  padding-block: clamp(64px, 12vh, 120px) clamp(48px, 8vh, 84px);
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 28px;
+}
+
+h1 {
+  font-size: clamp(2.55rem, 6.6vw, 4.35rem);
+  font-weight: 600;
+  line-height: 1.03;
+  letter-spacing: -0.022em;
+  max-width: 14ch;
+  text-wrap: balance;
+  margin-bottom: 32px;
+}
+
+.hero__sub {
+  max-width: var(--measure);
+  font-size: 1.125rem;
+  margin-bottom: 40px;
+}
+
+.status {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.status__dot {
+  flex: none;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--signal);
+  transform: translateY(-1px);
+}
+
+/* --------------------------------------------------------------------------
+   Sections — datasheet register
+   -------------------------------------------------------------------------- */
+
+.section {
+  border-top: 1px solid var(--hairline);
+  padding-block: clamp(44px, 6vh, 64px);
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 32px;
+}
+.gloss {
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+}
+
+.prose { max-width: var(--measure); }
+.prose--lede { font-size: 1.125rem; }
+.prose em { font-style: italic; }
+
+/* Selected work — metric-led project grid */
+
+.work-grid {
+  display: grid;
+  gap: 44px 56px;
+}
+.work__metric {
+  font-family: var(--font-mono);
+  font-size: 1.375rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
+}
+.work__arrow { color: var(--accent); }
+.work__name {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-top: 10px;
+}
+.work__desc {
+  color: var(--muted);
+  margin-top: 8px;
+}
+.work__meta {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Work entries */
+
+.entry { max-width: var(--measure); }
+.entry + .entry { margin-top: 48px; }
+
+.entry__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.entry__head h3 {
+  font-size: 1.1875rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.entry__dates {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.entry__role {
+  font-weight: 500;
+  color: var(--muted);
+  margin: 4px 0 14px;
+}
+.entry__stack {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+  margin-top: 14px;
+}
+
+/* Brief roles — internships and short stints, one line each */
+
+.brief {
+  list-style: none;
+  max-width: var(--measure);
+  margin-top: 48px;
+  border-top: 1px solid var(--hairline);
+  padding-top: 28px;
+}
+.brief li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  color: var(--muted);
+  font-size: 0.9375rem;
+}
+.brief li + li { margin-top: 12px; }
+.brief__dates {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Specifications — schema table */
+
+.specs { max-width: var(--measure); }
+.specs__row {
+  display: grid;
+  grid-template-columns: 9.5rem 1fr;
+  gap: 20px;
+}
+.specs__row + .specs__row { margin-top: 18px; }
+.specs__row dt {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-top: 3px;
+}
+.specs__row dd { font-weight: 400; }
+
+/* Operating principles — khadag bars, no glyph markers */
+
+.principles {
+  list-style: none;
+  max-width: var(--measure);
+}
+.principles li {
+  padding-left: 20px;
+  border-left: 2px solid var(--accent);
+}
+.principles li + li { margin-top: 20px; }
+
+/* Plain lists — certifications, education.
+   Uniform shape: name on one line, source on its own line beneath.
+   Nothing wraps sideways, every entry reads the same. */
+
+.plain-list {
+  list-style: none;
+  max-width: var(--measure);
+}
+.plain-list li + li { margin-top: 16px; }
+.plain-list li > span:first-child {
+  display: block;
+  font-weight: 500;
+}
+.plain-list__meta {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+/* Certifications + education share one band; borders come from .duo */
+
+.duo { border-top: 1px solid var(--hairline); }
+.section--duo { border-top: 0; }
+.section--duo + .section--duo { border-top: 1px solid var(--hairline); }
+
+/* --------------------------------------------------------------------------
+   Footer — a full-width closing band in drafting ink. Tokens are re-scoped
+   so every child (labels, links, colophon, script mark) re-themes itself.
+   -------------------------------------------------------------------------- */
+
+.footer {
+  --ink: #F2F4F3;
+  --muted: #9CA7B2;
+  --hairline: rgba(242, 244, 243, 0.18);
+  --accent: #7FB2E5;
+  --bagana-base: rgba(242, 244, 243, 0.4);
+  background: var(--band-bg);
+  color: var(--ink);
+  margin-inline: calc(-1 * var(--pad-x));
+  padding-inline: var(--pad-x);
+  padding-block: clamp(48px, 7vh, 72px) 56px;
+}
+.footer__inner {
+  max-width: 720px;
+  margin-inline: auto;
+}
+.footer__contact {
+  font-size: clamp(1.375rem, 3.4vw, 1.875rem);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.3;
+}
+.footer__contact a { text-decoration-thickness: 2px; }
+.footer__links {
+  font-size: 1.0625rem;
+  margin-top: 10px;
+}
+
+.colophon {
+  margin-top: 56px;
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+}
+.colophon p {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.9;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--muted);
+  max-width: 52ch;
+}
+.colophon__narrow { display: none; }
+.colophon__mark {
+  display: none;
+  writing-mode: vertical-lr;
+  font-family: var(--font-mong);
+  font-size: 1.25rem;
+  line-height: 1;
+  color: var(--bagana-base);
+  user-select: none;
+}
+
+/* --------------------------------------------------------------------------
+   Wide screens: section labels move into a sticky left gutter, short
+   sections pair up, and the footer band splits contact | colophon —
+   structure fills the space instead of whitespace.
+   -------------------------------------------------------------------------- */
+
+@media (min-width: 1100px) {
+  .masthead,
+  main,
+  .footer__inner {
+    max-width: 984px;
+  }
+
+  .section {
+    display: grid;
+    grid-template-columns: 216px minmax(0, 1fr);
+    column-gap: 56px;
+  }
+  .section > .label {
+    grid-column: 1;
+    /* Span every (zero-height, gap-free) implicit row so the sticky label
+       tracks the whole section, not just the first content row. */
+    grid-row: 1 / span 64;
+    position: sticky;
+    top: 36px;
+    align-self: start;
+    margin-bottom: 0;
+  }
+  .section > .label .gloss {
+    display: block;
+    margin-top: 6px;
+  }
+  .section > :not(.label) { grid-column: 2; }
+
+  .work-grid { grid-template-columns: 1fr 1fr; }
+
+  .duo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 56px;
+  }
+  .duo .section--duo {
+    display: block;
+    border-top: 0;
+  }
+  .duo .section--duo .label {
+    position: static;
+    margin-bottom: 32px;
+  }
+
+  .footer__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 360px;
+    column-gap: 72px;
+    align-items: start;
+  }
+  .footer .colophon { margin-top: 0; }
+}
+
+/* Two-column projects a bit earlier than the gutter layout */
+@media (min-width: 900px) and (max-width: 1099px) {
+  .work-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* --------------------------------------------------------------------------
+   Small screens: the rail collapses; the script reappears once, in the
+   colophon, as a static mark.
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 760px) {
+  .bagana { display: none; }
+  .page { --pad-x: 24px; margin-left: 0; padding-inline: var(--pad-x); }
+  .skip:focus-visible { left: 12px; }
+  .colophon__mark { display: block; }
+  .colophon__wide { display: none; }
+  .colophon__narrow { display: inline; }
+  .specs__row { grid-template-columns: 1fr; gap: 4px; }
+  .specs__row + .specs__row { margin-top: 22px; }
+  .entry__head { flex-direction: column; gap: 2px; }
+  .colophon { margin-top: 48px; }
+}
+
+@media print {
+  .bagana, .skip { display: none; }
+  .page { margin-left: 0; }
+  body { background: #fff; color: #000; }
+  .footer {
+    background: #fff;
+    --ink: #000;
+    --muted: #444;
+    --accent: #000;
+  }
+}
