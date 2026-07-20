@@ -1,5 +1,5 @@
-// Ochirtulga — portfolio. Total JS budget: this file.
-// 1) Bagana scroll fill  2) days-in-service count  3) Mongolian font check.
+// Ochi (N. Ochirtulga) portfolio. Total JS budget: this file.
+// 1) Bagana scroll fill  2) view windows  3) Mongolian font fallback check.
 (function () {
   "use strict";
 
@@ -29,19 +29,41 @@
     updateScroll();
   }
 
-  // 2. Days in service, computed once from the real start date (Khan Bank,
-  // Feb 2018). Static "since Feb 2018" text already covers the no-JS case.
-  var daysEl = document.querySelector("[data-days]");
-  if (daysEl) {
-    var days = Math.floor((Date.now() - new Date(2018, 1, 1)) / 86400000);
-    if (days > 0) {
-      daysEl.textContent = " · day " + days.toLocaleString("en-US");
-      daysEl.hidden = false;
+  // 2. Windows: the masthead tabs show one view at a time. Unknown hashes
+  // (like #main from the skip link) are ignored; without JS the page is
+  // one long sheet and these tabs are plain anchors.
+  var views = document.querySelectorAll(".view");
+  var tabs = document.querySelectorAll(".masthead__links [data-view]");
+  function showView(name, jump) {
+    var known = false, i;
+    for (i = 0; i < views.length; i++) {
+      if (views[i].id === name) known = true;
+    }
+    if (!known) return false;
+    for (i = 0; i < views.length; i++) {
+      views[i].classList.toggle("view--active", views[i].id === name);
+    }
+    for (i = 0; i < tabs.length; i++) {
+      if (tabs[i].getAttribute("data-view") === name) {
+        tabs[i].setAttribute("aria-current", "page");
+      } else {
+        tabs[i].removeAttribute("aria-current");
+      }
+    }
+    if (jump) window.scrollTo(0, 0);
+    return true;
+  }
+  if (views.length && tabs.length) {
+    window.addEventListener("hashchange", function () {
+      showView(location.hash.slice(1) || "profile", true);
+    });
+    if (!showView(location.hash.slice(1) || "profile", false)) {
+      showView("profile", false);
     }
   }
 
   // 3. If Noto Sans Mongolian never arrives, the vertical name would render
-  // as tofu — swap the script for the plain progress rule instead.
+  // as tofu · swap the script for the plain progress rule instead.
   if (document.fonts && document.fonts.ready) {
     document.fonts.ready.then(function () {
       if (!document.fonts.check('1rem "Noto Sans Mongolian"')) {

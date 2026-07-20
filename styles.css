@@ -1,15 +1,15 @@
 /* ==========================================================================
-   Ochi (N. Ochirtulga) — portfolio
-   Direction: "Calibration Record" — a datasheet, not a brochure.
-   Signature: the bagana — his name in vertical Mongolian script on the left
+   Ochi (N. Ochirtulga) · portfolio
+   Direction: "Calibration Record" · a datasheet, not a brochure.
+   Signature: the bagana · his name in vertical Mongolian script on the left
    edge, filling with khadag sky-blue as the reader scrolls.
 
    Tokens
    Enclosure  #F2F4F3  page ground (cool instrument white)
    Ink        #171D26  primary text (blue-black drafting ink)
-   Khadag     #1F5FA8  the only accent — Mongolian sky-scarf blue
+   Khadag     #1F5FA8  the only accent · Mongolian sky-scarf blue
    Graphite   #525B66  secondary text, mono layer
-   Trace      #DCE1E1  hairlines — one weight, 1px, always
+   Trace      #DCE1E1  hairlines · one weight, 1px, always
    Signal     #2E7D5B  used once: the status dot
    ========================================================================== */
 
@@ -107,7 +107,7 @@ a:hover {
 .skip:focus-visible { left: calc(var(--rail-w) + 12px); }
 
 /* --------------------------------------------------------------------------
-   The bagana — fixed left column, vertical Mongolian script.
+   The bagana · fixed left column, vertical Mongolian script.
    Two stacked copies of the name: graphite base, khadag fill clipped to
    scroll progress. Scroll-driven animation where supported (exact browser-
    native progress mapping); JS fallback elsewhere. Degrades to a thin
@@ -208,6 +208,18 @@ main {
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
+.masthead__links a[aria-current="page"] {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+}
+
+/* Views · the page splits into windows; JS shows one at a time.
+   Without JS every view renders and the page reads as one long sheet. */
+
+.js .view { display: none; }
+.js .view--active { display: block; }
+.js .view > .section:first-child { margin-top: 44px; }
 
 /* --------------------------------------------------------------------------
    Hero
@@ -263,8 +275,36 @@ h1 {
   transform: translateY(-1px);
 }
 
+/* Portrait · mounted on the calibration sheet with a hairline frame.
+   Cropped to 4:5 and positioned on the face for a closer view. */
+
+.hero__portrait {
+  margin-top: 44px;
+  max-width: 256px;
+}
+.hero__portrait img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: 50% 12%;
+  border: 1px solid var(--hairline);
+  padding: 8px;
+}
+
+@media (min-width: 900px) {
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 288px;
+    column-gap: 72px;
+    align-items: center;
+  }
+  .hero__portrait { margin-top: 0; max-width: none; }
+}
+
 /* --------------------------------------------------------------------------
-   Sections — datasheet register
+   Sections · datasheet register
    -------------------------------------------------------------------------- */
 
 .section {
@@ -289,10 +329,11 @@ h1 {
 }
 
 .prose { max-width: var(--measure); }
+.prose + .prose { margin-top: 1em; }
 .prose--lede { font-size: 1.125rem; }
 .prose em { font-style: italic; }
 
-/* Selected work — metric-led project grid */
+/* Selected work · metric-led project grid */
 
 .work-grid {
   display: grid;
@@ -364,7 +405,7 @@ h1 {
   margin-top: 14px;
 }
 
-/* Brief roles — internships and short stints, one line each */
+/* Brief roles · internships and short stints, one line each */
 
 .brief {
   list-style: none;
@@ -390,7 +431,7 @@ h1 {
   font-variant-numeric: tabular-nums;
 }
 
-/* Specifications — schema table */
+/* Specifications · schema table */
 
 .specs { max-width: var(--measure); }
 .specs__row {
@@ -410,7 +451,7 @@ h1 {
 }
 .specs__row dd { font-weight: 400; }
 
-/* Operating principles — khadag bars, no glyph markers */
+/* Operating principles · khadag bars, no glyph markers */
 
 .principles {
   list-style: none;
@@ -422,7 +463,7 @@ h1 {
 }
 .principles li + li { margin-top: 20px; }
 
-/* Plain lists — certifications, education.
+/* Plain lists · certifications, education.
    Uniform shape: name on one line, source on its own line beneath.
    Nothing wraps sideways, every entry reads the same. */
 
@@ -451,7 +492,7 @@ h1 {
 .section--duo + .section--duo { border-top: 1px solid var(--hairline); }
 
 /* --------------------------------------------------------------------------
-   Footer — a full-width closing band in drafting ink. Tokens are re-scoped
+   Footer · a full-width closing band in drafting ink. Tokens are re-scoped
    so every child (labels, links, colophon, script mark) re-themes itself.
    -------------------------------------------------------------------------- */
 
@@ -511,7 +552,7 @@ h1 {
 
 /* --------------------------------------------------------------------------
    Wide screens: section labels move into a sticky left gutter, short
-   sections pair up, and the footer band splits contact | colophon —
+   sections pair up, and the footer band splits contact | colophon:
    structure fills the space instead of whitespace.
    -------------------------------------------------------------------------- */
 
@@ -593,6 +634,7 @@ h1 {
 
 @media print {
   .bagana, .skip { display: none; }
+  .js .view { display: block; }
   .page { margin-left: 0; }
   body { background: #fff; color: #000; }
   .footer {

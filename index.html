@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <link rel="icon" type="image/x-icon" href="/favicon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ochi · Software Engineer</title>
   <meta name="description" content="Ochi is a software engineer in Austin, TX. Java, Kafka, Cassandra, AWS. Banking, life sciences, and AI training. I build the part that can't fail.">
@@ -13,6 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+Mongolian&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <script>document.documentElement.classList.add("js")</script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -33,28 +33,34 @@
   <div class="page">
     <header class="masthead">
       <p class="masthead__name">Ochi</p>
-      <nav class="masthead__links" aria-label="Contact">
-        <a href="https://github.com/ochirtulga">GitHub</a>
-        <a href="https://www.linkedin.com/in/onamjim">LinkedIn</a>
-        <a href="mailto:ochirtulgan@gmail.com">Email</a>
+      <nav class="masthead__links" aria-label="Sections">
+        <a href="#profile" data-view="profile" aria-current="page">Profile</a>
+        <a href="#work" data-view="work">Work</a>
+        <a href="#career" data-view="career">Career</a>
       </nav>
     </header>
 
     <main id="main">
+      <div class="view" id="profile">
       <section class="hero">
-        <p class="eyebrow">Software engineer · Distributed systems · Austin, TX</p>
-        <h1>I build the part that&nbsp;can&rsquo;t&nbsp;fail.</h1>
-        <p class="hero__sub">
-          I&rsquo;m Ochi, a software engineer from Mongolia, based in Austin, Texas. 8
-          years in systems where downtime isn&rsquo;t an option: banking at Mongolia&rsquo;s
-          largest bank, life-sciences software at Thermo&nbsp;Fisher Scientific, now training
-          AI coding agents. Java, Kafka, Cassandra, AWS. I sleep well when the system is
-          well-architected.
-        </p>
-        <p class="status">
-          <span class="status__dot"></span>
-          <span>In service since Feb 2018<span data-days hidden></span> · Open to software engineer roles</span>
-        </p>
+        <div class="hero__text">
+          <p class="eyebrow">Software engineer · Distributed systems · Austin, TX</p>
+          <h1>I build the part that&nbsp;can&rsquo;t&nbsp;fail.</h1>
+          <p class="hero__sub">
+            I&rsquo;m Ochi, a software engineer from Mongolia, based in Austin, Texas. Eight
+            years in systems where downtime isn&rsquo;t an option: banking at Mongolia&rsquo;s
+            largest bank, life-sciences software at Thermo&nbsp;Fisher Scientific, now training
+            AI coding agents. Java, Kafka, Cassandra, AWS. I sleep well when the system is
+            well-architected.
+          </p>
+          <p class="status">
+            <span class="status__dot"></span>
+            <span>In service since Feb 2018 · Open to software engineer roles</span>
+          </p>
+        </div>
+        <figure class="hero__portrait">
+          <img src="profile.jpg" alt="Ochi (Ochirtulga Namjim), software engineer" width="640" height="1006" decoding="async">
+        </figure>
       </section>
 
       <section class="section" aria-labelledby="lbl-throughline">
@@ -62,13 +68,37 @@
         <p class="prose prose--lede">
           My name ends in <em lang="mn-Latn">tulga</em>: in Mongolian, the iron stand that
           holds the cauldron over the fire. Nobody admires a tulga. Everybody eats because
-          it holds. That&rsquo;s the layer I build. Four-plus years keeping services alive at
-          the bank most of Mongolia banks with, nearly three behind laboratory instruments
-          at Thermo Fisher, and now the pipelines that teach AI coding agents to hold the
-          same standard. If I do my job well, you never think about my work at all.
+          it holds. That&rsquo;s the layer I build: services at Mongolia&rsquo;s largest bank,
+          laboratory instruments at Thermo Fisher, now pipelines that teach AI coding
+          agents the same standard.
+        </p>
+        <p class="prose prose--lede">
+          If I do my job well, you never think about my work at all.
         </p>
       </section>
 
+      <section class="section" aria-labelledby="lbl-principles">
+        <h2 class="label" id="lbl-principles">Operating principles <span class="gloss">· opinions, held firmly</span></h2>
+        <ul class="principles">
+          <li>Boring is a feature. Novelty belongs in side projects, not in the payment path.</li>
+          <li>Data outlives code. Model the schema like you&rsquo;ll live with it for a decade, because someone will.</li>
+          <li>Software isn&rsquo;t done when it ships. It&rsquo;s done when it&rsquo;s been paged for, and held.</li>
+          <li>Never comfortable with shortcuts. The bill always arrives, with interest.</li>
+          <li>Ask why it was built that way before changing it. The system usually knows something you don&rsquo;t yet.</li>
+        </ul>
+      </section>
+
+      <section class="section" aria-labelledby="lbl-offduty">
+        <h2 class="label" id="lbl-offduty">Off duty <span class="gloss">· what keeps me calibrated</span></h2>
+        <p class="prose">
+          Basketball, live music, books (the side project isn&rsquo;t named Bookworm by
+          accident), and reading the markets. Building side projects counts too; the
+          projects folder has its own gravitational pull.
+        </p>
+      </section>
+      </div>
+
+      <div class="view" id="work">
       <section class="section" aria-labelledby="lbl-work">
         <h2 class="label" id="lbl-work">Selected work <span class="gloss">· the parts I&rsquo;m proud of</span></h2>
         <div class="work-grid">
@@ -76,9 +106,9 @@
             <p class="work__metric">3 days <span class="work__arrow">→</span> 3 hours</p>
             <h3 class="work__name">Behavioral loan scoring</h3>
             <p class="work__desc">
-              Led and delivered a scoring platform on PySpark pipelines, moving lending data
+              Led and delivered a scoring platform on PySpark pipelines moving lending data
               from Oracle into Spark and Hadoop. Loan approvals went from days to hours, the
-              approval rate went up, and it was nominated for Project of the Year.
+              approval rate went up, and it was nominated for Projects of the Year.
             </p>
             <p class="work__meta">Khan Bank · 2018 → 2021</p>
           </article>
@@ -115,6 +145,33 @@
         </div>
       </section>
 
+      <section class="section" aria-labelledby="lbl-side">
+        <h2 class="label" id="lbl-side">Side projects <span class="gloss">· built after hours</span></h2>
+        <div class="work-grid">
+          <article class="work">
+            <p class="work__metric">hobby <span class="work__arrow">→</span> app</p>
+            <h3 class="work__name">Bookworm</h3>
+            <p class="work__desc">
+              A reading companion for iOS: track your library, run reading challenges,
+              collect achievements. Expo and React Native on Supabase, built because the
+              reading habit deserved better tooling.
+            </p>
+            <p class="work__meta">Side project · Expo · Supabase</p>
+          </article>
+          <article class="work">
+            <p class="work__metric">Erdenet <span class="work__arrow">→</span> online</p>
+            <h3 class="work__name"><a href="https://expresswindow.online">expresswindow.online</a></h3>
+            <p class="work__desc">
+              The public site and internal order and inventory tools for a family
+              window-and-door business in Mongolia, shipped end to end.
+            </p>
+            <p class="work__meta">Live · Next.js · AWS S3 · CloudFront · Route 53</p>
+          </article>
+        </div>
+      </section>
+      </div>
+
+      <div class="view" id="career">
       <section class="section" aria-labelledby="lbl-history">
         <h2 class="label" id="lbl-history">Operating history <span class="gloss">· where I&rsquo;ve worked</span></h2>
 
@@ -153,7 +210,7 @@
           <p class="entry__role">Software Engineer</p>
           <p class="prose">
             A return home: secure, production-grade internal microservices on Spring Boot,
-            Docker, Kubernetes, and legacy services migrated to a modular architecture
+            Docker, and Kubernetes, and legacy services migrated to a modular architecture
             with standardized deployments.
           </p>
           <p class="entry__stack">Java · Spring Boot · Docker · Kubernetes</p>
@@ -237,15 +294,6 @@
         </dl>
       </section>
 
-      <section class="section" aria-labelledby="lbl-principles">
-        <h2 class="label" id="lbl-principles">Operating principles <span class="gloss">· opinions, held firmly</span></h2>
-        <ul class="principles">
-          <li>Boring is a feature. Novelty belongs in side projects, not in the payment path.</li>
-          <li>Data outlives code. Model the schema like you&rsquo;ll live with it for a decade, because someone will.</li>
-          <li>Software isn&rsquo;t done when it ships. It&rsquo;s done when it&rsquo;s been paged for, and held.</li>
-        </ul>
-      </section>
-
       <div class="duo">
         <section class="section section--duo" aria-labelledby="lbl-certs">
           <h2 class="label" id="lbl-certs">Certifications <span class="gloss">· independently verified</span></h2>
@@ -286,6 +334,7 @@
             </li>
           </ul>
         </section>
+      </div>
       </div>
     </main>
 
