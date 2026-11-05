@@ -23,6 +23,7 @@
   <link rel="stylesheet" href="game.css?v=2">
   <link rel="stylesheet" href="architecture.css?v=4">
   <link rel="stylesheet" href="experience.css?v=1">
+  <link rel="stylesheet" href="education.css?v=1">
   <link rel="stylesheet" href="hobbies.css?v=1">
   <script src="tree.js?v=2" defer></script>
   <script src="weather.js?v=1" defer></script>
@@ -120,7 +121,32 @@
       </section>
     </section>
 
-    <section class="education-section page-width section-space" id="education" aria-labelledby="education-title"><div class="section-marker">Education</div><div class="education-grid"><div><h2 id="education-title">The roots<br>run deep.</h2><p class="section-description">Two countries. Three degrees.<br>Still a lot left to learn.</p><div class="root-illustration" aria-hidden="true"><svg viewBox="0 0 240 125" fill="none"><path d="M122 4v42m0-12c-8 35-47 32-62 58m62-46c4 23 39 22 57 57m-57-65c-3 29 7 50 0 78M87 65c-9 0-28-2-39 14m18 8c-17 0-32 4-43 17m129-35c21 0 32 9 39 22m-71-12c-13 16-19 22-19 38m72-22c12 0 26 7 37 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div></div><div class="education-list"><article><span class="degree-mark" aria-hidden="true">MSc</span><div><h3>Computer Science and Engineering</h3><p>American National University</p></div></article><article><span class="degree-mark" aria-hidden="true">MSc</span><div><h3>Computer Science</h3><p>Maharishi International University</p></div></article><article><span class="degree-mark" aria-hidden="true">BTech</span><div><h3>Information Technology</h3><p>Mongolian University of Science and Technology</p></div></article><details class="credentials"><summary>Certifications <span aria-hidden="true">+</span></summary><ul><li>AWS Solutions Architect Associate</li><li>AWS Cloud Practitioner</li><li>DataStax Cassandra 3.x Developer Associate</li><li>ISACA COBIT 2019 Foundation</li></ul></details></div></div></section>
+    <section class="education-section page-width section-space" id="education" aria-labelledby="education-title">
+      <div class="section-marker">Education</div>
+      <div class="edu-layout">
+        <div class="edu-introduction">
+          <h2 id="education-title">A foundation<br>across borders.</h2>
+          <p class="edu-intro">Three degrees spanning information technology, computer science, and engineering.</p>
+          <figure class="edu-journey">
+            <div class="edu-journey-countries"><div class="edu-place"><img src="flags/mn.svg" alt="" width="40" height="30" loading="lazy"><span>Mongolia</span></div><svg class="edu-connection" viewBox="0 0 110 48" fill="none" aria-hidden="true"><path d="M5 31C27-3 68 49 105 15" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="3 5"/><circle cx="5" cy="31" r="3" fill="currentColor"/><circle cx="105" cy="15" r="3" fill="currentColor"/></svg><div class="edu-place"><img src="flags/us.svg" alt="" width="40" height="30" loading="lazy"><span>United States</span></div></div>
+            <figcaption>Still a lot left to learn.</figcaption>
+          </figure>
+        </div>
+        <ul class="edu-degrees" role="list" aria-label="Academic degrees">
+          <li><article class="edu-degree" aria-labelledby="degree-anu"><div class="edu-degree-meta"><p class="edu-level">Master of Science</p><p class="edu-country"><img src="flags/us.svg" alt="" width="28" height="21" loading="lazy"><span>United States</span></p></div><h3 id="degree-anu">Computer Science and Engineering</h3><a class="edu-university" href="https://an.edu/" target="_blank" rel="noopener noreferrer" aria-label="American National University official website, opens in a new tab"><span>American National University</span><span aria-hidden="true">↗</span></a></article></li>
+          <li><article class="edu-degree" aria-labelledby="degree-miu"><div class="edu-degree-meta"><p class="edu-level">Master of Science</p><p class="edu-country"><img src="flags/us.svg" alt="" width="28" height="21" loading="lazy"><span>United States</span></p></div><h3 id="degree-miu">Computer Science</h3><a class="edu-university" href="https://www.miu.edu/" target="_blank" rel="noopener noreferrer" aria-label="Maharishi International University official website, opens in a new tab"><span>Maharishi International University</span><span aria-hidden="true">↗</span></a></article></li>
+          <li><article class="edu-degree" aria-labelledby="degree-must"><div class="edu-degree-meta"><p class="edu-level">Bachelor of Technology</p><p class="edu-country"><img src="flags/mn.svg" alt="" width="28" height="21" loading="lazy"><span>Mongolia</span></p></div><h3 id="degree-must">Information Technology</h3><a class="edu-university" href="https://must.edu.mn/en/" target="_blank" rel="noopener noreferrer" aria-label="Mongolian University of Science and Technology official website, opens in a new tab"><span>Mongolian University of Science and Technology</span><span aria-hidden="true">↗</span></a></article></li>
+        </ul>
+      </div>
+      <section class="edu-certifications" aria-labelledby="edu-cert-title">
+        <div class="edu-cert-heading"><h3 id="edu-cert-title">Certifications</h3><p>Learning beyond the classroom, in cloud, data, and IT governance.</p></div>
+        <div class="edu-cert-grid">
+          <article class="edu-cert-group edu-cert-cloud" aria-labelledby="edu-aws"><div class="edu-cert-category">Cloud</div><h4 id="edu-aws">Amazon Web Services</h4><ul role="list"><li>Solutions Architect – Associate</li><li>Cloud Practitioner</li></ul></article>
+          <article class="edu-cert-group edu-cert-data" aria-labelledby="edu-datastax"><div class="edu-cert-category">Data</div><h4 id="edu-datastax">DataStax</h4><ul role="list"><li>Cassandra 3.x Developer Associate</li></ul></article>
+          <article class="edu-cert-group edu-cert-governance" aria-labelledby="edu-isaca"><div class="edu-cert-category">IT governance</div><h4 id="edu-isaca">ISACA</h4><ul role="list"><li>COBIT 2019 Foundation</li></ul></article>
+        </div>
+      </section>
+    </section>
 
     <section class="hobbies-section section-space" id="hobbies" aria-labelledby="hobbies-title"><div class="page-width"><div class="section-marker">Hobbies</div><div class="section-heading"><div><h2 id="hobbies-title">Life has side quests.</h2><p>Some things I do when I'm not writing code.</p></div><span class="hobby-note">A small corner of the internet that feels like me.</span></div><div class="hobbies-grid"><div class="reading-nook"><div class="hobby-label">Between the pages</div><h3>“Just one more chapter.”</h3><p>I love books enough to build an app around them. Bookworm started where a lot of my side projects do: something I wanted to use myself.</p><button class="text-link" type="button" data-project="bookworm" aria-haspopup="dialog">Meet Bookworm <span aria-hidden="true">↗</span></button><div class="little-library" aria-hidden="true"><span class="little-book">A good story</span><span class="little-book">Something to learn</span><span class="little-book">One more chapter</span><span class="library-plant"><i></i><i></i><i></i></span></div></div><div class="gaming-corner"><div id="game-cartridge"></div><div class="gaming-copy"><h3>One more round.</h3><p>GTA, WoW, Dota, League, Counter-Strike, and hundreds of other worlds. Horror games, too. I just scream and react a lot.</p><p class="game-invitation">This cartridge holds a little game of its own. Give it a play.</p></div></div></div>
       <div class="hobby-pursuits">

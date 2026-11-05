@@ -16,6 +16,7 @@ A buildless static website with direct About, Work, Education, and Hobbies navig
 - `architecture.css`, `architecture.js`: the desktop story index, mobile picker, directional diagrams, chapter progress, result shortcut, and automatic/manual playback.
 - `architecture-stories.js`: five additional problem-solving stories, each with Situation, Challenge, Approach, and Result chapters.
 - `experience.css`: the always-visible vertical career timeline with dates, roles, project/story links, and résumé download.
+- `education.css`, `flags/`: degree records, the country study journey, visible certification groups, and local flag SVGs with their MIT license.
 - `ink/`, `fonts/`: original pen-outline SVGs and the self-hosted Kalam handwriting font with its SIL Open Font License.
 - `hobbies.css`: the illustrated food, travel/adventure, and basketball pursuits.
 - `portrait-lights.jpeg`: the uploaded purple-light portrait in About.
@@ -51,6 +52,10 @@ The **Portfolios** header menu identifies this site as **The garden**. The secon
 Leaf keeper asks for an optional nickname before its 25-second round. Completed ranked rounds are saved to https://ochi-leaf-keeper-api.ochro.chatgpt.site and the top ten appears after play. Each browser identifier has one personal-best entry; blank nicknames become Anonymous. The game clearly explains that nicknames and best scores are public.
 
 The API runs separately on Cloudflare Workers with D1 through Sites. The database is never accessed directly from this static website. Server-issued round tokens, time and score limits, and idempotent submissions prevent duplicate scores. The game remains playable as an explicitly unranked round if the shared service is unavailable. These checks support a casual game and do not prove every catch was made by a human.
+
+## Education
+
+The education section shows full degree levels, subjects, institutions, country flags with text labels, and links to official university sites. A Mongolia–United States study journey replaces the old root illustration. All four certifications are visible, grouped into cloud (Amazon Web Services), data (DataStax), and IT governance (ISACA). The degree names follow the original portfolio; country labels are verified against the institutions’ official sites. SVG flags are from [flag-icons](https://github.com/lipis/flag-icons), distributed under the included MIT license.
 
 ## Work timeline
 
