@@ -19,6 +19,7 @@
     },
     {
       name: 'Challenges',
+      layout: 'constraints',
       title: 'Scaling had more than one constraint.',
       summary: 'Scaling the monolith, maintaining the .NET application, and sharing the database server with other systems all had to be addressed.',
       nodes: [
@@ -88,12 +89,13 @@
     return node;
   };
   const text = value => typeof value === 'string' ? value : '';
-  function normalizeSteps(value) {
-    if (!Array.isArray(value) || value.length < 2) return defaults;
+  function normalizeSteps(value, fallback = defaults) {
+    if (!Array.isArray(value) || value.length < 2) return fallback;
     const valid = value.slice(0, 10).filter(step => step && text(step.name) && text(step.title) && text(step.summary) && Array.isArray(step.nodes) && step.nodes.length > 0);
-    if (valid.length < 2) return defaults;
+    if (valid.length < 2) return fallback;
     return valid.map(step => ({
       name: text(step.name), title: text(step.title), summary: text(step.summary),
+      layout: ['constraints', 'components'].includes(step.layout) ? step.layout : 'flow',
       nodes: step.nodes.slice(0, 5).map(node => ({ label: text(node.label), detail: text(node.detail), kind: text(node.kind) })),
       diagramDescription: text(step.diagramDescription) || step.nodes.map(node => text(node.label)).join(', '),
       note: text(step.note),
@@ -101,7 +103,24 @@
     }));
   }
 
-  let steps = normalizeSteps(window.OCHI_ARCHITECTURE_STEPS);
+  const stories = [{
+    id: 'notifications',
+    name: 'Notifications',
+    title: 'The notification migration.',
+    project: 'Khan Bank / Notifications',
+    steps: normalizeSteps(window.OCHI_ARCHITECTURE_STEPS)
+  }];
+  if (Array.isArray(window.OCHI_ARCHITECTURE_STORIES)) {
+    window.OCHI_ARCHITECTURE_STORIES.forEach(value => {
+      if (!value || !text(value.name) || !text(value.title) || !text(value.project)) return;
+      const id = text(value.id).toLowerCase().replace(/[^a-z0-9-]/g, '');
+      const normalized = normalizeSteps(value.steps, null);
+      if (!id || !normalized || stories.some(story => story.id === id)) return;
+      stories.push({ id, name: value.name, title: value.title, project: value.project, steps: normalized });
+    });
+  }
+  let story = stories[0];
+  let steps = story.steps;
   const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const interval = 10_000;
   let current = 0;
@@ -113,16 +132,32 @@
   let tabs = [];
 
   root.setAttribute('aria-roledescription', 'slideshow');
+  root.dataset.story = story.id;
   root.dataset.stage = '0';
   const header = element('div', 'as-heading');
   const headingText = element('div');
   headingText.append(element('span', 'as-caption', 'A look under the cover'));
-  headingText.append(element('h3', 'as-heading-title', 'The notification migration.'));
-  header.append(headingText, element('span', 'as-project', 'Khan Bank / Notifications'));
+  const storyTitle = element('h3', 'as-heading-title', story.title);
+  const storyProject = element('span', 'as-project', story.project);
+  headingText.append(storyTitle);
+  header.append(headingText, storyProject);
+
+  const storyPicker = element('div', 'as-story-picker');
+  const storyLabel = element('label', 'as-story-label', 'Choose a story');
+  storyLabel.htmlFor = 'architecture-story-select';
+  const storySelect = element('select', 'as-story-select');
+  storySelect.id = 'architecture-story-select';
+  storySelect.setAttribute('aria-controls', 'architecture-current-chapter');
+  stories.forEach(value => {
+    const option = element('option', '', value.name);
+    option.value = value.id;
+    storySelect.append(option);
+  });
+  storyPicker.append(storyLabel, storySelect);
 
   const nav = element('div', 'as-stages');
   nav.setAttribute('role', 'tablist');
-  nav.setAttribute('aria-label', 'Migration chapters');
+  nav.setAttribute('aria-label', 'Story chapters');
 
   const panel = element('div', 'as-panel');
   panel.id = 'architecture-current-chapter';
@@ -179,13 +214,14 @@
   const live = element('div', 'as-sr-only');
   live.setAttribute('role', 'status');
   live.setAttribute('aria-live', 'polite');
-  root.replaceChildren(header, nav, panel, footer, playbackNote, live);
+  root.replaceChildren(header, storyPicker, nav, panel, footer, playbackNote, live);
 
   function refreshTabs() {
+    nav.dataset.chapters = String(steps.length);
     tabs = steps.map((step, index) => {
       const button = element('button', 'as-stage', step.name);
       button.type = 'button';
-      button.id = `architecture-chapter-${index}`;
+      button.id = `architecture-${story.id}-chapter-${index}`;
       button.setAttribute('role', 'tab');
       button.setAttribute('aria-controls', panel.id);
       button.addEventListener('click', () => goTo(index, true));
@@ -225,6 +261,8 @@
 
   function render() {
     const step = steps[current];
+    storyTitle.textContent = story.title;
+    storyProject.textContent = story.project;
     title.textContent = step.title;
     summary.textContent = step.summary;
     diagram.setAttribute('aria-label', step.diagramDescription);
@@ -236,7 +274,8 @@
       slot.detail.textContent = data?.detail || '';
       slot.node.dataset.kind = data?.kind || '';
     });
-    connectors.forEach((connector, index) => { connector.hidden = index >= step.nodes.length - 1; });
+    const layout = step.layout || 'flow';
+    connectors.forEach((connector, index) => { connector.hidden = layout !== 'flow' || index >= step.nodes.length - 1; });
     takeaway.classList.toggle('as-takeaway-fact', Boolean(step.fact));
     takeawayLabel.textContent = step.fact?.label || '';
     takeawayValue.textContent = step.fact?.value || step.note || '';
@@ -246,7 +285,9 @@
     });
     panel.setAttribute('aria-labelledby', tabs[current].id);
     count.textContent = `${current + 1} / ${steps.length}`;
+    root.dataset.story = story.id;
     root.dataset.stage = String(current);
+    root.dataset.layout = layout;
     schedule();
   }
 
@@ -254,10 +295,20 @@
     current = (index + steps.length) % steps.length;
     if (manual) {
       autoplay = false;
-      live.textContent = `Chapter ${current + 1} of ${steps.length}: ${steps[current].name}. ${steps[current].title}`;
+      live.textContent = `${story.name}. Chapter ${current + 1} of ${steps.length}: ${steps[current].name}. ${steps[current].title}`;
     }
     render();
   }
+
+  storySelect.addEventListener('change', () => {
+    story = stories.find(value => value.id === storySelect.value) || stories[0];
+    steps = story.steps;
+    current = 0;
+    autoplay = false;
+    refreshTabs();
+    render();
+    live.textContent = `${story.name}. Chapter 1 of ${steps.length}: ${steps[0].name}. ${steps[0].title}`;
+  });
 
   previous.addEventListener('click', () => goTo(current - 1, true));
   next.addEventListener('click', () => goTo(current + 1, true));
@@ -294,6 +345,7 @@
   }
   window.addEventListener('ochi:architecture-steps', event => {
     steps = normalizeSteps(event.detail);
+    story.steps = steps;
     current = 0;
     refreshTabs();
     render();
