@@ -136,11 +136,31 @@
   root.dataset.stage = '0';
   const header = element('div', 'as-heading');
   const headingText = element('div');
-  headingText.append(element('span', 'as-caption', 'A look under the cover'));
-  const storyTitle = element('h3', 'as-heading-title', story.title);
-  const storyProject = element('span', 'as-project', story.project);
-  headingText.append(storyTitle);
-  header.append(headingText, storyProject);
+  headingText.append(element('h3', 'as-heading-title', 'A look under the cover'));
+  headingText.append(element('p', 'as-intro', 'The problems, decisions, and small details behind the work.'));
+  header.append(headingText);
+
+  const workspace = element('div', 'as-workspace');
+  const index = element('nav', 'as-story-index');
+  index.setAttribute('aria-label', 'Engineering stories');
+  const indexHeading = element('div', 'as-index-heading');
+  indexHeading.append(element('span', '', 'Choose a story'), element('span', 'as-index-count', stories.length + ' stories'));
+  index.append(indexHeading);
+  const storyButtons = stories.map(value => {
+    const button = element('button', 'as-story-button');
+    button.type = 'button';
+    button.dataset.storyId = value.id;
+    button.setAttribute('aria-controls', 'architecture-current-chapter');
+    button.setAttribute('aria-pressed', String(value.id === story.id));
+    const copy = element('span', 'as-story-copy');
+    copy.append(element('span', 'as-story-name', value.name), element('span', 'as-story-company', value.project.split(' / ')[0]));
+    const marker = element('span', 'as-story-marker');
+    marker.setAttribute('aria-hidden', 'true');
+    button.append(copy, marker);
+    button.addEventListener('click', () => selectStory(value.id));
+    index.append(button);
+    return button;
+  });
 
   const storyPicker = element('div', 'as-story-picker');
   const storyLabel = element('label', 'as-story-label', 'Choose a story');
@@ -155,6 +175,18 @@
   });
   storyPicker.append(storyLabel, storySelect);
 
+  const reader = element('div', 'as-reader');
+  const readerHeading = element('div', 'as-reader-heading');
+  const readerTitle = element('div');
+  const storyProject = element('p', 'as-project', story.project);
+  const storyTitle = element('h4', 'as-story-title', story.title);
+  readerTitle.append(storyProject, storyTitle);
+  const resultLink = element('button', 'as-result-link', 'See the result');
+  resultLink.type = 'button';
+  resultLink.setAttribute('aria-controls', 'architecture-current-chapter');
+  resultLink.addEventListener('click', () => goTo(steps.length - 1, true));
+  readerHeading.append(readerTitle, resultLink);
+
   const nav = element('div', 'as-stages');
   nav.setAttribute('role', 'tablist');
   nav.setAttribute('aria-label', 'Story chapters');
@@ -163,7 +195,7 @@
   panel.id = 'architecture-current-chapter';
   panel.setAttribute('role', 'tabpanel');
   panel.setAttribute('aria-live', 'off');
-  const title = element('h4', 'as-title');
+  const title = element('h5', 'as-title');
   const summary = element('p', 'as-summary');
   const diagram = element('div', 'as-diagram');
   diagram.setAttribute('role', 'group');
@@ -172,6 +204,7 @@
   for (let index = 0; index < 5; index += 1) {
     if (index) {
       const connector = element('span', 'as-wire');
+      connector.textContent = '→';
       connector.setAttribute('aria-hidden', 'true');
       diagram.append(connector);
       connectors.push(connector);
@@ -196,9 +229,13 @@
   previous.setAttribute('aria-label', 'Previous architecture chapter');
   const count = element('span', 'as-count');
   count.setAttribute('aria-hidden', 'true');
-  const next = element('button', 'as-arrow', '→');
+  const next = element('button', 'as-arrow as-next');
   next.type = 'button';
   next.setAttribute('aria-label', 'Next architecture chapter');
+  const nextLabel = element('span', 'as-next-label', 'Next chapter');
+  const nextIcon = element('span', 'as-next-icon', '→');
+  nextIcon.setAttribute('aria-hidden', 'true');
+  next.append(nextLabel, nextIcon);
   pagination.append(previous, count, next);
   const playback = element('div', 'as-playback');
   const toggle = element('button', 'as-autoplay');
@@ -214,12 +251,17 @@
   const live = element('div', 'as-sr-only');
   live.setAttribute('role', 'status');
   live.setAttribute('aria-live', 'polite');
-  root.replaceChildren(header, storyPicker, nav, panel, footer, playbackNote, live);
+  reader.append(readerHeading, nav, panel, footer, playbackNote);
+  workspace.append(index, storyPicker, reader);
+  root.replaceChildren(header, workspace, live);
 
   function refreshTabs() {
     nav.dataset.chapters = String(steps.length);
     tabs = steps.map((step, index) => {
-      const button = element('button', 'as-stage', step.name);
+      const button = element('button', 'as-stage');
+      const number = element('span', 'as-stage-number', String(index + 1).padStart(2, '0'));
+      number.setAttribute('aria-hidden', 'true');
+      button.append(number, element('span', 'as-stage-name', step.name));
       button.type = 'button';
       button.id = `architecture-${story.id}-chapter-${index}`;
       button.setAttribute('role', 'tab');
@@ -246,9 +288,9 @@
     toggleIcon.textContent = autoplay ? 'Ⅱ' : '▶';
     toggle.setAttribute('aria-label', autoplay ? 'Pause automatic architecture story' : 'Play automatic architecture story');
     root.dataset.autoplay = String(autoplay);
-    if (!autoplay) playbackNote.textContent = motion.matches ? 'Choose a chapter, or play the story at your own pace.' : 'Paused. Explore the chapters at your own pace.';
-    else if (hovered || focusReading) playbackNote.textContent = 'Paused while you explore. Continues when you leave the story.';
-    else playbackNote.textContent = 'Changes automatically every 10 seconds. Pause whenever you like.';
+    if (!autoplay) playbackNote.textContent = 'Take your time. Move through the chapters, or press play.';
+    else if (hovered || focusReading) playbackNote.textContent = 'Paused for reading. Continues when you move away.';
+    else playbackNote.textContent = 'Playing automatically. The next chapter appears in 10 seconds.';
   }
 
   function schedule() {
@@ -263,6 +305,8 @@
     const step = steps[current];
     storyTitle.textContent = story.title;
     storyProject.textContent = story.project;
+    storySelect.value = story.id;
+    storyButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.storyId === story.id)));
     title.textContent = step.title;
     summary.textContent = step.summary;
     diagram.setAttribute('aria-label', step.diagramDescription);
@@ -282,9 +326,14 @@
     tabs.forEach((tab, index) => {
       tab.setAttribute('aria-selected', String(index === current));
       tab.tabIndex = index === current ? 0 : -1;
+      tab.dataset.complete = String(index < current);
     });
     panel.setAttribute('aria-labelledby', tabs[current].id);
-    count.textContent = `${current + 1} / ${steps.length}`;
+    count.textContent = `${current + 1} of ${steps.length}`;
+    nextLabel.textContent = current === steps.length - 1 ? 'Start again' : 'Next chapter';
+    const selected = tabs[current];
+    if (selected.offsetLeft < nav.scrollLeft) nav.scrollLeft = selected.offsetLeft;
+    else if (selected.offsetLeft + selected.offsetWidth > nav.scrollLeft + nav.clientWidth) nav.scrollLeft = selected.offsetLeft + selected.offsetWidth - nav.clientWidth;
     root.dataset.story = story.id;
     root.dataset.stage = String(current);
     root.dataset.layout = layout;
@@ -300,15 +349,16 @@
     render();
   }
 
-  storySelect.addEventListener('change', () => {
-    story = stories.find(value => value.id === storySelect.value) || stories[0];
+  function selectStory(id) {
+    story = stories.find(value => value.id === id) || stories[0];
     steps = story.steps;
     current = 0;
     autoplay = false;
     refreshTabs();
     render();
     live.textContent = `${story.name}. Chapter 1 of ${steps.length}: ${steps[0].name}. ${steps[0].title}`;
-  });
+  }
+  storySelect.addEventListener('change', () => selectStory(storySelect.value));
 
   previous.addEventListener('click', () => goTo(current - 1, true));
   next.addEventListener('click', () => goTo(current + 1, true));
@@ -318,12 +368,12 @@
     focusReading = false;
     schedule();
   });
-  root.addEventListener('pointerenter', event => {
+  panel.addEventListener('pointerenter', event => {
     if (event.pointerType === 'touch') return;
     hovered = true;
     schedule();
   });
-  root.addEventListener('pointerleave', () => { hovered = false;schedule(); });
+  panel.addEventListener('pointerleave', () => { hovered = false;schedule(); });
   root.addEventListener('focusin', () => { focusReading = true;schedule(); });
   root.addEventListener('focusout', event => {
     if (root.contains(event.relatedTarget)) return;

@@ -90,22 +90,25 @@
 .season-tree .story-leaf { cursor: pointer; }
 .season-tree .story-leaf .leaf-ring {
   fill: #f7fbdc;
-  fill-opacity: .18;
+  fill-opacity: .07;
   stroke: #f8fce7;
-  stroke-width: 1.7px;
-  stroke-opacity: .82;
+  stroke-width: 1.2px;
+  stroke-opacity: .38;
   transition: fill-opacity 150ms ease, stroke-opacity 150ms ease;
 }
 .season-tree .story-leaf-shape > .leaf-light,
-.season-tree .story-leaf-shape > .leaf-fresh { fill: #dfeda5; stroke: #365c3d; stroke-width: .8px; }
-.season-tree .story-leaf .leaf-vein { stroke: #3d653f; opacity: .8; stroke-width: 1.1px; }
+.season-tree .story-leaf-shape > .leaf-fresh { fill: #bfd28d; stroke: #52734a; stroke-width: .6px; }
+.season-tree .story-leaf .leaf-vein { stroke: #52734a; opacity: .64; stroke-width: 1px; }
 .season-tree[data-season="autumn"] .story-leaf-shape > .leaf-light,
-.season-tree[data-season="autumn"] .story-leaf-shape > .leaf-fresh { fill: #ffe0a0; stroke: #815932; }
+.season-tree[data-season="autumn"] .story-leaf-shape > .leaf-fresh { fill: #ebc477; stroke: #9d743f; }
 .season-tree[data-season="autumn"] .story-leaf .leaf-vein { stroke: #815932; }
-.season-tree[data-season="winter"] .story-leaf .leaf-ring { fill: #e7eee0; fill-opacity: .5; stroke-opacity: .95; }
+.season-tree[data-season="winter"] .story-leaf .leaf-ring { fill: #e7eee0; fill-opacity: .22; stroke-opacity: .55; }
 .season-tree .story-leaf:hover .leaf-ring,
 .season-tree .story-leaf:focus-visible .leaf-ring,
-.season-tree .story-leaf.is-selected .leaf-ring {
+.season-tree .story-leaf.is-selected .leaf-ring,
+.season-tree[data-season="winter"] .story-leaf:hover .leaf-ring,
+.season-tree[data-season="winter"] .story-leaf:focus-visible .leaf-ring,
+.season-tree[data-season="winter"] .story-leaf.is-selected .leaf-ring {
   fill-opacity: .4;
   stroke-opacity: 1;
   stroke-width: 2.2px;

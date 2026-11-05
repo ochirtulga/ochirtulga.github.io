@@ -12,7 +12,7 @@ A buildless static website with direct About, Work, Education, and Hobbies navig
 - `tree.css`, `tree.js`: the seasonal SVG tree and interactive stories.
 - `game.css`, `game.js`: the Leaf keeper cartridge, game, and end-of-round leaderboard.
 - `game-config.js`: the public leaderboard API address; contains no secrets.
-- `architecture.css`, `architecture.js`: the story selector, diagrams, and automatic/manual chapter playback.
+- `architecture.css`, `architecture.js`: the desktop story index, mobile picker, directional diagrams, chapter progress, result shortcut, and automatic/manual playback.
 - `architecture-stories.js`: five additional problem-solving stories, each with Situation, Challenge, Approach, and Result chapters.
 - `hobbies.css`: the illustrated food, travel/adventure, and basketball pursuits.
 - `portrait-lights.jpeg`: the uploaded purple-light portrait in About.
@@ -51,4 +51,8 @@ The migration story starts with the RabbitMQ/.NET monolith and a database server
 
 Five more stories draw on the original résumé: behavioral loan scoring (approval time from 3 days to 3 hours), asynchronous order history (50% lower API response time), pipeline setup (roughly 3–4 errors per 10 runs to 1), the distributed data platform (approximately 50% lower licensing costs), and AI engineering tasks with objective automated verification. Each follows Situation, Challenge, Approach, and Result. Component diagrams avoid implying an undocumented deployment topology.
 
-The selected story advances every ten seconds while visible and loops within that story. Selecting another story starts at chapter 1 and pauses automatic playback. Manual chapter selection, hover, and keyboard focus also pause it for reading. Reduced-motion preferences start it paused. Chapter panels keep a stable layout across desktop and mobile.
+The desktop index shows all six stories and their organizations; smaller screens use a native picker. Numbered chapters show progress, **See the result** opens the final chapter, and directional arrows follow the diagram flow horizontally on desktop and vertically on phones. Component layouts avoid implying an undocumented order.
+
+The selected story advances every ten seconds while visible and loops within that story. Selecting another story starts at chapter 1 and pauses automatic playback. Manual chapter selection, hovering the chapter body, and keyboard focus also pause it for reading. Explicit Play resumes from the controls. Reduced-motion preferences start it paused. Chapter panels keep controls steady across desktop and mobile.
+
+Tree story leaves use subdued colors and soft idle halos, with stronger hover, focus, and selected states. Transparent touch targets are retained.
