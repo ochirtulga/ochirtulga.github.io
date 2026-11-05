@@ -10,7 +10,8 @@ A buildless static website with direct About, Work, Education, and Hobbies navig
 
 - `index.html`, `styles.css`, `app.js`: content, layout, and project interactions.
 - `tree.css`, `tree.js`: the seasonal SVG tree and interactive stories.
-- `game.css`, `game.js`: the Leaf keeper cartridge and game.
+- `game.css`, `game.js`: the Leaf keeper cartridge, game, and end-of-round leaderboard.
+- `game-config.js`: the public leaderboard API address; contains no secrets.
 - `portrait-lights.jpeg`: the uploaded purple-light portrait in About.
 - `resume.pdf`: the original résumé PDF, included unchanged.
 - `media/bookworm-demo.mp4`, `media/bookworm-poster.jpg`: a local Bookworm app walkthrough using sample data.
@@ -34,3 +35,9 @@ Replace `portrait-lights.jpeg` and push. The About portrait uses `object-fit: co
 ## Portfolio navigation
 
 The **Portfolios** header menu identifies this site as **The garden**. The second portfolio is marked **Coming soon** while it is being planned. When it is built, replace that disabled entry with its URL and add a link back to this site in the second portfolio.
+
+## Shared mini-game leaderboard
+
+Leaf keeper asks for an optional nickname before its 25-second round. Completed ranked rounds are saved to https://ochi-leaf-keeper-api.ochro.chatgpt.site and the top ten appears after play. Each browser identifier has one personal-best entry; blank nicknames become Anonymous. The game clearly explains that nicknames and best scores are public.
+
+The API runs separately on Cloudflare Workers with D1 through Sites. The database is never accessed directly from this static website. Server-issued round tokens, time and score limits, and idempotent submissions prevent duplicate scores. The game remains playable as an explicitly unranked round if the shared service is unavailable. These checks support a casual game and do not prove every catch was made by a human.
