@@ -137,7 +137,7 @@
   const header = element('div', 'as-heading');
   const headingText = element('div');
   headingText.append(element('h3', 'as-heading-title', 'A look under the cover'));
-  headingText.append(element('p', 'as-intro', 'The problems, decisions, and small details behind the work.'));
+  headingText.append(element('p', 'as-intro', 'Notes from real problems, and how I worked through them.'));
   header.append(headingText);
 
   const workspace = element('div', 'as-workspace');

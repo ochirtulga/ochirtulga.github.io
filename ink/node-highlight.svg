@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 100" preserveAspectRatio="none" fill="none">
+  <path d="M7 6C66 5 170 4 233 7C235 30 236 68 232 93C171 94 69 96 6 92C5 67 4 30 7 6Z" stroke="#45664b" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+  <path d="M9 8C67 7 169 6 231 9C233 31 234 67 230 91C169 92 70 94 8 90C7 65 6 31 9 8Z" stroke="#45664b" stroke-opacity=".3" stroke-width=".7" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+</svg>
