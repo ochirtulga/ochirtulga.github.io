@@ -1,369 +1,96 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ochi · Software Engineer</title>
-  <meta name="description" content="Ochi is a software engineer in Austin, TX. Java, Kafka, Cassandra, AWS. Banking, life sciences, and AI training. I build the part that can't fail.">
-  <meta property="og:title" content="Ochi, Software Engineer">
-  <meta property="og:description" content="I build the part that can't fail. Java · Kafka · Cassandra · AWS.">
-  <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="%23171D26"/><rect x="14" y="5" width="4" height="22" rx="1" fill="%231F5FA8"/></svg>'>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#f5f7f0">
+  <title>Ochi — Reliable, by design.</title>
+  <meta name="description" content="Ochi is a software engineer from Mongolia, based in Austin. Reliable systems, thoughtful side projects, good books, and a little room to play.">
+  <meta property="og:title" content="Ochi — Reliable, by design.">
+  <meta property="og:description" content="Software engineer. From Mongolia. Based in Austin. A little room to grow.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ochirtulga.github.io/">
+  <link rel="canonical" href="https://ochirtulga.github.io/">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+Mongolian&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-  <script>document.documentElement.classList.add("js")</script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=EB+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=2">
+  <link rel="stylesheet" href="tree.css?v=2">
+  <link rel="stylesheet" href="game.css">
+  <script src="tree.js" defer></script>
+  <script src="game.js" defer></script>
+  <script src="app.js?v=2" defer></script>
 </head>
 <body>
-  <a class="skip" href="#main">Skip to content</a>
-
-  <!-- The bagana: N. Ochirtulga in traditional Mongolian script, written
-       vertically as the script always has been. It doubles as the scroll
-       progress indicator: sky blue fills the column as you read. -->
-  <div class="bagana" aria-hidden="true">
-    <div class="bagana__script" lang="mn-Mong">
-      <span class="bagana__base">ᠨ. ᠣᠴᠢᠷᠲᠤᠯᠭᠠ</span>
-      <span class="bagana__fill">ᠨ. ᠣᠴᠢᠷᠲᠤᠯᠭᠠ</span>
-    </div>
-    <div class="bagana__rule">
-      <div class="bagana__rule-fill"></div>
-    </div>
-  </div>
-
-  <div class="page">
-    <header class="masthead">
-      <p class="masthead__name">Ochi</p>
-      <nav class="masthead__links" aria-label="Sections">
-        <a href="#profile" data-view="profile" aria-current="page">Profile</a>
-        <a href="#work" data-view="work">Work</a>
-        <a href="#career" data-view="career">Career</a>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="wordmark" href="#home" aria-label="Ochi, back to top">ochi<span>.</span></a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="#about">About</a><a href="#work">Work</a><a href="#education">Education</a><a href="#hobbies">Hobbies</a>
       </nav>
-    </header>
-
-    <main id="main">
-      <div class="view" id="profile">
-      <section class="hero">
-        <div class="hero__text">
-          <p class="eyebrow">Software engineer · Distributed systems · Austin, TX</p>
-          <h1>I build the part that&nbsp;can&rsquo;t&nbsp;fail.</h1>
-          <p class="hero__sub">
-            I&rsquo;m Ochi, a software engineer from Mongolia, based in Austin, Texas. Eight
-            years in systems where downtime isn&rsquo;t an option: banking at Mongolia&rsquo;s
-            largest bank, life-sciences software at Thermo&nbsp;Fisher Scientific, now training
-            AI coding agents. Java, Kafka, Cassandra, AWS. I sleep well when the system is
-            well-architected.
-          </p>
-          <p class="status">
-            <span class="status__dot"></span>
-            <span>In service since Feb 2018 · Open to software engineer roles</span>
-          </p>
-        </div>
-        <figure class="hero__portrait">
-          <img src="profile.jpg" alt="Ochi (Ochirtulga Namjim), software engineer" width="640" height="1006" decoding="async">
-        </figure>
-      </section>
-
-      <section class="section" aria-labelledby="lbl-throughline">
-        <h2 class="label" id="lbl-throughline">Through-line <span class="gloss">· the stance</span></h2>
-        <p class="prose prose--lede">
-          My name ends in <em lang="mn-Latn">tulga</em>: in Mongolian, the iron stand that
-          holds the cauldron over the fire. Nobody admires a tulga. Everybody eats because
-          it holds. That&rsquo;s the layer I build: services at Mongolia&rsquo;s largest bank,
-          laboratory instruments at Thermo Fisher, now pipelines that teach AI coding
-          agents the same standard.
-        </p>
-        <p class="prose prose--lede">
-          If I do my job well, you never think about my work at all.
-        </p>
-      </section>
-
-      <section class="section" aria-labelledby="lbl-principles">
-        <h2 class="label" id="lbl-principles">Operating principles <span class="gloss">· opinions, held firmly</span></h2>
-        <ul class="principles">
-          <li>Boring is a feature. Novelty belongs in side projects, not in the payment path.</li>
-          <li>Data outlives code. Model the schema like you&rsquo;ll live with it for a decade, because someone will.</li>
-          <li>Software isn&rsquo;t done when it ships. It&rsquo;s done when it&rsquo;s been paged for, and held.</li>
-          <li>Never comfortable with shortcuts. The bill always arrives, with interest.</li>
-          <li>Ask why it was built that way before changing it. The system usually knows something you don&rsquo;t yet.</li>
-        </ul>
-      </section>
-
-      <section class="section" aria-labelledby="lbl-offduty">
-        <h2 class="label" id="lbl-offduty">Off duty <span class="gloss">· what keeps me calibrated</span></h2>
-        <p class="prose">
-          Basketball, live music, books (the side project isn&rsquo;t named Bookworm by
-          accident), and reading the markets. Building side projects counts too; the
-          projects folder has its own gravitational pull.
-        </p>
-      </section>
+      <a class="hello-link" href="mailto:ochirtulgan@gmail.com">Say hello <span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero page-width" id="home" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="intro-label"><span class="little-leaf" aria-hidden="true"></span>Software engineer & curious human</p>
+        <h1 id="hero-title">Reliable,<br>by design.</h1>
+        <p class="hero-description">I'm Ochi. I build the systems that keep things moving, and leave a little room for curiosity.</p>
+        <p class="location">From Mongolia.<br><span>Based in Austin.</span></p>
+        <div class="hero-actions"><a class="primary-link" href="#work">Explore my work <span aria-hidden="true">↓</span></a><a class="resume-link" href="resume.pdf" target="_blank" rel="noopener noreferrer">Résumé <span class="resume-format">PDF</span> <span aria-hidden="true">↗</span></a></div>
+        <p class="hero-footnote">Banking. Life sciences. AI. And a few side quests.</p>
       </div>
-
-      <div class="view" id="work">
-      <section class="section" aria-labelledby="lbl-work">
-        <h2 class="label" id="lbl-work">Selected work <span class="gloss">· the parts I&rsquo;m proud of</span></h2>
-        <div class="work-grid">
-          <article class="work">
-            <p class="work__metric">3 days <span class="work__arrow">→</span> 3 hours</p>
-            <h3 class="work__name">Behavioral loan scoring</h3>
-            <p class="work__desc">
-              Led and delivered a scoring platform on PySpark pipelines moving lending data
-              from Oracle into Spark and Hadoop. Loan approvals went from days to hours, the
-              approval rate went up, and it was nominated for Projects of the Year.
-            </p>
-            <p class="work__meta">Khan Bank · 2018 → 2021</p>
-          </article>
-          <article class="work">
-            <p class="work__metric">2,000 <span class="work__arrow">→</span> 20 min</p>
-            <h3 class="work__name">Notification microservice migration</h3>
-            <p class="work__desc">
-              Moved the bank&rsquo;s SMS notification service out of the monolith into a
-              Kafka-based microservice on Cassandra, cutting guaranteed SLA downtime from
-              2,000 minutes a year to 20. Recognized by the Head of IT.
-            </p>
-            <p class="work__meta">Khan Bank · 2018 → 2021</p>
-          </article>
-          <article class="work">
-            <p class="work__metric">Licensing <span class="work__arrow">→</span> ~$0</p>
-            <h3 class="work__name">Access management platform</h3>
-            <p class="work__desc">
-              Engineered an internal access management platform in Java and Spring Boot
-              microservices, driving third-party licensing costs to near zero and
-              strengthening security controls across the organization.
-            </p>
-            <p class="work__meta">Thermo Fisher Scientific · 2022 → 2025</p>
-          </article>
-          <article class="work">
-            <p class="work__metric">50% <span class="work__arrow">→</span> faster</p>
-            <h3 class="work__name">Sync-to-async order history</h3>
-            <p class="work__desc">
-              Transformed the order-history service from synchronous to asynchronous
-              processing, improving API response times by half, then built the middleware
-              APIs bridging Java and Python services around it.
-            </p>
-            <p class="work__meta">Thermo Fisher Scientific · 2022 → 2025</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section" aria-labelledby="lbl-side">
-        <h2 class="label" id="lbl-side">Side projects <span class="gloss">· built after hours</span></h2>
-        <div class="work-grid">
-          <article class="work">
-            <p class="work__metric">hobby <span class="work__arrow">→</span> app</p>
-            <h3 class="work__name">Bookworm</h3>
-            <p class="work__desc">
-              A reading companion for iOS: track your library, run reading challenges,
-              collect achievements. Expo and React Native on Supabase, built because the
-              reading habit deserved better tooling.
-            </p>
-            <p class="work__meta">Side project · Expo · Supabase</p>
-          </article>
-          <article class="work">
-            <p class="work__metric">Erdenet <span class="work__arrow">→</span> online</p>
-            <h3 class="work__name"><a href="https://expresswindow.online">expresswindow.online</a></h3>
-            <p class="work__desc">
-              The public site and internal order and inventory tools for a family
-              window-and-door business in Mongolia, shipped end to end.
-            </p>
-            <p class="work__meta">Live · Next.js · AWS S3 · CloudFront · Route 53</p>
-          </article>
-        </div>
-      </section>
-      </div>
-
-      <div class="view" id="career">
-      <section class="section" aria-labelledby="lbl-history">
-        <h2 class="label" id="lbl-history">Operating history <span class="gloss">· where I&rsquo;ve worked</span></h2>
-
-        <article class="entry">
-          <div class="entry__head">
-            <h3>Stellar AI</h3>
-            <p class="entry__dates">Feb 2026 → now</p>
-          </div>
-          <p class="entry__role">AI Training Engineer</p>
-          <p class="prose">
-            Converting real-world GitHub pull requests into structured training tasks for
-            coding AI agents, with automated verifiers so agent solutions are validated
-            programmatically.
-          </p>
-          <p class="entry__stack">Java · Checkstyle · Evaluation harnesses</p>
-        </article>
-
-        <article class="entry">
-          <div class="entry__head">
-            <h3>Express Window</h3>
-            <p class="entry__dates">Apr 2026 → now</p>
-          </div>
-          <p class="entry__role">Software Engineer</p>
-          <p class="prose">
-            The company&rsquo;s public site plus its internal order and inventory management
-            tools, built end to end.
-          </p>
-          <p class="entry__stack">Java · Spring Boot · React · Next.js · AWS</p>
-        </article>
-
-        <!-- <article class="entry">
-          <div class="entry__head">
-            <h3>Khan Bank</h3>
-            <p class="entry__dates">Sep 2025 → Mar 2026</p>
-          </div>
-          <p class="entry__role">Software Engineer</p>
-          <p class="prose">
-            A return home: secure, production-grade internal microservices on Spring Boot,
-            Docker, and Kubernetes, and legacy services migrated to a modular architecture
-            with standardized deployments.
-          </p>
-          <p class="entry__stack">Java · Spring Boot · Docker · Kubernetes</p>
-        </article> -->
-
-        <article class="entry">
-          <div class="entry__head">
-            <h3>Thermo Fisher Scientific</h3>
-            <p class="entry__dates">Jul 2022 → Mar 2025</p>
-          </div>
-          <p class="entry__role">Software Engineer</p>
-          <p class="prose">
-            Access management, order history, Kafka event-driven quote workflows, and the
-            ETL pipelines behind customer data: the connective tissue of a life-sciences
-            giant, with vulnerability scanning wired into every CI/CD pipeline.
-          </p>
-          <p class="entry__stack">Java · Python · Kafka · Spring Boot · AWS · GitHub Actions</p>
-        </article>
-
-        <article class="entry">
-          <div class="entry__head">
-            <h3>Khan Bank</h3>
-            <p class="entry__dates">Feb 2018 → Oct 2021</p>
-          </div>
-          <p class="entry__role">Software Engineer</p>
-          <p class="prose">
-            Led the bank&rsquo;s move to distributed platforms, reaching up to 10× the
-            throughput at half the licensing cost, and mentored engineers on distributed
-            systems, data modeling, and query optimization.
-          </p>
-          <p class="entry__stack">Java · Kafka · Cassandra · PySpark · Oracle · Ansible</p>
-        </article>
-
-        <ul class="brief">
-          <li>
-            <span>Graduate Teaching Assistant · Maharishi International University</span>
-            <span class="brief__dates">2022</span>
-          </li>
-          <li>
-            <span>ERP Engineer · Infinite Solutions</span>
-            <span class="brief__dates">2017</span>
-          </li>
-          <li>
-            <span>Intern · ITZone</span>
-            <span class="brief__dates">2017</span>
-          </li>
-        </ul>
-      </section>
-
-      <section class="section" aria-labelledby="lbl-specs">
-        <h2 class="label" id="lbl-specs">Specifications <span class="gloss">· what I work with</span></h2>
-        <dl class="specs">
-          <div class="specs__row">
-            <dt>Storage</dt>
-            <dd>Cassandra · PostgreSQL · Oracle · MySQL · SQL Server</dd>
-          </div>
-          <div class="specs__row">
-            <dt>Streaming</dt>
-            <dd>Kafka · Amazon SNS</dd>
-          </div>
-          <div class="specs__row">
-            <dt>Runtime</dt>
-            <dd>Java · Spring Boot · Python · Node.js</dd>
-          </div>
-          <div class="specs__row">
-            <dt>Data</dt>
-            <dd>PySpark · Hadoop · ETL pipelines · GoldenGate CDC</dd>
-          </div>
-          <div class="specs__row">
-            <dt>Platform</dt>
-            <dd>AWS · Kubernetes · Docker · Jenkins · GitHub Actions · Ansible · Linux</dd>
-          </div>
-          <div class="specs__row">
-            <dt>Interface</dt>
-            <dd>React · Next.js · Vue &amp; Nuxt · TypeScript · Angular</dd>
-          </div>
-          <div class="specs__row">
-            <dt>Practice</dt>
-            <dd>Distributed systems · Microservices · System design · OAuth&nbsp;2.0 · CI/CD</dd>
-          </div>
-        </dl>
-      </section>
-
-      <div class="duo">
-        <section class="section section--duo" aria-labelledby="lbl-certs">
-          <h2 class="label" id="lbl-certs">Certifications <span class="gloss">· independently verified</span></h2>
-          <ul class="plain-list">
-            <li>
-              <span>Solutions Architect Associate</span>
-              <span class="plain-list__meta">Amazon Web Services</span>
-            </li>
-            <li>
-              <span>Cloud Practitioner Foundational</span>
-              <span class="plain-list__meta">Amazon Web Services</span>
-            </li>
-            <li>
-              <span>Cassandra 3.x Developer Associate</span>
-              <span class="plain-list__meta">DataStax</span>
-            </li>
-            <li>
-              <span>COBIT 2019 Foundation</span>
-              <span class="plain-list__meta">ISACA</span>
-            </li>
-          </ul>
-        </section>
-
-        <section class="section section--duo" aria-labelledby="lbl-education">
-          <h2 class="label" id="lbl-education">Education <span class="gloss">· two countries, three degrees</span></h2>
-          <ul class="plain-list">
-            <li>
-              <span>MS, Computer Science and Engineering</span>
-              <span class="plain-list__meta">American National University</span>
-            </li>
-            <li>
-              <span>MS, Computer Science</span>
-              <span class="plain-list__meta">Maharishi International University</span>
-            </li>
-            <li>
-              <span>BTech, Information Technology</span>
-              <span class="plain-list__meta">Mongolian University of Science and Technology</span>
-            </li>
-          </ul>
-        </section>
-      </div>
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer__inner">
-        <div class="footer__main">
-          <h2 class="label">Open a line <span class="gloss">· one inbox, checked daily</span></h2>
-          <p class="footer__contact">
-            <a href="mailto:ochirtulgan@gmail.com">ochirtulgan@gmail.com</a>
-          </p>
-          <p class="footer__links">
-            <a href="https://github.com/ochirtulga">github.com/ochirtulga</a> ·
-            <a href="https://www.linkedin.com/in/onamjim">linkedin.com/in/onamjim</a>
-          </p>
-        </div>
-        <div class="colophon">
-          <span class="colophon__mark" lang="mn-Mong" aria-hidden="true">ᠨ. ᠣᠴᠢᠷᠲᠤᠯᠭᠠ</span>
-          <p>
-            <span class="colophon__wide">The column on the left is my name, N. Ochirtulga,
-            in traditional Mongolian script, written top to bottom, as it always has been.</span>
-            <span class="colophon__narrow">The mark beside these lines is my name, N. Ochirtulga,
-            in traditional Mongolian script, written top to bottom, as it always has been.</span><br>
-            Hand-built · no framework · no build step · calibrated 2026-07
-          </p>
+      <div class="garden">
+        <div class="garden-caption"><span class="garden-dot" aria-hidden="true"></span><span id="season-status">Summer in the garden</span></div>
+        <div id="season-tree" class="season-tree"><noscript><img src="tree-fallback.svg" alt="A large green tree with spreading branches and a lush canopy." width="600" height="540"></noscript></div>
+        <p class="leaf-story" id="leaf-story" aria-live="polite">Pick a bright, ringed leaf to discover a little story.</p>
+        <button class="leaf-story-next" id="next-leaf-story" type="button">Find another story <span aria-hidden="true">↻</span></button>
+        <div class="season-picker" role="group" aria-label="Choose a season">
+          <button class="season-button" type="button" data-season="spring" aria-pressed="false">Spring</button>
+          <button class="season-button" type="button" data-season="summer" aria-pressed="true">Summer</button>
+          <button class="season-button" type="button" data-season="autumn" aria-pressed="false">Autumn</button>
+          <button class="season-button" type="button" data-season="winter" aria-pressed="false">Winter</button>
+          <button class="season-button season-auto" type="button" data-season="auto" aria-pressed="false" aria-label="Follow the current calendar season">Use today's season</button>
         </div>
       </div>
-    </footer>
-  </div>
+    </section>
+    <div class="interlude page-width"><span>A strong foundation. A little room to grow.</span><span class="interlude-stack">Java / Kafka / Cassandra / AWS</span></div>
 
-  <script src="script.js"></script>
+    <section class="about-section page-width section-space" id="about" aria-labelledby="about-title">
+      <div class="section-marker">About</div>
+      <div class="about-grid">
+        <div class="about-copy"><h2 id="about-title">The person behind<br>the systems.</h2><p>I'm Ochirtulga Namjim, but Ochi works. I'm a software engineer from Mongolia, now based in Austin, Texas. Since 2018, I've built software for banking, life sciences, and, more recently, AI coding agents.</p><p>I like working on the layer that makes everything else possible. The data that arrives on time. The service that stays up. The small decision that makes someone's day easier.</p><div class="name-note"><span class="note-mark" aria-hidden="true">“</span><p>My name ends in <em>tulga</em>: the iron stand that holds a cauldron over the fire. That's the layer I build.</p></div></div>
+        <figure class="portrait"><div class="portrait-mat"><img src="profile.jpg" alt="Ochi, software engineer from Mongolia" width="640" height="1006" loading="lazy"></div><figcaption>Ochi, away from the terminal.</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="work-section page-width section-space" id="work" aria-labelledby="work-title">
+      <div class="section-marker">Work</div>
+      <div class="section-heading"><div><h2 id="work-title">A few things<br>I've put into the world.</h2><p>Different problems. A common thread: build something that holds.</p></div><span class="shelf-instruction">Pick a book. Look inside.</span></div>
+      <div class="project-shelf">
+        <button class="project-book" type="button" data-project="banking" aria-haspopup="dialog"><span class="book-cover book-banking"><span class="cover-top">Notes on distributed systems</span><span class="cover-heading">Keep<br>things<br>moving.</span><span class="book-path" aria-hidden="true"><i></i><i></i><i></i></span><span class="cover-bottom">Khan Bank<br>Engineering in production</span></span><span class="book-description"><strong>Khan Bank</strong><span>A notification service, moved out of the monolith.</span><span class="book-open">Open the story <span aria-hidden="true">↗</span></span></span></button>
+        <button class="project-book" type="button" data-project="bookworm" aria-haspopup="dialog"><span class="book-cover book-reading"><span class="cover-top">A reading companion</span><span class="cover-heading">One<br>more<br>chapter.</span><span class="cover-bottom">Bookworm<br>An independent project</span></span><span class="book-description"><strong>Bookworm</strong><span>A home for your books, challenges, and reading habit.</span><span class="book-open">Open the story <span aria-hidden="true">↗</span></span></span></button>
+        <button class="project-book" type="button" data-project="window" aria-haspopup="dialog"><span class="book-cover book-window"><span class="cover-top">From Erdenet, online</span><span class="window-illustration" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="cover-heading">Made for<br>real work.</span><span class="cover-bottom">Express Window<br>Website & business tools</span></span><span class="book-description"><strong>Express Window</strong><span>The website and tools behind a family business.</span><span class="book-open">Open the story <span aria-hidden="true">↗</span></span></span></button>
+      </div>
+      <div class="architecture" aria-labelledby="architecture-title"><div class="architecture-heading"><div><span class="architecture-caption">A look under the cover</span><h3 id="architecture-title">One service. A clear job.</h3></div><span>Khan Bank / Notifications</span></div><div class="architecture-flow"><button type="button" data-node="events" aria-pressed="false">Banking events<small>The starting point</small></button><span class="connector" aria-hidden="true"></span><button type="button" data-node="kafka" aria-pressed="true">Kafka<small>Event stream</small></button><span class="connector" aria-hidden="true"></span><button type="button" data-node="service" aria-pressed="false">Notifications<small>Microservice</small></button><span class="connector" aria-hidden="true"></span><button type="button" data-node="data" aria-pressed="false">Cassandra<small>Data layer</small></button></div><p id="architecture-story" aria-live="polite">A Kafka-based notification service, migrated out of the banking monolith. Select a component to explore.</p></div>
+      <details class="experience"><summary><span>Where I've worked</span><span class="summary-meta">2017–2026 <span class="details-toggle" aria-hidden="true">+</span></span></summary><div class="experience-list">
+        <article><div><h3>Stellar AI</h3><p>AI Training Engineer</p></div><p class="experience-date">Feb 2026–May 2026</p><p class="experience-description">Turned real GitHub pull requests into training tasks for coding agents, with automated verifiers that checked their solutions.</p></article>
+        <article><div><h3>Express Window</h3><p>Solutions Architect</p></div><p class="experience-date">Sep 2025–Jan 2026</p><p class="experience-description">Designed and built the public website and internal order and inventory tools for a family business in Mongolia.</p></article>
+        <article><div><h3>Thermo Fisher Scientific</h3><p>Software Engineer | Data Engineer</p></div><p class="experience-date">Jul 2022–Mar 2025</p><p class="experience-description">Access management, asynchronous order processing, Kafka event workflows, and the pipelines connecting customer data.</p></article>
+        <article><div><h3>Khan Bank</h3><p>Software Engineer | Database Administrator</p></div><p class="experience-date">Feb 2018–Oct 2021</p><p class="experience-description">Distributed platforms, database administration, data modeling, and the move from monolithic services to focused microservices.</p></article>
+        <p class="earlier-work">Earlier: Graduate Teaching Assistant at Maharishi International University (2022), ERP Engineer at Infinite Solutions (2017), and Intern at ITZone (2017).</p>
+      </div></details>
+    </section>
+
+    <section class="education-section page-width section-space" id="education" aria-labelledby="education-title"><div class="section-marker">Education</div><div class="education-grid"><div><h2 id="education-title">The roots<br>run deep.</h2><p class="section-description">Two countries. Three degrees.<br>Still a lot left to learn.</p><div class="root-illustration" aria-hidden="true"><svg viewBox="0 0 240 125" fill="none"><path d="M122 4v42m0-12c-8 35-47 32-62 58m62-46c4 23 39 22 57 57m-57-65c-3 29 7 50 0 78M87 65c-9 0-28-2-39 14m18 8c-17 0-32 4-43 17m129-35c21 0 32 9 39 22m-71-12c-13 16-19 22-19 38m72-22c12 0 26 7 37 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div></div><div class="education-list"><article><span class="degree-mark" aria-hidden="true">MSc</span><div><h3>Computer Science and Engineering</h3><p>American National University</p></div></article><article><span class="degree-mark" aria-hidden="true">MSc</span><div><h3>Computer Science</h3><p>Maharishi International University</p></div></article><article><span class="degree-mark" aria-hidden="true">BTech</span><div><h3>Information Technology</h3><p>Mongolian University of Science and Technology</p></div></article><details class="credentials"><summary>Certifications <span aria-hidden="true">+</span></summary><ul><li>AWS Solutions Architect Associate</li><li>AWS Cloud Practitioner</li><li>DataStax Cassandra 3.x Developer Associate</li><li>ISACA COBIT 2019 Foundation</li></ul></details></div></div></section>
+
+    <section class="hobbies-section section-space" id="hobbies" aria-labelledby="hobbies-title"><div class="page-width"><div class="section-marker">Hobbies</div><div class="section-heading"><div><h2 id="hobbies-title">Life has side quests.</h2><p>Some things I do when I'm not writing code.</p></div><span class="hobby-note">A small corner of the internet that feels like me.</span></div><div class="hobbies-grid"><div class="reading-nook"><div class="hobby-label">Between the pages</div><h3>“Just one more chapter.”</h3><p>I love books enough to build an app around them. Bookworm started where a lot of my side projects do: something I wanted to use myself.</p><button class="text-link" type="button" data-project="bookworm" aria-haspopup="dialog">Meet Bookworm <span aria-hidden="true">↗</span></button><div class="little-library" aria-hidden="true"><span class="little-book">A good story</span><span class="little-book">Something to learn</span><span class="little-book">One more chapter</span><span class="library-plant"><i></i><i></i><i></i></span></div></div><div class="gaming-corner"><div id="game-cartridge"></div><div class="gaming-copy"><h3>One more round.</h3><p>GTA, WoW, Dota, League, Counter-Strike, and hundreds of other worlds. Horror games, too. I just scream and react a lot.</p><p class="game-invitation">This cartridge holds a little game of its own. Give it a play.</p></div></div></div><div class="off-screen"><span>Away from the screen</span><p>Basketball. Live music. Good books. And the occasional rabbit hole about the markets.</p></div></div></section>
+  </main>
+  <footer class="site-footer page-width"><div><p class="footer-invitation">Something interesting in mind?</p><a class="footer-email" href="mailto:ochirtulgan@gmail.com">Let's talk.</a><p class="footer-location">From Mongolia. Based in Austin.<br>Always a little curious.</p></div><div class="footer-right"><a href="resume.pdf" download="Ochirtulga-Namjim-Resume.pdf">Résumé <span aria-hidden="true">↓</span></a><a href="https://github.com/ochirtulga" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a><a href="https://www.linkedin.com/in/onamjim" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a><a href="mailto:ochirtulgan@gmail.com">Email <span aria-hidden="true">↗</span></a></div><div class="colophon"><span>© <span id="copyright-year">2026</span> Ochirtulga Namjim</span><a href="#home">Back to the tree <span aria-hidden="true">↑</span></a></div></footer>
+  <dialog class="project-dialog" id="project-dialog" aria-labelledby="project-dialog-title"><button class="dialog-close" type="button" id="close-project" aria-label="Close project">×</button><div class="project-spread"><div class="project-overview"><p id="project-context" class="project-context"></p><h2 id="project-dialog-title"></h2><p id="project-intro"></p><p id="project-stack" class="project-stack"></p><a id="project-visit" class="text-link" target="_blank" rel="noopener noreferrer" hidden>Visit the website <span aria-hidden="true">↗</span></a><button type="button" id="project-watch" class="text-link" aria-controls="project-demo" aria-expanded="false" hidden>Watch the demo <span aria-hidden="true">▶</span></button></div><div class="project-chapters" id="project-chapters"><section><h3>The problem</h3><p id="project-problem"></p></section><section><h3>The architecture</h3><p id="project-design"></p><div class="mini-architecture" id="project-components" aria-label="Project components"></div></section><section><h3>The result</h3><p id="project-result"></p></section></div><section class="project-demo" id="project-demo" aria-label="Bookworm app walkthrough" hidden><h3>Bookworm in action.</h3><video id="bookworm-video" controls playsinline preload="none" poster="media/bookworm-poster.jpg"><source src="media/bookworm-demo.mp4" type="video/mp4">Your browser does not support embedded video. <a href="media/bookworm-demo.mp4">Watch the Bookworm demo.</a></video><p class="demo-caption">Local app walkthrough · Sample data</p></section></div></dialog>
 </body>
 </html>

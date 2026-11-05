@@ -1,0 +1,134 @@
+.season-tree {
+  --tree-dark: #365c3d;
+  --tree-mid: #527b48;
+  --tree-light: #7fa461;
+  --tree-fresh: #a0bb75;
+  --tree-shade: #294d35;
+  --tree-canopy-opacity: 1;
+  --tree-leaf-opacity: 1;
+  --tree-spring-opacity: 0;
+  --tree-autumn-opacity: 0;
+  --tree-snow-opacity: 0;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 600 / 540;
+  isolation: isolate;
+}
+
+.season-tree[data-season="spring"] {
+  --tree-dark: #5d8650;
+  --tree-mid: #86a769;
+  --tree-light: #a4be7c;
+  --tree-fresh: #bfce96;
+  --tree-shade: #416b48;
+  --tree-canopy-opacity: .83;
+  --tree-leaf-opacity: .95;
+  --tree-spring-opacity: 1;
+}
+
+.season-tree[data-season="autumn"] {
+  --tree-dark: #9e663b;
+  --tree-mid: #bb7b3c;
+  --tree-light: #d49a49;
+  --tree-fresh: #e0b965;
+  --tree-shade: #8e5338;
+  --tree-canopy-opacity: .83;
+  --tree-leaf-opacity: .9;
+  --tree-autumn-opacity: 1;
+}
+
+.season-tree[data-season="winter"] {
+  --tree-dark: #819285;
+  --tree-mid: #8f9e90;
+  --tree-light: #b7c1ad;
+  --tree-fresh: #d9e0ce;
+  --tree-shade: #6c7f70;
+  --tree-canopy-opacity: 0;
+  --tree-leaf-opacity: 0;
+  --tree-snow-opacity: 1;
+}
+
+.season-tree svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.season-tree .tree-canopy {
+  opacity: var(--tree-canopy-opacity);
+  transition: opacity 380ms ease;
+}
+
+.season-tree .tree-foliage,
+.season-tree .story-leaf-shape {
+  opacity: var(--tree-leaf-opacity);
+  transition: fill 380ms ease, opacity 380ms ease;
+}
+
+.season-tree .tree-spring {
+  opacity: var(--tree-spring-opacity);
+  transition: opacity 380ms ease;
+}
+
+.season-tree .tree-autumn {
+  opacity: var(--tree-autumn-opacity);
+  transition: opacity 380ms ease;
+}
+
+.season-tree .tree-snow {
+  opacity: var(--tree-snow-opacity);
+  transition: opacity 380ms ease;
+}
+
+.season-tree .leaf-dark { fill: var(--tree-dark); }
+.season-tree .leaf-mid { fill: var(--tree-mid); }
+.season-tree .leaf-light { fill: var(--tree-light); }
+.season-tree .leaf-fresh { fill: var(--tree-fresh); }
+.season-tree .leaf-shade { fill: var(--tree-shade); }
+
+.season-tree .story-leaf { cursor: pointer; }
+.season-tree .story-leaf .leaf-ring {
+  fill: #f7fbdc;
+  fill-opacity: .18;
+  stroke: #f8fce7;
+  stroke-width: 1.7px;
+  stroke-opacity: .82;
+  transition: fill-opacity 150ms ease, stroke-opacity 150ms ease;
+}
+.season-tree .story-leaf-shape > .leaf-light,
+.season-tree .story-leaf-shape > .leaf-fresh { fill: #dfeda5; stroke: #365c3d; stroke-width: .8px; }
+.season-tree .story-leaf .leaf-vein { stroke: #3d653f; opacity: .8; stroke-width: 1.1px; }
+.season-tree[data-season="autumn"] .story-leaf-shape > .leaf-light,
+.season-tree[data-season="autumn"] .story-leaf-shape > .leaf-fresh { fill: #ffe0a0; stroke: #815932; }
+.season-tree[data-season="autumn"] .story-leaf .leaf-vein { stroke: #815932; }
+.season-tree[data-season="winter"] .story-leaf .leaf-ring { fill: #e7eee0; fill-opacity: .5; stroke-opacity: .95; }
+.season-tree .story-leaf:hover .leaf-ring,
+.season-tree .story-leaf:focus-visible .leaf-ring,
+.season-tree .story-leaf.is-selected .leaf-ring {
+  fill-opacity: .4;
+  stroke-opacity: 1;
+  stroke-width: 2.2px;
+}
+.season-tree .story-leaf:focus-visible {
+  outline: 2px solid #20392b;
+  outline-offset: 5px;
+  border-radius: 50%;
+}
+.season-tree .story-leaf.is-selected .leaf-vein { opacity: .95; }
+.season-tree .leaf-vein { opacity: .42; }
+.season-tree[data-season="winter"] .story-leaf .leaf-ring {
+  stroke: #668277;
+}
+.season-tree .tree-branch {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .season-tree *, .season-tree *::before, .season-tree *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}
