@@ -10,6 +10,7 @@ A buildless static website with direct About, Work, Education, and Hobbies navig
 
 - `index.html`, `styles.css`, `app.js`: content, layout, and project interactions.
 - `tree.css`, `tree.js`: the seasonal SVG tree and interactive stories.
+- `weather.css`, `weather.js`: seasonal weather behind the tree, with pause and reduced-motion support.
 - `game.css`, `game.js`: the Leaf keeper cartridge, game, and end-of-round leaderboard.
 - `game-config.js`: the public leaderboard API address; contains no secrets.
 - `architecture.css`, `architecture.js`: the desktop story index, mobile picker, directional diagrams, chapter progress, result shortcut, and automatic/manual playback.
@@ -38,6 +39,8 @@ GitHub Pages serves the `main` branch from the repository root. Commit and push 
 Replace `portrait-lights.jpeg` and push. The About portrait uses `object-fit: cover`; adjust `.portrait img`'s `object-position` in `styles.css` if the new crop needs changing. Update the intrinsic dimensions in `index.html` for a replacement image.
 
 The caption sits inside the bottom border of the photo frame. The tree opens in the current calendar season on every page load, using the visitor’s local month and Northern Hemisphere seasons. Manual season choices apply during the visit; **Use today's season** returns to the calendar.
+
+Seasonal weather sits behind the tree: spring rain/clouds, summer sunshine, autumn wind/leaves, and winter snow. **Pause weather** keeps motion paused across season switches. Animations also pause offscreen and in hidden tabs. Reduced-motion preferences show a static scene with no motion control. Weather is decorative and uses no location or weather service.
 
 ## Portfolio navigation
 

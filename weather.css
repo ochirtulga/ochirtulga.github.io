@@ -1,0 +1,30 @@
+.season-tree .seasonal-weather { pointer-events: none; }
+.season-tree .weather-motion { animation-play-state: paused !important; }
+.season-tree[data-weather-motion="playing"] .weather-motion { animation-play-state: running !important; }
+.season-tree .weather-cloud { animation: garden-cloud-drift 13s ease-in-out infinite; animation-delay: var(--weather-delay, 0s); opacity: .8; }
+.season-tree .weather-rain { fill: none; stroke: #87a4a0; stroke-width: 1.35; stroke-linecap: round; opacity: .52; animation: garden-rain var(--weather-duration, 1.9s) linear infinite; animation-delay: var(--weather-delay, 0s); }
+.season-tree .weather-sun-rays { transform-box: fill-box; transform-origin: center; opacity: .65; animation: garden-sun-turn 64s linear infinite; }
+.season-tree .weather-mote { fill: #c5b97b; opacity: .4; animation: garden-summer-air 9s ease-in-out infinite; animation-delay: var(--weather-delay, 0s); }
+.season-tree .weather-wind { fill: none; stroke: #b19b77; stroke-width: 1.2; stroke-linecap: round; opacity: .5; animation: garden-wind 7s ease-in-out infinite; animation-delay: var(--weather-delay, 0s); }
+.season-tree .weather-leaf { opacity: .65; animation: garden-autumn-drift var(--weather-duration, 8s) ease-in-out infinite; animation-delay: var(--weather-delay, 0s); }
+.season-tree .weather-flake { opacity: .8; animation: garden-snowfall var(--weather-duration, 10s) linear infinite; animation-delay: var(--weather-delay, 0s); }
+.garden-season-options { display: flex; flex-basis: 100%; align-items: center; justify-content: center; gap: 12px; margin-top: 4px; }
+.garden-season-options .season-auto { flex-basis: auto; margin-top: 0; }
+.garden-weather-controls { display: flex; justify-content: center; }
+.garden-weather-controls[hidden] { display: none !important; }
+.weather-toggle { display: inline-flex; align-items: center; gap: 7px; min-height: 38px; padding: 7px 9px; border: 0; border-radius: 3px; background: none; color: var(--muted); font: inherit; font-size: 10px; line-height: 1.5; cursor: pointer; }
+.weather-toggle:hover { color: var(--green); background: #e9efdf; }
+.weather-toggle:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
+.weather-toggle-icon { font-size: 9px; width: 9px; text-align: center; }
+@keyframes garden-cloud-drift { 0%, 100% { transform: translateX(-5px); } 50% { transform: translateX(7px); } }
+@keyframes garden-rain { 0% { transform: translate(4px, -26px); opacity: 0; } 18% { opacity: .52; } 80% { opacity: .52; } 100% { transform: translate(-12px, 32px); opacity: 0; } }
+@keyframes garden-sun-turn { to { transform: rotate(360deg); } }
+@keyframes garden-summer-air { 0%, 100% { transform: translate(0, 9px); opacity: .12; } 50% { transform: translate(8px, -12px); opacity: .5; } }
+@keyframes garden-wind { 0%, 100% { transform: translateX(-9px); opacity: .15; } 50% { transform: translateX(12px); opacity: .6; } }
+@keyframes garden-autumn-drift { 0% { transform: translate(-10px, -12px) rotate(-9deg); opacity: 0; } 22%, 72% { opacity: .65; } 100% { transform: translate(17px, 25px) rotate(32deg); opacity: 0; } }
+@keyframes garden-snowfall { 0% { transform: translate(-6px, -30px); opacity: 0; } 16%, 80% { opacity: .8; } 100% { transform: translate(9px, 43px); opacity: 0; } }
+@media (pointer: coarse) { .weather-toggle { min-height: 44px; } }
+@media (prefers-reduced-motion: reduce) {
+  .garden-weather-controls { display: none !important; }
+  .season-tree .weather-motion { animation: none !important; }
+}
