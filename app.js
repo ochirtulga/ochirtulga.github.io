@@ -1,6 +1,10 @@
 (() => {
   'use strict';
   const byId = id => document.getElementById(id);
+  const switcher=document.querySelector('.portfolio-switcher');
+  switcher?.querySelector('a')?.addEventListener('click',()=>{switcher.open=false;});
+  document.addEventListener('click',event=>{if(switcher?.open&&!switcher.contains(event.target))switcher.open=false;});
+  document.addEventListener('keydown',event=>{if(event.key==='Escape'&&switcher?.open){switcher.open=false;switcher.querySelector('summary').focus();}});
   const projects = {
     banking: {context:'Khan Bank / Selected engineering work',title:'A monolith, untangled.',intro:'A bank’s SMS notification service, migrated into a focused, Kafka-based microservice.',stack:'Java / Kafka / Cassandra',problem:'The notification service lived inside the banking monolith. It needed a more independent, reliable architecture.',design:'Separated notification processing into a dedicated microservice using Kafka for event streaming and Cassandra for storage.',components:['Banking events','Kafka','Notifications','Cassandra'],result:'Guaranteed SLA downtime changed from 2,000 to 20 minutes per year. The work was recognized by the Head of IT.'},
     bookworm: {context:'An independent project / iOS',title:'One more chapter.',intro:'A reading companion for keeping a personal library, taking on reading challenges, and collecting achievements.',stack:'React Native / Expo / Supabase',problem:'My reading habit deserved better tooling: one home for the books, the goals, and the small victories.',design:'A mobile app built with React Native and Expo, backed by Supabase. Designed around the reading habit it supports.',components:['iOS app','React Native','Expo','Supabase'],result:'A personal reading companion, built after hours because it was something I wanted to use myself.'},
