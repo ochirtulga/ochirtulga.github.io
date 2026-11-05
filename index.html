@@ -17,17 +17,18 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=EB+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="preload" href="fonts/Kalam-Regular.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=3">
+  <link rel="stylesheet" href="styles.css?v=4">
   <link rel="stylesheet" href="tree.css?v=3">
   <link rel="stylesheet" href="game.css?v=2">
   <link rel="stylesheet" href="architecture.css?v=4">
+  <link rel="stylesheet" href="experience.css?v=1">
   <link rel="stylesheet" href="hobbies.css?v=1">
-  <script src="tree.js" defer></script>
+  <script src="tree.js?v=2" defer></script>
   <script src="game-config.js?v=1" defer></script>
   <script src="game.js?v=2" defer></script>
   <script src="app.js?v=4" defer></script>
   <script src="architecture-stories.js?v=1" defer></script>
-  <script src="architecture.js?v=4" defer></script>
+  <script src="architecture.js?v=5" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -51,16 +52,16 @@
         <p class="hero-footnote">Banking. Life sciences. AI. And a few side quests.</p>
       </div>
       <div class="garden">
-        <div class="garden-caption"><span class="garden-dot" aria-hidden="true"></span><span id="season-status">Summer in the garden</span></div>
+        <div class="garden-caption"><span class="garden-dot" aria-hidden="true"></span><span id="season-status">Following the calendar</span></div>
         <div id="season-tree" class="season-tree"><noscript><img src="tree-fallback.svg" alt="A large green tree with spreading branches and a lush canopy." width="600" height="540"></noscript></div>
         <p class="leaf-story" id="leaf-story" aria-live="polite">Pick a bright, ringed leaf to discover a little story.</p>
         <button class="leaf-story-next" id="next-leaf-story" type="button">Find another story <span aria-hidden="true">↻</span></button>
         <div class="season-picker" role="group" aria-label="Choose a season">
           <button class="season-button" type="button" data-season="spring" aria-pressed="false">Spring</button>
-          <button class="season-button" type="button" data-season="summer" aria-pressed="true">Summer</button>
+          <button class="season-button" type="button" data-season="summer" aria-pressed="false">Summer</button>
           <button class="season-button" type="button" data-season="autumn" aria-pressed="false">Autumn</button>
           <button class="season-button" type="button" data-season="winter" aria-pressed="false">Winter</button>
-          <button class="season-button season-auto" type="button" data-season="auto" aria-pressed="false" aria-label="Follow the current calendar season">Use today's season</button>
+          <button class="season-button season-auto" type="button" data-season="auto" aria-pressed="true" aria-label="Follow the current calendar season">Use today's season</button>
         </div>
       </div>
     </section>
@@ -70,7 +71,7 @@
       <div class="section-marker">About</div>
       <div class="about-grid">
         <div class="about-copy"><h2 id="about-title">The person behind<br>the systems.</h2><p>I'm Ochirtulga Namjim, but Ochi works. I'm a software engineer from Mongolia, now based in Austin, Texas. Since 2018, I've built software for banking, life sciences, and, more recently, AI coding agents.</p><p>I like working on the layer that makes everything else possible. The data that arrives on time. The service that stays up. The small decision that makes someone's day easier.</p><div class="name-note"><span class="note-mark" aria-hidden="true">“</span><p>My name ends in <em>tulga</em>: the iron stand that holds a cauldron over the fire. That's the layer I build.</p></div></div>
-        <figure class="portrait"><div class="portrait-mat"><img src="portrait-lights.jpeg" alt="Ochi surrounded by purple and blue lights" width="3024" height="4032" loading="lazy"></div><figcaption>Ochi, away from the terminal.</figcaption></figure>
+        <figure class="portrait portrait-mat"><img src="portrait-lights.jpeg" alt="Ochi surrounded by purple and blue lights" width="3024" height="4032" loading="lazy"><figcaption>Me, when I’m away from the keyboard.</figcaption></figure>
       </div>
     </section>
 
@@ -83,13 +84,38 @@
         <button class="project-book" type="button" data-project="window" aria-haspopup="dialog"><span class="book-cover book-window"><span class="cover-top">From Erdenet, online</span><span class="window-illustration" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="cover-heading">Made for<br>real work.</span><span class="cover-bottom">Express Window<br>Website & business tools</span></span><span class="book-description"><strong>Express Window</strong><span>The website and tools behind a family business.</span><span class="book-open">Open the story <span aria-hidden="true">↗</span></span></span></button>
       </div>
       <section class="architecture architecture-story" id="architecture-story-widget" aria-label="Engineering problem-solving stories"><noscript><h3>A look under the cover</h3><p>Explore my work on notification services, behavioral loan scoring, asynchronous order history, reliable pipeline setup, a distributed data platform, and verifiable AI engineering tasks. Enable JavaScript to move through the situations, challenges, approaches, and results.</p></noscript></section>
-      <details class="experience"><summary><span>Where I've worked</span><span class="summary-meta">2017–2026 <span class="details-toggle" aria-hidden="true">+</span></span></summary><div class="experience-list">
-        <article><div><h3>Stellar AI</h3><p>AI Training Engineer</p></div><p class="experience-date">Feb 2026–May 2026</p><p class="experience-description">Turned real GitHub pull requests into training tasks for coding agents, with automated verifiers that checked their solutions.</p></article>
-        <article><div><h3>Express Window</h3><p>Solutions Architect</p></div><p class="experience-date">Sep 2025–Jan 2026</p><p class="experience-description">Designed and built the public website and internal order and inventory tools for a family business in Mongolia.</p></article>
-        <article><div><h3>Thermo Fisher Scientific</h3><p>Software Engineer | Data Engineer</p></div><p class="experience-date">Jul 2022–Mar 2025</p><p class="experience-description">Access management, asynchronous order processing, Kafka event workflows, and the pipelines connecting customer data.</p></article>
-        <article><div><h3>Khan Bank</h3><p>Software Engineer | Database Administrator</p></div><p class="experience-date">Feb 2018–Oct 2021</p><p class="experience-description">Distributed platforms, database administration, data modeling, and the move from monolithic services to focused microservices.</p></article>
-        <p class="earlier-work">Earlier: Graduate Teaching Assistant at Maharishi International University (2022), ERP Engineer at Infinite Solutions (2017), and Intern at ITZone (2017).</p>
-      </div></details>
+      <section class="career" id="work-timeline" aria-labelledby="career-title">
+        <div class="career-heading">
+          <div><h3 id="career-title">Where I've worked</h3><p class="career-intro">Different teams, different challenges. Each one shaped how I build.</p></div>
+          <div class="career-overview"><span class="career-span">2017–2026</span><a class="career-resume" href="resume.pdf" download="Ochirtulga-Namjim-Resume.pdf">Download résumé <span aria-hidden="true">↓</span></a></div>
+        </div>
+        <ol class="career-timeline" role="list" aria-label="Work history, most recent first">
+          <li class="career-entry career-entry-latest">
+            <div class="career-date"><span class="career-year" aria-hidden="true">2026</span><p class="career-period"><time datetime="2026-02">Feb 2026</time> – <time datetime="2026-05">May 2026</time></p></div>
+            <article class="career-content" aria-labelledby="career-stellar"><h4 class="career-company" id="career-stellar">Stellar AI</h4><p class="career-role">AI Training Engineer</p><p class="career-description">Turned real GitHub pull requests into training tasks for coding agents, with automated verifiers that checked their solutions.</p><a class="career-story" href="#architecture-story-widget" data-architecture-story="ai-verification">Read the AI verification story <span aria-hidden="true">↗</span></a></article>
+          </li>
+          <li class="career-entry">
+            <div class="career-date"><span class="career-year" aria-hidden="true">2026</span><p class="career-period"><time datetime="2025-09">Sep 2025</time> – <time datetime="2026-01">Jan 2026</time></p></div>
+            <article class="career-content" aria-labelledby="career-window"><h4 class="career-company" id="career-window">Express Window</h4><p class="career-role">Solutions Architect</p><p class="career-description">Designed and built the public website and internal order and inventory tools for a family business in Mongolia.</p><button class="career-story" type="button" data-project="window" aria-haspopup="dialog">Explore the Express Window project <span aria-hidden="true">↗</span></button></article>
+          </li>
+          <li class="career-entry">
+            <div class="career-date"><span class="career-year" aria-hidden="true">2025</span><p class="career-period"><time datetime="2022-07">Jul 2022</time> – <time datetime="2025-03">Mar 2025</time></p></div>
+            <article class="career-content" aria-labelledby="career-thermo"><h4 class="career-company" id="career-thermo">Thermo Fisher Scientific</h4><p class="career-role">Software Engineer | Data Engineer</p><p class="career-description">Access management, asynchronous order processing, Kafka event workflows, and the pipelines connecting customer data.</p><a class="career-story" href="#architecture-story-widget" data-architecture-story="order-history">Read the order-history story <span aria-hidden="true">↗</span></a></article>
+          </li>
+          <li class="career-entry career-entry-compact">
+            <div class="career-date"><p class="career-period career-year-only"><time datetime="2022">2022</time></p></div>
+            <article class="career-content" aria-labelledby="career-maharishi"><h4 class="career-company" id="career-maharishi">Maharishi International University</h4><p class="career-role">Graduate Teaching Assistant</p></article>
+          </li>
+          <li class="career-entry">
+            <div class="career-date"><span class="career-year" aria-hidden="true">2021</span><p class="career-period"><time datetime="2018-02">Feb 2018</time> – <time datetime="2021-10">Oct 2021</time></p></div>
+            <article class="career-content" aria-labelledby="career-khan"><h4 class="career-company" id="career-khan">Khan Bank</h4><p class="career-role">Software Engineer | Database Administrator</p><p class="career-description">Distributed platforms, database administration, data modeling, and the move from monolithic services to focused microservices.</p><a class="career-story" href="#architecture-story-widget" data-architecture-story="notifications">Read the notification migration story <span aria-hidden="true">↗</span></a></article>
+          </li>
+          <li class="career-entry career-entry-compact">
+            <div class="career-date"><p class="career-period career-year-only"><time datetime="2017">2017</time></p></div>
+            <div class="career-content"><h4 class="career-company career-early-title">The early chapters</h4><ul class="career-early-roles" role="list"><li><h5>Infinite Solutions</h5><p class="career-role">ERP Engineer</p></li><li><h5>ITZone</h5><p class="career-role">Intern</p></li></ul></div>
+          </li>
+        </ol>
+      </section>
     </section>
 
     <section class="education-section page-width section-space" id="education" aria-labelledby="education-title"><div class="section-marker">Education</div><div class="education-grid"><div><h2 id="education-title">The roots<br>run deep.</h2><p class="section-description">Two countries. Three degrees.<br>Still a lot left to learn.</p><div class="root-illustration" aria-hidden="true"><svg viewBox="0 0 240 125" fill="none"><path d="M122 4v42m0-12c-8 35-47 32-62 58m62-46c4 23 39 22 57 57m-57-65c-3 29 7 50 0 78M87 65c-9 0-28-2-39 14m18 8c-17 0-32 4-43 17m129-35c21 0 32 9 39 22m-71-12c-13 16-19 22-19 38m72-22c12 0 26 7 37 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div></div><div class="education-list"><article><span class="degree-mark" aria-hidden="true">MSc</span><div><h3>Computer Science and Engineering</h3><p>American National University</p></div></article><article><span class="degree-mark" aria-hidden="true">MSc</span><div><h3>Computer Science</h3><p>Maharishi International University</p></div></article><article><span class="degree-mark" aria-hidden="true">BTech</span><div><h3>Information Technology</h3><p>Mongolian University of Science and Technology</p></div></article><details class="credentials"><summary>Certifications <span aria-hidden="true">+</span></summary><ul><li>AWS Solutions Architect Associate</li><li>AWS Cloud Practitioner</li><li>DataStax Cassandra 3.x Developer Associate</li><li>ISACA COBIT 2019 Foundation</li></ul></details></div></div></section>

@@ -360,6 +360,19 @@
   }
   storySelect.addEventListener('change', () => selectStory(storySelect.value));
 
+  document.querySelectorAll('a[data-architecture-story]').forEach(link => {
+    const target = link.dataset.architectureStory;
+    if (!stories.some(value => value.id === target)) return;
+    link.addEventListener('click', event => {
+      if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      selectStory(target);
+      if (window.location.hash !== link.hash) window.history.pushState(null, '', link.hash);
+      root.scrollIntoView({ behavior: motion.matches ? 'auto' : 'smooth', block: 'start' });
+      tabs[0].focus({ preventScroll: true });
+    });
+  });
+
   previous.addEventListener('click', () => goTo(current - 1, true));
   next.addEventListener('click', () => goTo(current + 1, true));
   toggle.addEventListener('click', () => {

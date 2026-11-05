@@ -14,6 +14,7 @@ A buildless static website with direct About, Work, Education, and Hobbies navig
 - `game-config.js`: the public leaderboard API address; contains no secrets.
 - `architecture.css`, `architecture.js`: the desktop story index, mobile picker, directional diagrams, chapter progress, result shortcut, and automatic/manual playback.
 - `architecture-stories.js`: five additional problem-solving stories, each with Situation, Challenge, Approach, and Result chapters.
+- `experience.css`: the always-visible vertical career timeline with dates, roles, project/story links, and résumé download.
 - `ink/`, `fonts/`: original pen-outline SVGs and the self-hosted Kalam handwriting font with its SIL Open Font License.
 - `hobbies.css`: the illustrated food, travel/adventure, and basketball pursuits.
 - `portrait-lights.jpeg`: the uploaded purple-light portrait in About.
@@ -36,6 +37,8 @@ GitHub Pages serves the `main` branch from the repository root. Commit and push 
 
 Replace `portrait-lights.jpeg` and push. The About portrait uses `object-fit: cover`; adjust `.portrait img`'s `object-position` in `styles.css` if the new crop needs changing. Update the intrinsic dimensions in `index.html` for a replacement image.
 
+The caption sits inside the bottom border of the photo frame. The tree opens in the current calendar season on every page load, using the visitor’s local month and Northern Hemisphere seasons. Manual season choices apply during the visit; **Use today's season** returns to the calendar.
+
 ## Portfolio navigation
 
 The **Portfolios** header menu identifies this site as **The garden**. The second portfolio is marked **Coming soon** while it is being planned. When it is built, replace that disabled entry with its URL and add a link back to this site in the second portfolio.
@@ -45,6 +48,10 @@ The **Portfolios** header menu identifies this site as **The garden**. The secon
 Leaf keeper asks for an optional nickname before its 25-second round. Completed ranked rounds are saved to https://ochi-leaf-keeper-api.ochro.chatgpt.site and the top ten appears after play. Each browser identifier has one personal-best entry; blank nicknames become Anonymous. The game clearly explains that nicknames and best scores are public.
 
 The API runs separately on Cloudflare Workers with D1 through Sites. The database is never accessed directly from this static website. Server-issued round tokens, time and score limits, and idempotent submissions prevent duplicate scores. The game remains playable as an explicitly unranked round if the shared service is unavailable. These checks support a casual game and do not prove every catch was made by a human.
+
+## Work timeline
+
+**Where I've worked** is a vertical timeline (`#work-timeline`) with seven roles across six date nodes, newest first. The two 2017 roles share a node because their within-year order is unknown. Dates sit in a desktop gutter and move above the role on phones. Relevant jobs link to their engineering stories, selecting the case and handing keyboard focus to its first chapter. Express Window opens its project dialog; the résumé download serves the unchanged PDF. The work history remains visible without JavaScript.
 
 ## Engineering stories
 

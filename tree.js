@@ -201,22 +201,16 @@
     return 'winter';
   }
 
-  function setSeason(selection, remember = false) {
+  function setSeason(selection) {
     const season = selection === 'auto' ? calendarSeason() : selection;
     if (!['spring', 'summer', 'autumn', 'winter'].includes(season)) return;
     mount.dataset.season = season;
     buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.season === selection)));
     const names = { spring: 'Spring in the garden', summer: 'Summer in the garden', autumn: 'Autumn in the garden', winter: 'Winter in the garden' };
     if (status) status.textContent = names[season] + (selection === 'auto' ? ' · Following the calendar' : '');
-    if (remember) {
-      try { localStorage.setItem('ochi-garden-season', selection); } catch (_) { /* Private browsing can disable storage. */ }
-    }
     mount.dispatchEvent(new CustomEvent('seasonchange', { bubbles: true, detail: { season, selection } }));
   }
 
-  buttons.forEach(button => button.addEventListener('click', () => setSeason(button.dataset.season, true)));
-  let initial = 'summer';
-  try { initial = localStorage.getItem('ochi-garden-season') || initial; } catch (_) { /* Use the green summer tree. */ }
-  if (!['spring', 'summer', 'autumn', 'winter', 'auto'].includes(initial)) initial = 'summer';
-  setSeason(initial);
+  buttons.forEach(button => button.addEventListener('click', () => setSeason(button.dataset.season)));
+  setSeason('auto');
 })();
