@@ -68,3 +68,8 @@
   .bb-dialog .arcade-game-panel { gap: 6px; }
   .bb-dialog .bb-keyboard { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
 }
+.bb-wind { position: absolute; top: 9px; right: 9px; display: flex; align-items: flex-start; gap: 5px; max-width: 42%; padding: 6px 8px; border: 1px solid #b9c9ad; border-radius: 4px; background: #f8f9eff0; color: #435e3d; pointer-events: none; }
+.bb-wind-arrow { flex: 0 0 auto; font-size: 21px; line-height: 1; color: #805436; }
+.bb-wind-label { display: block; font-size: 10px; font-weight: 500; line-height: 1.35; }
+.bb-wind-hint { display: block; margin-top: 3px; font-size: 9px; line-height: 1.4; color: #607454; }
+@media(max-width:380px) { .bb-wind { top: 6px; right: 6px; padding: 4px 5px; gap: 3px; } .bb-wind-arrow { font-size: 18px; } .bb-wind-label { font-size: 9px; } .bb-wind-hint { font-size: 8px; } }

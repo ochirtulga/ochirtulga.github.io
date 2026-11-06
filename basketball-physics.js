@@ -11,7 +11,35 @@
   const finite = (value, fallback) => Number.isFinite(Number(value)) ? Number(value) : fallback;
   const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
 
-  function makeShot(aimDeg = 0, power01 = 0.5) {
+  const diagonal = Math.SQRT1_2;
+  const windDirections = Object.freeze([
+    { key: 'right', x: 1, z: 0, arrow: '→', label: 'crosswind right', hint: 'Aim left.' },
+    { key: 'left', x: -1, z: 0, arrow: '←', label: 'crosswind left', hint: 'Aim right.' },
+    { key: 'head', x: 0, z: -1, arrow: '↓', label: 'headwind', hint: 'Add power.' },
+    { key: 'tail', x: 0, z: 1, arrow: '↑', label: 'tailwind', hint: 'Use less power.' },
+    { key: 'right-head', x: diagonal, z: -diagonal, arrow: '↘', label: 'headwind right', hint: 'Aim left; add power.' },
+    { key: 'left-head', x: -diagonal, z: -diagonal, arrow: '↙', label: 'headwind left', hint: 'Aim right; add power.' },
+    { key: 'right-tail', x: diagonal, z: diagonal, arrow: '↗', label: 'tailwind right', hint: 'Aim left; use less power.' },
+    { key: 'left-tail', x: -diagonal, z: diagonal, arrow: '↖', label: 'tailwind left', hint: 'Aim right; use less power.' }
+  ].map(Object.freeze));
+  const windStrengths = Object.freeze([
+    Object.freeze({ value: .85, label: 'Light' }),
+    Object.freeze({ value: 1.3, label: 'Steady' }),
+    Object.freeze({ value: 1.75, label: 'Strong' })
+  ]);
+  function createWind(previous = null, random = Math.random) {
+    const directions = windDirections.filter(value => value.key !== previous?.direction);
+    const sample = length => Math.floor(clamp(finite(random(), .5), 0, 1 - Number.EPSILON) * length);
+    const direction = directions[sample(directions.length)];
+    const strength = windStrengths[sample(windStrengths.length)];
+    return Object.freeze({
+      x: direction.x * strength.value, z: direction.z * strength.value,
+      direction: direction.key, strength: strength.value, strengthName: strength.label,
+      label: `${strength.label} ${direction.label}`, arrow: direction.arrow, hint: direction.hint
+    });
+  }
+
+  function makeShot(aimDeg = 0, power01 = 0.5, wind = null) {
     const aim = clamp(finite(aimDeg, 0), -24, 24);
     const power = clamp(finite(power01, 0.5), 0, 1);
     const vz = 5.8 + 4.6 * power;
@@ -20,7 +48,9 @@
     return Object.freeze({
       origin: constants.origin,
       velocity: Object.freeze({ x: vx, y: vy, z: vz }),
-      vx, vy, vz, aimDeg: aim, power
+      vx, vy, vz, aimDeg: aim, power,
+      // Capture each shot's wind, even if a caller later changes its input object.
+      wind: Object.freeze({ x: clamp(finite(wind?.x, 0), -2, 2), z: clamp(finite(wind?.z, 0), -2, 2) })
     });
   }
 
@@ -30,8 +60,9 @@
     const vx = shot.vx ?? shot.velocity?.x;
     const vy = shot.vy ?? shot.velocity?.y;
     const vz = shot.vz ?? shot.velocity?.z;
-    return [origin.x, origin.y, origin.z, vx, vy, vz].every(Number.isFinite)
-      ? { origin, vx, vy, vz }
+    const ax = shot.wind?.x ?? 0, az = shot.wind?.z ?? 0;
+    return [origin.x, origin.y, origin.z, vx, vy, vz, ax, az].every(Number.isFinite)
+      ? { origin, vx, vy, vz, ax, az }
       : null;
   }
 
@@ -40,9 +71,9 @@
     if (!values || !Number.isFinite(seconds)) return null;
     const t = Math.max(0, seconds);
     return {
-      x: values.origin.x + values.vx * t,
+      x: values.origin.x + values.vx * t + .5 * values.ax * t * t,
       y: values.origin.y + values.vy * t - 0.5 * constants.gravity * t * t,
-      z: values.origin.z + values.vz * t
+      z: values.origin.z + values.vz * t + .5 * values.az * t * t
     };
   }
 
@@ -82,5 +113,5 @@
     return Math.max(0, (values.vy + Math.sqrt(discriminant)) / constants.gravity);
   }
 
-  window.OCHI_HOOPS_PHYSICS = Object.freeze({ constants, makeShot, pointAt, crossing, classify, flightDuration });
+  window.OCHI_HOOPS_PHYSICS = Object.freeze({ constants, createWind, windDirections, windStrengths, makeShot, pointAt, crossing, classify, flightDuration });
 })();

@@ -299,6 +299,7 @@
   function endRound() {
     if (state !== 'playing') return;
     state = 'ended';
+    window.OCHI_ARCADE_AUDIO?.play('end');
     cancelAnimationFrame(animation);
     pauseButton.disabled = true;
     startButton.disabled = false;
@@ -347,8 +348,10 @@
       if (!reducedMotion.matches) leaf.x = leaf.origin + Math.sin(leaf.age * 2 + leaf.rotation) * 15;
       if (leaf.y >= 238 && leaf.y <= 266 && Math.abs(leaf.x - basketX) <= 36) {
         score += 1;
+        window.OCHI_ARCADE_AUDIO?.play('catch');
         scoreLabel.textContent = String(score);
       } else if (leaf.y <= WORLD.ground + 8) survivors.push(leaf);
+      else window.OCHI_ARCADE_AUDIO?.play('miss');
     }
     leaves = survivors;
     draw();
@@ -357,6 +360,8 @@
 
   async function startRound() {
     if (state === 'starting' || state === 'playing' || state === 'paused') return;
+    void window.OCHI_ARCADE_AUDIO?.unlock();
+    window.OCHI_ARCADE_AUDIO?.stop();
     cancelAnimationFrame(animation);
     const version = ++runVersion;
     const name = normalizeName(nameInput.value);
@@ -401,6 +406,7 @@
   }
 
   function setPaused(paused, reason) {
+    if (paused) window.OCHI_ARCADE_AUDIO?.stop();
     if (paused && state === 'starting') { pauseAfterStart = true;return; }
     if (paused && state === 'playing') {
       state = 'paused';

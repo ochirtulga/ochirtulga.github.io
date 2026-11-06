@@ -20,3 +20,10 @@
 .arcade-basketball-link { margin-top: 14px; min-height: 44px; }
 @media (max-width: 380px) { .arcade-game-tab { font-size: 11px; gap: 7px; } }
 @media (prefers-reduced-motion: reduce) { .arcade-game-tab { transition: none; } }
+.arcade-heading-tools, .arcade-dialog-actions { display: flex; flex: 0 0 auto; align-items: center; gap: 8px; }
+.arcade-sound-toggle { display: inline-flex; flex: 0 0 auto; align-items: center; justify-content: center; gap: 6px; min-width: 44px; min-height: 44px; padding: 7px 9px; border: 1px solid #c6d0bc; border-radius: 5px; background: #f4f7ec; color: #4a6344; font: inherit; font-size: 10px; line-height: 1.3; cursor: pointer; }
+.arcade-sound-toggle svg { flex: 0 0 18px; }
+.arcade-sound-toggle:focus-visible { outline: 2px solid #4567a4; outline-offset: 3px; }
+.arcade-sound-toggle:disabled { opacity: .5; cursor: default; }
+.arcade-sound-toggle[data-enabled=true] .arcade-sound-slash, .arcade-sound-toggle[data-enabled=false] .arcade-sound-waves { display: none; }
+@media(max-width:380px) { .arcade-sound-text { display: none; } .arcade-sound-toggle { padding-inline: 8px; } }

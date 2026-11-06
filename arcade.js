@@ -8,6 +8,8 @@
   ];
   const controllers = new Map();
   const tabGroups = [];
+  const soundButtons = [];
+  const audio = window.OCHI_ARCADE_AUDIO;
   let selected = 'leaf-keeper';
   let active = null;
   let closing = null;
@@ -19,6 +21,28 @@
     if (text !== undefined) node.textContent = text;
     return node;
   };
+  function makeSoundButton() {
+    const button = element('button', 'arcade-sound-toggle');
+    button.type = 'button';button.setAttribute('aria-label', 'Game sounds');
+    button.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4Z"/><path class="arcade-sound-waves" d="M16 8c2 2 2 6 0 8m3-11c4 4 4 10 0 14"/><path class="arcade-sound-slash" d="m17 9 5 6m0-6-5 6"/></svg>';
+    button.append(element('span', 'arcade-sound-text'));
+    button.addEventListener('click', () => {
+      if (!audio?.supported) return;
+      audio.setEnabled(!audio.enabled);
+      if (audio.enabled) void audio.unlock().then(ready => { if (ready) audio.play('catch'); });
+    });
+    soundButtons.push(button);return button;
+  }
+  function updateSoundButtons() {
+    soundButtons.forEach(button => {
+      const enabled = Boolean(audio?.enabled && audio?.supported);
+      button.disabled = !audio?.supported;
+      button.dataset.enabled = String(enabled);
+      button.setAttribute('aria-pressed', String(enabled));
+      button.title = audio?.supported ? enabled ? 'Mute game sounds' : 'Turn on game sounds' : 'Game sound is unavailable in this browser';
+      button.querySelector('.arcade-sound-text').textContent = audio?.supported ? enabled ? 'Sound on' : 'Sound off' : 'No sound';
+    });
+  }
   function makeTabs(scope, modal = false) {
     const tabs = element('div', 'arcade-game-tabs' + (modal ? ' arcade-modal-tabs' : ''));
     tabs.setAttribute('role', 'tablist');
@@ -51,7 +75,9 @@
   }
   const shell = element('div', 'arcade-shell');
   const header = element('div', 'arcade-heading');
-  header.append(element('span', '', 'The after-hours arcade'), element('span', 'arcade-game-count', '2 games'));
+  const headerTools = element('div', 'arcade-heading-tools');
+  headerTools.append(element('span', 'arcade-game-count', '2 games'), makeSoundButton());
+  header.append(element('span', '', 'The after-hours arcade'), headerTools);
   shell.append(header, makeTabs('shelf'));
   games.forEach(game => {
     const panel = element('div', 'arcade-cartridge-panel');
@@ -86,6 +112,7 @@
     if (!controller) return;
     const fromDialog = Boolean(source?.closest('dialog'));
     if (active === id && controller.dialog.open) return;
+    audio?.stop();void audio?.unlock();
     if (!active && !fromDialog) returnFocus = source || shell.querySelector(`[data-arcade-game="${id}"]`);
     const version = ++launchVersion;
     const start = () => {
@@ -110,6 +137,12 @@
     controllers.set(id, controller);
     const dialog = controller.dialog;
     const heading = dialog.firstElementChild;
+    const tools = element('div', 'arcade-dialog-actions');
+    const closeButton = heading.querySelector('button');
+    tools.append(makeSoundButton());if (closeButton) tools.append(closeButton);heading.append(tools);
+    const unlockSound = () => { void audio?.unlock(); };
+    dialog.addEventListener('pointerdown', unlockSound, { capture: true });
+    dialog.addEventListener('keydown', unlockSound, { capture: true });
     const panel = element('div', 'arcade-game-panel');
     panel.id = `arcade-session-${id}`;panel.setAttribute('role', 'tabpanel');
     panel.setAttribute('aria-labelledby', `arcade-modal-${id}-tab-${id}`);
@@ -117,14 +150,16 @@
     dialog.append(makeTabs('modal-' + id, true), panel);
     dialog.classList.add('arcade-dialog');
     dialog.addEventListener('close', () => {
+      audio?.stop();
       if (active !== id) return;
       active = null;
       const target = returnFocus?.isConnected && returnFocus.getClientRects().length ? returnFocus : shell.querySelector(`[data-arcade-game="${selected}"]`);
       target?.focus({ preventScroll: true });
     });
-    updateTabs();
+    updateTabs();updateSoundButtons();
   }
   document.querySelectorAll('[data-arcade-open]').forEach(button => button.addEventListener('click', () => launch(button.dataset.arcadeOpen, button)));
   window.OCHI_ARCADE = Object.freeze({ register, select, launch });
-  updateTabs();
+  audio?.subscribe(updateSoundButtons);
+  updateTabs();updateSoundButtons();
 })();
