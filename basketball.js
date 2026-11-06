@@ -15,8 +15,9 @@
       <p class="bb-instructions" id="bb-instructions">Drag up from the ball to aim; release to shoot.</p>
       <div class="bb-court-wrap">
         <canvas class="bb-canvas" width="600" height="440" tabindex="0" role="application" aria-label="Basketball court" aria-describedby="bb-instructions bb-wind bb-aim-assist bb-power-assist bb-keyboard" aria-keyshortcuts="ArrowLeft ArrowRight ArrowUp ArrowDown Space Enter"></canvas>
-        <div class="bb-wind" id="bb-wind" role="status" aria-live="polite"><span class="bb-wind-arrow" aria-hidden="true"></span><span><strong class="bb-wind-label"></strong><span class="bb-wind-hint"></span></span></div>
+        <div class="bb-wind" id="bb-wind" role="status" aria-live="polite"><span class="bb-wind-symbol" aria-hidden="true"><svg class="bb-wind-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></svg><span class="bb-wind-arrow"></span></span><span><strong class="bb-wind-label"></strong><span class="bb-wind-hint"></span></span></div>
         <div class="bb-shot-feedback" aria-hidden="true"><strong></strong><span></span></div>
+        <div class="bb-round-result" aria-hidden="true"><strong></strong><p></p></div>
         <div class="bb-aim-assist" id="bb-aim-assist"><span>Aim</span><output id="bb-aim" aria-label="Shot aim">Center</output><small>Drag sideways</small></div>
         <div class="bb-power-assist" id="bb-power-assist"><div class="bb-power-track" role="meter" aria-label="Shot power" aria-valuemin="0" aria-valuemax="100" aria-valuenow="40"><i></i></div><div><span>Power</span><output id="bb-power" aria-label="Shot power percentage">40%</output></div></div>
       </div>
@@ -38,6 +39,7 @@
   const powerMeter = mount.querySelector('.bb-power-track');
   const court = mount.querySelector('.bb-court-wrap');
   const feedback = mount.querySelector('.bb-shot-feedback');
+  const roundResult = mount.querySelector('.bb-round-result');
   const shootButton = mount.querySelector('.bb-shoot');
   const pauseButton = mount.querySelector('.bb-pause');
   const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -203,6 +205,13 @@
   function cancelFrame() { cancelAnimationFrame(frame);frame = 0; }
   function cancelAim() { if (state !== 'aiming') return;aiming = null;state = 'ready';updateReadout();draw(); }
   function updateWind() {
+    const gusts = {
+      Light: '<path d="M3 13h12a3 3 0 1 0-3-3"/>',
+      Steady: '<path d="M3 8h9a3 3 0 1 0-3-3M3 15h13a3 3 0 1 1-3 3"/>',
+      Strong: '<path d="M3 6h7a2 2 0 1 0-2-2M2 11h16a3 3 0 1 0-3-3M4 16h10a3 3 0 1 1-3 3"/>'
+    };
+    mount.querySelector('.bb-wind-icon').innerHTML = gusts[wind.strengthName];
+    mount.querySelector('.bb-wind-icon').dataset.level = wind.strengthName.toLowerCase();
     mount.querySelector('.bb-wind-arrow').textContent = wind.arrow;
     mount.querySelector('.bb-wind-label').textContent = wind.label;
     mount.querySelector('.bb-wind-hint').textContent = wind.hint;
@@ -213,6 +222,7 @@
   function newRound() {
     window.OCHI_ARCADE_AUDIO?.stop();
     clearFeedback();
+    roundResult.querySelector('strong').textContent = '';roundResult.querySelector('p').textContent = '';
     cancelFrame();flight = null;aiming = null;attempts = 0;score = 0;aim = 0;power = .4;state = 'ready';previousState = 'ready';
     wind = physics.createWind(wind);updateWind();
     updateReadout();setMessage('Ten shots. Each basket brings a new wind.');draw();
@@ -226,8 +236,11 @@
     flight = null;
     if (attempts >= 10) {
       state = 'ended';const isBest = score > best;best = Math.max(best, score);
+      const reaction = score === 10 ? 'Who taught you that?' : score >= 7 ? 'Nice shooting!' : score >= 4 ? 'Not too bad!' : score > 0 ? 'Getting warmed up.' : 'Just warming up.';
+      roundResult.querySelector('strong').textContent = `${score} / 10 baskets`;
+      roundResult.querySelector('p').textContent = reaction;
       try { localStorage.setItem('ochi-basketball-best', String(best)); } catch (_) { /* Saving a personal best is optional. */ }
-      setMessage(`${score} baskets from 10 shots.${isBest ? ' A new best on this device!' : ' Want another round?'}`);
+      setMessage(`${score} baskets from 10 shots. ${reaction}${isBest ? ' A new best on this device!' : ''}`);
       window.OCHI_ARCADE_AUDIO?.play(isBest ? 'best' : 'end');
     } else { state = 'ready';setMessage(made ? `Swish! New wind: ${wind.label.toLowerCase()}. ${10 - attempts} shots left.` : `${message.textContent} ${10 - attempts} shots left.`); }
     updateReadout();draw();

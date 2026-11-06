@@ -42,6 +42,9 @@
 @media(max-width:380px) {
   .bb-dialog { padding: 13px; }
   .bb-dialog h2 { font-size: 27px; }
+  .bb-scoreboard { gap: 5px; font-size: 10px; }
+  .bb-scoreboard strong { margin-left: 3px; font-size: 17px; }
+  .bb-scoreboard small { font-size: 9px; }
   .bb-dialog .arcade-game-panel { gap: 7px; }
   .bb-controls { gap: 6px; }
   .bb-controls button { padding-inline: 9px; }
@@ -54,7 +57,7 @@
   .bb-dialog { width: min(820px,calc(100vw - 20px)); padding: 12px 15px; }
   .bb-dialog .bb-kicker { display: none; }
   .bb-dialog h2 { font-size: 25px; }
-  .bb-dialog .arcade-game-panel { display: grid; grid-template-columns: minmax(0,1fr) 210px; grid-template-rows: auto auto auto auto minmax(0,1fr); gap: 7px 14px; }
+  .bb-dialog .arcade-game-panel { display: grid; grid-template-columns: minmax(0,1fr) 230px; grid-template-rows: auto auto auto auto minmax(0,1fr); gap: 7px 14px; }
   .bb-court-wrap { grid-column: 1; grid-row: 1/6; min-height: 0; }
   .bb-scoreboard { grid-column: 2; grid-row: 1; font-size: 9px; gap: 4px; }
   .bb-scoreboard strong { font-size: 16px; margin-left: 2px; }
@@ -74,7 +77,9 @@
   .bb-dialog .bb-keyboard { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
 }
 .bb-wind { position: absolute; top: 9px; right: 9px; display: flex; align-items: flex-start; gap: 5px; max-width: 42%; padding: 6px 8px; border: 1px solid #b9c9ad; border-radius: 4px; background: #f8f9eff0; color: #435e3d; pointer-events: none; }
-.bb-wind-arrow { flex: 0 0 auto; font-size: 21px; line-height: 1; color: #805436; }
+.bb-wind-symbol { display: flex; flex: 0 0 22px; flex-direction: column; align-items: center; gap: 2px; }
+.bb-wind-icon { display: block; flex: 0 0 22px; color: #435e3d; }
+.bb-wind-arrow { font-size: 16px; line-height: 1; color: #805436; }
 .bb-wind-label { display: block; font-size: 10px; font-weight: 500; line-height: 1.35; }
 .bb-wind-hint { display: block; margin-top: 3px; font-size: 9px; line-height: 1.4; color: #607454; }
 .bb-shot-feedback { position: absolute; z-index: 2; top: 12px; left: 12px; max-width: calc(52% - 20px); padding: 8px 12px; border: 1px solid #b8c5a9; border-radius: 6px; background: #fff9e9f5; color: #704a32; opacity: 0; transform: translateY(-4px); transition: opacity 200ms ease,transform 200ms ease; pointer-events: none; }
@@ -85,3 +90,11 @@
 @media(max-width:380px) { .bb-shot-feedback { top: 8px; left: 8px; padding: 6px 9px; } .bb-shot-feedback strong { font-size: 15px; } .bb-shot-feedback span { font-size: 10px; } }
 @media(prefers-reduced-motion:reduce) { .bb-shot-feedback { transform: none; } }
 @media(max-width:380px) { .bb-wind { top: 6px; right: 6px; padding: 4px 5px; gap: 3px; } .bb-wind-arrow { font-size: 18px; } .bb-wind-label { font-size: 9px; } .bb-wind-hint { font-size: 8px; } }
+.bb-round-result { display: none; position: absolute; z-index: 2; left: 50%; top: 50%; transform: translate(-50%,-100%); margin-top: -42px; width: max-content; max-width: calc(100% - 28px); color: #294431; text-align: center; pointer-events: none; }
+.bb-round-result strong { display: block; font-size: 24px; font-weight: 600; line-height: 1.15; }
+.bb-round-result p { margin: 6px 0 0; font-size: 13px; line-height: 1.4; }
+.bb-dialog[data-state=ended] .bb-court-wrap::after { content: ''; position: absolute; z-index: 1; inset: 0; background: #f5f7f0d9; pointer-events: none; }
+.bb-dialog[data-state=ended] .bb-round-result { display: block; }
+.bb-dialog[data-state=ended] .bb-instructions { display: none; }
+.bb-dialog[data-state=ended] .bb-wind, .bb-dialog[data-state=ended] .bb-shot-feedback { visibility: hidden; }
+@media(max-width:380px), (max-height:650px) { .bb-round-result { margin-top: -36px; } .bb-round-result strong { font-size: 20px; } .bb-round-result p { margin-top: 4px; font-size: 12px; } }

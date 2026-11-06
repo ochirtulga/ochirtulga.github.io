@@ -67,6 +67,8 @@ Leaf keeper’s pre-game window fits its content, with a larger responsive previ
 
 Basketball shows a brief result popup in the top-left of the court: **Swish! / Nice shot** for a basket, or **Miss** with **Add power**, **Less power**, **Aim left**, or **Aim right**. It holds for one second, then fades in 200ms; reduced-motion preferences remove the transition. The persistent status retains the detailed result. New shots, resets, pauses, closing, and game switches clear transient feedback.
 
+Basketball’s replay screen shows the final basket count and a short score-based reaction above the button, from “Just warming up.” to “Who taught you that?” for a perfect round. The ended court is dimmed and its wind card is hidden to keep the result legible. During play, light, steady, and strong wind each have a distinct one-, two-, or three-gust SVG icon alongside the direction arrow and text label.
+
 At the end of either game, a centered replay-icon button labeled **Replay** appears over the game canvas. It starts a fresh round directly, resets the game panel’s scroll position, and restores keyboard focus to a playable control. Leaf keeper retains its completed score save while the new round starts; late responses cannot replace the new round. Its leaderboard remains below the game without automatically scrolling the replay control out of view.
 
 ## Shared mini-game leaderboard
