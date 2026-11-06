@@ -1,3 +1,19 @@
+/* Books and games follow the same copy-first rhythm and align their artwork below. */
+.hobbies-section .hobbies-heading{margin-bottom:42px}
+.hobbies-section .hobbies-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:32px clamp(44px,7vw,96px);align-items:stretch}
+.hobbies-section .hobby-feature{display:flex;flex-direction:column;min-width:0;padding:0;margin:0}
+.hobbies-section .hobby-feature-copy{width:100%;max-width:440px;margin:0}
+.hobbies-section .hobby-feature-copy h3{margin:0;font-family:'EB Garamond',serif;font-size:38px;font-weight:500;line-height:1.12;letter-spacing:-.7px}
+.hobbies-section .hobby-feature-copy>p{margin:18px 0 0;max-width:none;color:var(--muted);font-size:13px;line-height:1.9}
+.hobbies-section .hobby-feature-copy .game-invitation{font-size:12px;line-height:1.8;margin-top:14px}
+.hobbies-section .hobby-feature-copy .text-link{min-height:44px;margin-top:18px;font-size:12px}
+.hobbies-section .hobby-feature-art{display:flex;align-items:flex-start;min-width:0;flex:1;margin-top:32px}
+.hobbies-section .little-library{width:100%;max-width:360px;margin:0;height:150px}
+.hobbies-section #game-cartridge{margin-inline:0}
+@supports(grid-template-rows:subgrid){.hobbies-section .hobby-feature{display:grid;grid-row:span 2;grid-template-rows:subgrid}.hobbies-section .hobby-feature-art{margin-top:0}}
+@media(max-width:800px){.hobbies-section .hobby-feature-copy h3{font-size:34px}}
+@media(max-width:700px){.hobbies-section .hobbies-grid{display:flex;flex-direction:column;gap:38px}.hobbies-section .hobby-feature{display:flex;gap:24px}.hobbies-section .hobby-feature-art{margin-top:0;flex:none}.hobbies-section .hobby-feature-copy{max-width:440px}.hobbies-section .hobbies-heading{margin-bottom:34px}.hobbies-section .gaming-corner{padding-top:32px;border-top:1px solid #cfdbc4}.hobbies-section .hobby-feature-copy h3{font-size:34px}}
+@media(max-width:380px){.hobbies-section .hobby-feature-copy h3{font-size:30px}}
 .hobbies-section .hobby-pursuits{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:54px;margin-top:62px;padding-top:30px;border-top:1px solid #cfdbc4}
 .hobbies-section .hobby-pursuit{min-width:0}
 .hobbies-section .pursuit-art{height:158px;display:flex;align-items:center;margin-bottom:22px;min-width:0}

@@ -53,6 +53,8 @@ The tree caption and 44px next-story button share one left-aligned strip. One co
 
 The **Portfolios** header menu identifies this site as **The garden**. The second portfolio is marked **Coming soon** while it is being planned. When it is built, replace that disabled entry with its URL and add a link back to this site in the second portfolio.
 
+The Hobbies section uses equal reading and gaming columns with matching heading/body typography, text above each artifact, aligned artwork starts, and left-aligned actions. Desktop shares the copy and artwork rows; phones stack each story and illustration together with compact spacing. The original books, plant, purple cartridge, and food/travel/basketball illustrations remain. The detached header note is removed.
+
 ## After-hours arcade
 
 A single lavender cartridge contains **The after-hours arcade**, the shared sound control, and **Leaf keeper** and **Basketball** tabs above the selected game’s label and play action. The same game switcher appears inside each game window. The tablists support pointer, Arrow keys, Home, and End. Switching closes and stops the old game before opening the next; pending Leaf keeper session starts cannot revive a closed game, and completed score saves can finish safely. The basketball hobby's **Take a shot** button opens the court directly. The Leaf keeper book action selects the right cartridge before handing over focus.
