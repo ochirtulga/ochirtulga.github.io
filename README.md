@@ -6,9 +6,10 @@ Live at [ochirtulga.github.io](https://ochirtulga.github.io/).
 
 ## The site
 
-A buildless static website with direct About, Work, Education, and Hobbies navigation; book-shaped project case studies; six selectable engineering stories with diagram chapters; a seasonal tree with leaf stories; and an original playable game cartridge.
+A buildless static website with direct About, Work, Education, and Hobbies navigation; three books with clickable contents and eleven story chapters; six selectable engineering stories with diagram chapters; a seasonal tree with leaf stories; and an original playable game cartridge.
 
-- `index.html`, `styles.css`, `app.js`: content, layout, and project interactions.
+- `index.html`, `styles.css`, `app.js`: content, layout, general navigation, and footer.
+- `book-stories.js`, `book-reader.js`, `book-reader.css`: the three volumes, contents, narrative chapters, pagination, and media actions.
 - `tree.css`, `tree.js`: the seasonal SVG tree and interactive stories.
 - `weather.css`, `weather.js`: seasonal weather behind the tree, with pause and reduced-motion support.
 - `game.css`, `game.js`: the Leaf keeper cartridge, game, and end-of-round leaderboard.
@@ -57,9 +58,15 @@ The API runs separately on Cloudflare Workers with D1 through Sites. The databas
 
 The education section shows full degree levels, subjects, institutions, country flags with text labels, and links to official university sites. A Mongolia–United States study journey replaces the old root illustration. All four certifications are visible, grouped into cloud (Amazon Web Services), data (DataStax), and IT governance (ISACA). The degree names follow the original portfolio; country labels are verified against the institutions’ official sites. SVG flags are from [flag-icons](https://github.com/lipis/flag-icons), distributed under the included MIT license.
 
+## Three books
+
+**Professional career** links six strengths—system design, problem solving, trade-offs/tools, automation, learning quickly, and ownership—to six real stories. It includes the owner's data-retention setback and the lesson of designing retention and backups with stakeholder needs. The roughly one-week main-table need is contextual to that experience. **Hobby projects** contains Bookworm, the garden, and Leaf keeper. **Freelance & temporary work** contains Express Window and Stellar AI.
+
+The native reader has clickable contents, chapter headings, previous/next navigation, and page counts. Desktop shows contents beside the reading page; mobile switches between them. Chapters use Situation, Decisions, Outcome, and Lesson. Media pauses on chapter changes, contents navigation, and close. Bookworm's sample-data walkthrough and Express Window's website action are preserved. Architecture links close the reader, select the appropriate diagram story, and hand over keyboard focus. Escape/close returns focus to the opener.
+
 ## Work timeline
 
-**Where I've worked** is a vertical timeline (`#work-timeline`) with seven roles across six date nodes, newest first. The two 2017 roles share a node because their within-year order is unknown. Dates sit in a desktop gutter and move above the role on phones. Relevant jobs link to their engineering stories, selecting the case and handing keyboard focus to its first chapter. Express Window opens its project dialog; the résumé download serves the unchanged PDF. The work history remains visible without JavaScript.
+**Where I've worked** is a vertical timeline (`#work-timeline`) with seven roles across six date nodes, newest first. The two 2017 roles share a node because their within-year order is unknown. Dates sit in a desktop gutter and move above the role on phones. Story buttons open the matching book at its relevant chapter; the résumé download serves the unchanged PDF. The work history remains visible without JavaScript.
 
 ## Engineering stories
 

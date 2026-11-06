@@ -360,16 +360,22 @@
   }
   storySelect.addEventListener('change', () => selectStory(storySelect.value));
 
+  function revealStory(id) {
+    if (!stories.some(value => value.id === id)) return;
+    selectStory(id);
+    if (window.location.hash !== '#architecture-story-widget') window.history.pushState(null, '', '#architecture-story-widget');
+    root.scrollIntoView({ behavior: motion.matches ? 'auto' : 'smooth', block: 'start' });
+    tabs[0].focus({ preventScroll: true });
+  }
+  window.addEventListener('ochi:open-architecture-story', event => revealStory(event.detail?.id));
+
   document.querySelectorAll('a[data-architecture-story]').forEach(link => {
     const target = link.dataset.architectureStory;
     if (!stories.some(value => value.id === target)) return;
     link.addEventListener('click', event => {
       if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
       event.preventDefault();
-      selectStory(target);
-      if (window.location.hash !== link.hash) window.history.pushState(null, '', link.hash);
-      root.scrollIntoView({ behavior: motion.matches ? 'auto' : 'smooth', block: 'start' });
-      tabs[0].focus({ preventScroll: true });
+      revealStory(target);
     });
   });
 

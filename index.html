@@ -24,14 +24,17 @@
   <link rel="stylesheet" href="architecture.css?v=4">
   <link rel="stylesheet" href="experience.css?v=1">
   <link rel="stylesheet" href="education.css?v=1">
+  <link rel="stylesheet" href="book-reader.css?v=1">
   <link rel="stylesheet" href="hobbies.css?v=1">
   <script src="tree.js?v=2" defer></script>
   <script src="weather.js?v=1" defer></script>
   <script src="game-config.js?v=1" defer></script>
   <script src="game.js?v=2" defer></script>
-  <script src="app.js?v=4" defer></script>
+  <script src="app.js?v=5" defer></script>
   <script src="architecture-stories.js?v=1" defer></script>
-  <script src="architecture.js?v=5" defer></script>
+  <script src="architecture.js?v=6" defer></script>
+  <script src="book-stories.js?v=1" defer></script>
+  <script src="book-reader.js?v=1" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -80,11 +83,11 @@
 
     <section class="work-section page-width section-space" id="work" aria-labelledby="work-title">
       <div class="section-marker">Work</div>
-      <div class="section-heading"><div><h2 id="work-title">A few things<br>I've put into the world.</h2><p>Different problems. A common thread: build something that holds.</p></div><span class="shelf-instruction">Pick a book. Look inside.</span></div>
+      <div class="section-heading"><div><h2 id="work-title">Work, in<br>three volumes.</h2><p>Professional work, personal projects, and independent ventures.</p></div><span class="shelf-instruction">Choose a volume. Open the contents.</span></div>
       <div class="project-shelf">
-        <button class="project-book" type="button" data-project="banking" aria-haspopup="dialog"><span class="book-cover book-banking"><span class="cover-top">Notes on distributed systems</span><span class="cover-heading">Keep<br>things<br>moving.</span><span class="book-path" aria-hidden="true"><i></i><i></i><i></i></span><span class="cover-bottom">Khan Bank<br>Engineering in production</span></span><span class="book-description"><strong>Khan Bank</strong><span>A notification service, moved out of the monolith.</span><span class="book-open">Open the story <span aria-hidden="true">↗</span></span></span></button>
-        <button class="project-book" type="button" data-project="bookworm" aria-haspopup="dialog"><span class="book-cover book-reading"><span class="cover-top">A reading companion</span><span class="cover-heading">One<br>more<br>chapter.</span><span class="cover-bottom">Bookworm<br>An independent project</span></span><span class="book-description"><strong>Bookworm</strong><span>A home for your books, challenges, and reading habit.</span><span class="book-open">Open the story <span aria-hidden="true">↗</span></span></span></button>
-        <button class="project-book" type="button" data-project="window" aria-haspopup="dialog"><span class="book-cover book-window"><span class="cover-top">From Erdenet, online</span><span class="window-illustration" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="cover-heading">Made for<br>real work.</span><span class="cover-bottom">Express Window<br>Website & business tools</span></span><span class="book-description"><strong>Express Window</strong><span>The website and tools behind a family business.</span><span class="book-open">Open the story <span aria-hidden="true">↗</span></span></span></button>
+        <button class="project-book" type="button" data-book="career" aria-haspopup="dialog"><span class="book-cover book-banking"><span class="cover-top">Professional career</span><span class="cover-heading">Build.<br>Think.<br>Own.</span><span class="book-path" aria-hidden="true"><i></i><i></i><i></i></span><span class="cover-bottom">Volume I<br>Systems, decisions & ownership</span></span><span class="book-description"><strong>Professional career</strong><span>System design, problem solving, trade-offs, automation, and the lessons behind the work.</span><span class="book-open">Open the contents <span aria-hidden="true">↗</span></span></span></button>
+        <button class="project-book" type="button" data-book="hobbies" aria-haspopup="dialog"><span class="book-cover book-reading"><span class="cover-top">Hobby projects</span><span class="cover-heading">One<br>more<br>idea.</span><span class="cover-bottom">Volume II<br>Built out of curiosity</span></span><span class="book-description"><strong>Hobby projects</strong><span>Bookworm, this garden, and a little game. Things I wanted to bring into the world.</span><span class="book-open">Open the contents <span aria-hidden="true">↗</span></span></span></button>
+        <button class="project-book" type="button" data-book="independent" aria-haspopup="dialog"><span class="book-cover book-window"><span class="cover-top">Freelance & temporary work</span><span class="window-illustration" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="cover-heading">Make it<br>happen.</span><span class="cover-bottom">Volume III<br>Practical work, real responsibilities</span></span><span class="book-description"><strong>Freelance & temporary work</strong><span>Websites and business tools, delivered end to end for real day-to-day needs.</span><span class="book-open">Open the contents <span aria-hidden="true">↗</span></span></span></button>
       </div>
       <section class="architecture architecture-story" id="architecture-story-widget" aria-label="Engineering problem-solving stories"><noscript><h3>A look under the cover</h3><p>Explore my work on notification services, behavioral loan scoring, asynchronous order history, reliable pipeline setup, a distributed data platform, and verifiable AI engineering tasks. Enable JavaScript to move through the situations, challenges, approaches, and results.</p></noscript></section>
       <section class="career" id="work-timeline" aria-labelledby="career-title">
@@ -95,7 +98,7 @@
         <ol class="career-timeline" role="list" aria-label="Work history, most recent first">
           <li class="career-entry career-entry-latest">
             <div class="career-date"><span class="career-year" aria-hidden="true">2026</span><p class="career-period"><time datetime="2026-02">Feb 2026</time> – <time datetime="2026-05">May 2026</time></p></div>
-            <article class="career-content" aria-labelledby="career-stellar"><h4 class="career-company" id="career-stellar">Stellar AI</h4><p class="career-role">AI Training Engineer</p><p class="career-description">Turned real GitHub pull requests into training tasks for coding agents, with automated verifiers that checked their solutions.</p><a class="career-story" href="#architecture-story-widget" data-architecture-story="ai-verification">Read the AI verification story <span aria-hidden="true">↗</span></a></article>
+            <article class="career-content" aria-labelledby="career-stellar"><h4 class="career-company" id="career-stellar">Stellar AI</h4><p class="career-role">AI Training Engineer</p><p class="career-description">Turned real GitHub pull requests into training tasks for coding agents, with automated verifiers that checked their solutions.</p><button class="career-story" type="button" data-book="independent" data-book-chapter="ai-verification" aria-haspopup="dialog">Read the AI verification story <span aria-hidden="true">↗</span></button></article>
           </li>
           <li class="career-entry">
             <div class="career-date"><span class="career-year" aria-hidden="true">2026</span><p class="career-period"><time datetime="2025-09">Sep 2025</time> – <time datetime="2026-01">Jan 2026</time></p></div>
@@ -103,7 +106,7 @@
           </li>
           <li class="career-entry">
             <div class="career-date"><span class="career-year" aria-hidden="true">2025</span><p class="career-period"><time datetime="2022-07">Jul 2022</time> – <time datetime="2025-03">Mar 2025</time></p></div>
-            <article class="career-content" aria-labelledby="career-thermo"><h4 class="career-company" id="career-thermo">Thermo Fisher Scientific</h4><p class="career-role">Software Engineer | Data Engineer</p><p class="career-description">Access management, asynchronous order processing, Kafka event workflows, and the pipelines connecting customer data.</p><a class="career-story" href="#architecture-story-widget" data-architecture-story="order-history">Read the order-history story <span aria-hidden="true">↗</span></a></article>
+            <article class="career-content" aria-labelledby="career-thermo"><h4 class="career-company" id="career-thermo">Thermo Fisher Scientific</h4><p class="career-role">Software Engineer | Data Engineer</p><p class="career-description">Access management, asynchronous order processing, Kafka event workflows, and the pipelines connecting customer data.</p><button class="career-story" type="button" data-book="career" data-book-chapter="order-history" aria-haspopup="dialog">Read the order-history story <span aria-hidden="true">↗</span></button></article>
           </li>
           <li class="career-entry career-entry-compact">
             <div class="career-date"><p class="career-period career-year-only"><time datetime="2022">2022</time></p></div>
@@ -111,7 +114,7 @@
           </li>
           <li class="career-entry">
             <div class="career-date"><span class="career-year" aria-hidden="true">2021</span><p class="career-period"><time datetime="2018-02">Feb 2018</time> – <time datetime="2021-10">Oct 2021</time></p></div>
-            <article class="career-content" aria-labelledby="career-khan"><h4 class="career-company" id="career-khan">Khan Bank</h4><p class="career-role">Software Engineer | Database Administrator</p><p class="career-description">Distributed platforms, database administration, data modeling, and the move from monolithic services to focused microservices.</p><a class="career-story" href="#architecture-story-widget" data-architecture-story="notifications">Read the notification migration story <span aria-hidden="true">↗</span></a></article>
+            <article class="career-content" aria-labelledby="career-khan"><h4 class="career-company" id="career-khan">Khan Bank</h4><p class="career-role">Software Engineer | Database Administrator</p><p class="career-description">Distributed platforms, database administration, data modeling, and the move from monolithic services to focused microservices.</p><button class="career-story" type="button" data-book="career" data-book-chapter="notifications" aria-haspopup="dialog">Read the notification migration story <span aria-hidden="true">↗</span></button></article>
           </li>
           <li class="career-entry career-entry-compact">
             <div class="career-date"><p class="career-period career-year-only"><time datetime="2017">2017</time></p></div>
@@ -166,6 +169,10 @@
       <div class="off-screen"><span>And in between</span><p>Live music, good books, and the occasional rabbit hole about the markets.</p></div></div></section>
   </main>
   <footer class="site-footer page-width"><div><p class="footer-invitation">Something interesting in mind?</p><a class="footer-email" href="mailto:ochirtulgan@gmail.com">Let's talk.</a><p class="footer-location">From Mongolia. Based in Austin.<br>Always a little curious.</p></div><div class="footer-right"><a href="resume.pdf" download="Ochirtulga-Namjim-Resume.pdf">Résumé <span aria-hidden="true">↓</span></a><a href="https://github.com/ochirtulga" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a><a href="https://www.linkedin.com/in/onamjim" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a><a href="mailto:ochirtulgan@gmail.com">Email <span aria-hidden="true">↗</span></a></div><div class="colophon"><span>© <span id="copyright-year">2026</span> Ochirtulga Namjim</span><a href="#home">Back to the tree <span aria-hidden="true">↑</span></a></div></footer>
-  <dialog class="project-dialog" id="project-dialog" aria-labelledby="project-dialog-title"><button class="dialog-close" type="button" id="close-project" aria-label="Close project">×</button><div class="project-spread"><div class="project-overview"><p id="project-context" class="project-context"></p><h2 id="project-dialog-title"></h2><p id="project-intro"></p><p id="project-stack" class="project-stack"></p><a id="project-visit" class="text-link" target="_blank" rel="noopener noreferrer" hidden>Visit the website <span aria-hidden="true">↗</span></a><button type="button" id="project-watch" class="text-link" aria-controls="project-demo" aria-expanded="false" hidden>Watch the demo <span aria-hidden="true">▶</span></button></div><div class="project-chapters" id="project-chapters"><section><h3>The problem</h3><p id="project-problem"></p></section><section><h3>The architecture</h3><p id="project-design"></p><div class="mini-architecture" id="project-components" aria-label="Project components"></div></section><section><h3>The result</h3><p id="project-result"></p></section></div><section class="project-demo" id="project-demo" aria-label="Bookworm app walkthrough" hidden><h3>Bookworm in action.</h3><video id="bookworm-video" controls playsinline preload="none" poster="media/bookworm-poster.jpg"><source src="media/bookworm-demo.mp4" type="video/mp4">Your browser does not support embedded video. <a href="media/bookworm-demo.mp4">Watch the Bookworm demo.</a></video><p class="demo-caption">Local app walkthrough · Sample data</p></section></div></dialog>
+  <dialog class="book-reader" id="project-dialog" aria-labelledby="project-dialog-title">
+    <header class="book-toolbar"><div class="book-identity"><p class="book-volume" id="book-volume"></p><h2 id="project-dialog-title" tabindex="-1"></h2></div><button class="book-contents-toggle" id="book-contents-toggle" type="button" aria-controls="book-contents" aria-expanded="true">Contents</button><button class="book-close" id="close-project" type="button" aria-label="Close book">×</button></header>
+    <div class="book-spread"><aside class="book-contents" id="book-contents" aria-label="Table of contents"><div class="book-contents-heading"><h3>Contents</h3><span id="book-chapter-count"></span></div><ol id="book-toc" class="book-toc" role="list"></ol><p class="book-contents-note">Pick a chapter. Turn the page.</p></aside><div class="book-leaf"><article class="book-page" id="book-page" aria-live="off" aria-labelledby="book-page-title"></article><footer class="book-pagination"><button id="book-prev" type="button"><span aria-hidden="true">←</span> Previous</button><span id="book-page-count"></span><button id="book-next" type="button">Next chapter <span aria-hidden="true">→</span></button></footer></div></div>
+    <div id="book-announcement" class="book-sr-only" role="status" aria-live="polite"></div>
+  </dialog>
 </body>
 </html>
