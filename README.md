@@ -65,7 +65,9 @@ Wind changes in both direction and strength after every successful basket, while
 
 Leaf keeper’s pre-game window fits its content, with a larger responsive preview and no fixed-height blank area. Short phones retain a preview; finished leaderboard results can scroll.
 
-At the end of either game, a centered replay-icon button appears over the game canvas. It starts a fresh round directly, resets the game panel’s scroll position, and restores keyboard focus to a playable control. Leaf keeper retains its completed score save while the new round starts; late responses cannot replace the new round. Its leaderboard remains below the game without automatically scrolling the replay control out of view.
+Basketball shows a brief result popup in the top-left of the court: **Swish! / Nice shot** for a basket, or **Miss** with **Add power**, **Less power**, **Aim left**, or **Aim right**. It holds for one second, then fades in 200ms; reduced-motion preferences remove the transition. The persistent status retains the detailed result. New shots, resets, pauses, closing, and game switches clear transient feedback.
+
+At the end of either game, a centered replay-icon button labeled **Replay** appears over the game canvas. It starts a fresh round directly, resets the game panel’s scroll position, and restores keyboard focus to a playable control. Leaf keeper retains its completed score save while the new round starts; late responses cannot replace the new round. Its leaderboard remains below the game without automatically scrolling the replay control out of view.
 
 ## Shared mini-game leaderboard
 

@@ -77,4 +77,11 @@
 .bb-wind-arrow { flex: 0 0 auto; font-size: 21px; line-height: 1; color: #805436; }
 .bb-wind-label { display: block; font-size: 10px; font-weight: 500; line-height: 1.35; }
 .bb-wind-hint { display: block; margin-top: 3px; font-size: 9px; line-height: 1.4; color: #607454; }
+.bb-shot-feedback { position: absolute; z-index: 2; top: 12px; left: 12px; max-width: calc(52% - 20px); padding: 8px 12px; border: 1px solid #b8c5a9; border-radius: 6px; background: #fff9e9f5; color: #704a32; opacity: 0; transform: translateY(-4px); transition: opacity 200ms ease,transform 200ms ease; pointer-events: none; }
+.bb-shot-feedback.is-visible { opacity: 1; transform: translateY(0); }
+.bb-shot-feedback strong { display: block; font-size: 18px; font-weight: 600; line-height: 1.2; }
+.bb-shot-feedback span { display: block; margin-top: 3px; font-size: 11px; line-height: 1.3; }
+.bb-shot-feedback[data-result=made] { border-color: #315d3e; background: #315d3ef5; color: #fffef3; }
+@media(max-width:380px) { .bb-shot-feedback { top: 8px; left: 8px; padding: 6px 9px; } .bb-shot-feedback strong { font-size: 15px; } .bb-shot-feedback span { font-size: 10px; } }
+@media(prefers-reduced-motion:reduce) { .bb-shot-feedback { transform: none; } }
 @media(max-width:380px) { .bb-wind { top: 6px; right: 6px; padding: 4px 5px; gap: 3px; } .bb-wind-arrow { font-size: 18px; } .bb-wind-label { font-size: 9px; } .bb-wind-hint { font-size: 8px; } }

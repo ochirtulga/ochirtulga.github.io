@@ -16,6 +16,7 @@
       <div class="bb-court-wrap">
         <canvas class="bb-canvas" width="600" height="440" tabindex="0" role="application" aria-label="Basketball court" aria-describedby="bb-instructions bb-wind bb-aim-assist bb-power-assist bb-keyboard" aria-keyshortcuts="ArrowLeft ArrowRight ArrowUp ArrowDown Space Enter"></canvas>
         <div class="bb-wind" id="bb-wind" role="status" aria-live="polite"><span class="bb-wind-arrow" aria-hidden="true"></span><span><strong class="bb-wind-label"></strong><span class="bb-wind-hint"></span></span></div>
+        <div class="bb-shot-feedback" aria-hidden="true"><strong></strong><span></span></div>
         <div class="bb-aim-assist" id="bb-aim-assist"><span>Aim</span><output id="bb-aim" aria-label="Shot aim">Center</output><small>Drag sideways</small></div>
         <div class="bb-power-assist" id="bb-power-assist"><div class="bb-power-track" role="meter" aria-label="Shot power" aria-valuemin="0" aria-valuemax="100" aria-valuenow="40"><i></i></div><div><span>Power</span><output id="bb-power" aria-label="Shot power percentage">40%</output></div></div>
       </div>
@@ -36,6 +37,7 @@
   const powerTrack = mount.querySelector('.bb-power-track i');
   const powerMeter = mount.querySelector('.bb-power-track');
   const court = mount.querySelector('.bb-court-wrap');
+  const feedback = mount.querySelector('.bb-shot-feedback');
   const shootButton = mount.querySelector('.bb-shoot');
   const pauseButton = mount.querySelector('.bb-pause');
   const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -59,6 +61,7 @@
   let flight = null;
   let frame = 0;
   let lastFrame = 0;
+  let feedbackTimer = 0;
   let view = { scale: 1, x: 0, y: 0, width: W, height: H, dpr: 1 };
   try { const value = Number(localStorage.getItem('ochi-basketball-best'));if (Number.isInteger(value) && value >= 0 && value <= 10) best = value; } catch (_) { /* A round never depends on storage. */ }
 
@@ -184,6 +187,19 @@
     shootButton.disabled = !['ready', 'aiming'].includes(state);pauseButton.disabled = state === 'ended';pauseButton.textContent = state === 'paused' ? 'Resume' : 'Pause';
   }
   function setMessage(value) { message.textContent = value; }
+  function clearFeedback() {
+    clearTimeout(feedbackTimer);feedbackTimer = 0;
+    feedback.classList.remove('is-visible');
+  }
+  function showFeedback(made, result) {
+    clearFeedback();
+    const hints = { left: 'Aim right', right: 'Aim left', long: 'Less power', short: 'Add power' };
+    feedback.dataset.result = made ? 'made' : 'miss';
+    feedback.querySelector('strong').textContent = made ? 'Swish!' : 'Miss';
+    feedback.querySelector('span').textContent = made ? 'Nice shot' : hints[result.reason] || 'Add power';
+    feedback.classList.add('is-visible');
+    feedbackTimer = setTimeout(() => { feedback.classList.remove('is-visible');feedbackTimer = 0; }, 1000);
+  }
   function cancelFrame() { cancelAnimationFrame(frame);frame = 0; }
   function cancelAim() { if (state !== 'aiming') return;aiming = null;state = 'ready';updateReadout();draw(); }
   function updateWind() {
@@ -196,6 +212,7 @@
   }
   function newRound() {
     window.OCHI_ARCADE_AUDIO?.stop();
+    clearFeedback();
     cancelFrame();flight = null;aiming = null;attempts = 0;score = 0;aim = 0;power = .4;state = 'ready';previousState = 'ready';
     wind = physics.createWind(wind);updateWind();
     updateReadout();setMessage('Ten shots. Each basket brings a new wind.');draw();
@@ -222,9 +239,10 @@
       flight.scored = true;score += 1;
       // This flight keeps its captured wind; the new condition is for the next shot.
       wind = physics.createWind(wind);updateWind();updateReadout();
+      showFeedback(true, flight.result);
       setMessage('Swish! The wind has changed for your next shot.');window.OCHI_ARCADE_AUDIO?.play('swish');
     }
-    if (!flight.made && !flight.feedback && flight.t >= (flight.result.crossing?.t || flight.duration * .8)) { flight.feedback = true;setMessage(resultMessage(flight.result));window.OCHI_ARCADE_AUDIO?.play('miss'); }
+    if (!flight.made && !flight.feedback && flight.t >= (flight.result.crossing?.t || flight.duration * .8)) { flight.feedback = true;showFeedback(false, flight.result);setMessage(`Miss. ${resultMessage(flight.result)}`);window.OCHI_ARCADE_AUDIO?.play('miss'); }
     if (flight.t >= flight.duration + .45) { finishShot();return; }
     draw();frame = requestAnimationFrame(tick);
   }
@@ -232,6 +250,7 @@
     if (!dialog.open || !['ready', 'aiming'].includes(state) || attempts >= 10) return;
     void window.OCHI_ARCADE_AUDIO?.unlock();
     window.OCHI_ARCADE_AUDIO?.play('shoot');
+    clearFeedback();
     cancelFrame();aiming = null;
     const shot = physics.makeShot(aim, power, wind);const result = physics.classify(shot);
     flight = { shot, result, made: result.made, duration: physics.flightDuration(shot), t: 0, scored: false, feedback: false };
@@ -241,6 +260,7 @@
   function pause(paused, reason) {
     if (paused && !['paused', 'ended'].includes(state)) {
       window.OCHI_ARCADE_AUDIO?.stop();
+      clearFeedback();
       previousState = state === 'aiming' ? 'ready' : state;aiming = null;state = 'paused';cancelFrame();setMessage(reason || 'Time out. Your next shot can wait.');
     } else if (!paused && state === 'paused') {
       state = previousState;setMessage(state === 'flight' ? 'Back to the shot.' : 'Ready when you are.');
@@ -290,7 +310,7 @@
     if (key === 'arrowdown') power = clamp(power - .025, 0, 1);
     updateReadout();draw();
   });
-  function cleanup() { window.OCHI_ARCADE_AUDIO?.stop();cancelFrame();aiming = null;flight = null;state = 'ready';updateReadout(); }
+  function cleanup() { window.OCHI_ARCADE_AUDIO?.stop();clearFeedback();cancelFrame();aiming = null;flight = null;state = 'ready';updateReadout(); }
   function open() { if (dialog.open) return;newRound();dialog.showModal();resize();canvas.focus({ preventScroll: true }); }
   function close() { if (dialog.open) dialog.close();cleanup(); }
   mount.querySelector('.bb-play').addEventListener('click', event => window.OCHI_ARCADE.launch('basketball', event.currentTarget));

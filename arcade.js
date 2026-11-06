@@ -164,7 +164,8 @@
       const replay = element('button', 'arcade-replay');
       replay.type = 'button';replay.title = 'Play again';
       replay.setAttribute('aria-label', `Play ${controller.title} again`);
-      replay.innerHTML = '<svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10a9 9 0 1 1 1.8 7.4"/><path d="M3 4v6h6"/></svg>';
+      replay.innerHTML = '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10a9 9 0 1 1 1.8 7.4"/><path d="M3 4v6h6"/></svg>';
+      replay.append(element('span', 'arcade-replay-label', 'Replay'));
       panel.append(replay);
       let ended = false;
       const positionReplay = () => {
