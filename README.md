@@ -65,7 +65,9 @@ The education section shows full degree levels, subjects, institutions, country 
 
 **Professional career** links six strengths—system design, problem solving, trade-offs/tools, automation, learning quickly, and ownership—to six real stories. It includes the owner's data-retention setback and the lesson of designing retention and backups with stakeholder needs. The roughly one-week main-table need is contextual to that experience. **Hobby projects** contains Leaf keeper, Bookworm, and the garden. **Freelance & temporary work** contains Stellar AI, then Express Window.
 
-The native reader has clickable contents, chapter headings, previous/next navigation, and page counts. Desktop shows contents beside the reading page; mobile switches between them. Chapters use Situation, Decisions, Outcome, and Lesson. Media pauses on chapter changes, contents navigation, and close. Bookworm's sample-data walkthrough and Express Window's website action are preserved. Architecture links close the reader, select the appropriate diagram story, and hand over keyboard focus. Escape/close returns focus to the opener.
+The native reader has compact clickable contents and pages that fit the window. Previous/next controls stay visible; page counts and story counts are separate. Story text, summaries, strengths, and outcomes are paginated without truncation. Long paragraphs split at word boundaries with a continuation label. Arrow keys turn pages while native video controls keep their own keys. At a story boundary, navigation continues to the next story; the final page returns to contents.
+
+Desktop shows contents beside the page; mobile switches between them. Contents use one page when possible and their own page arrows on short windows. Resizing and font loading preserve a source-text reading anchor. Bookworm's sample-data video has its own fitted page and retains its element and playback position on resize; it pauses on contents navigation, leaving the page, and close. Express Window's website action, architecture handoffs, deep links, and legacy project aliases are preserved. Escape/close returns focus to the opener.
 
 ## Work timeline
 
