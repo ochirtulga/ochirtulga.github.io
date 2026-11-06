@@ -36,7 +36,11 @@
 .arcade-screw-left { left: 10px; }
 .arcade-screw-right { right: 10px; }
 .arcade-modal-tabs { flex: 0 0 auto; margin: 10px 0; }
-.arcade-game-panel { min-width: 0; min-height: 0; }
+.arcade-game-panel { position: relative; min-width: 0; min-height: 0; }
+.arcade-replay { position: absolute; z-index: 3; display: none; align-items: center; justify-content: center; width: 64px; height: 64px; padding: 0; transform: translate(-50%,-50%); border: 1px solid #264c33; border-radius: 50%; background: #315d3e; color: #fffef3; box-shadow: 0 3px 0 #203e29,0 5px 18px #20392b26; cursor: pointer; }
+.arcade-dialog[open][data-state=ended] .arcade-replay { display: inline-flex; }
+.arcade-replay:hover { background: #264d34; }
+.arcade-replay:focus-visible { outline: 3px solid #4567a4; outline-offset: 5px; }
 .arcade-basketball-link { margin-top: 14px; min-height: 44px; }
 @media (max-width: 380px) { .arcade-game-tab { font-size: 11px; gap: 7px; } }
 @media (prefers-reduced-motion: reduce) { .arcade-game-tab { transition: none; } }

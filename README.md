@@ -65,6 +65,8 @@ Wind changes in both direction and strength after every successful basket, while
 
 Leaf keeper’s pre-game window fits its content, with a larger responsive preview and no fixed-height blank area. Short phones retain a preview; finished leaderboard results can scroll.
 
+At the end of either game, a centered replay-icon button appears over the game canvas. It starts a fresh round directly, resets the game panel’s scroll position, and restores keyboard focus to a playable control. Leaf keeper retains its completed score save while the new round starts; late responses cannot replace the new round. Its leaderboard remains below the game without automatically scrolling the replay control out of view.
+
 ## Shared mini-game leaderboard
 
 Leaf keeper asks for an optional nickname before its 25-second round. Completed ranked rounds are saved to https://ochi-leaf-keeper-api.ochro.chatgpt.site and the top ten appears after play. Each browser identifier has one personal-best entry; blank nicknames become Anonymous. The game clearly explains that nicknames and best scores are public.

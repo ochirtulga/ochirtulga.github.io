@@ -278,15 +278,15 @@
     context.fillStyle = '#c8a878';
     context.fillRect(basketX - 31, 255, 62, 2);
     context.fillRect(basketX - 31, 263, 62, 2);
-    if (state !== 'playing') {
+    if (state !== 'playing' && state !== 'ended') {
       context.fillStyle = '#20392b';
       context.textAlign = 'center';
       context.font = '500 23px "Space Grotesk", sans-serif';
-      const headline = state === 'paused' ? 'A moment to pause.' : state === 'ended' ? `${score} leaves, safely gathered.` : state === 'starting' ? 'Getting the garden ready…' : 'A little room to play.';
+      const headline = state === 'paused' ? 'A moment to pause.' : state === 'starting' ? 'Getting the garden ready…' : 'A little room to play.';
       context.fillText(headline, WORLD.width / 2, 118);
       context.font = '13px "Space Grotesk", sans-serif';
       context.fillStyle = '#617258';
-      context.fillText(state === 'paused' ? 'Resume whenever you’re ready.' : state === 'ended' ? 'There’s always another season.' : state === 'starting' ? 'Your round will begin in a moment.' : 'Catch what the canopy sends your way.', WORLD.width / 2, 144);
+      context.fillText(state === 'paused' ? 'Resume whenever you’re ready.' : state === 'starting' ? 'Your round will begin in a moment.' : 'Catch what the canopy sends your way.', WORLD.width / 2, 144);
     }
   }
 
@@ -319,9 +319,6 @@
       latestFinishedRound = round;
       showResult(round);
       void saveResult(round);
-      requestAnimationFrame(() => {
-        if (dialog.open && visibleResult === round) board.scrollIntoView({ block: 'nearest', behavior: reducedMotion.matches ? 'auto' : 'smooth' });
-      });
     }
     draw();
   }
@@ -516,5 +513,12 @@
   if (window.ResizeObserver) new ResizeObserver(() => { if (dialog.open) resizeCanvas(); }).observe(canvas);
   else window.addEventListener('resize', () => { if (dialog.open) resizeCanvas(); });
   drawCover();
-  window.OCHI_ARCADE.register('leaf-keeper', { title: 'Leaf keeper', dialog, open: openGame, close: () => dialog.close() });
+  window.OCHI_ARCADE.register('leaf-keeper', {
+    title: 'Leaf keeper', dialog, open: openGame, close: () => dialog.close(),
+    replay: async () => {
+      const version = runVersion + 1;
+      await startRound();
+      if (dialog.open && runVersion === version && (state === 'playing' || state === 'paused')) pauseButton.focus({ preventScroll: true });
+    }
+  });
 })();

@@ -155,10 +155,10 @@
     // Once the ball reaches the basket, the front rim gives its pass real depth.
     if (ball.z > 9.7 && ball.y < 3.7) net(true);
     else { context.strokeStyle = '#a75a34';context.lineWidth = 4;context.beginPath();context.ellipse(rim.x, rim.y, 27, 7.5, 0, 0, Math.PI);context.stroke(); }
-    if (state === 'paused' || state === 'ended') {
+    if (state === 'paused') {
       context.fillStyle = '#eef0e1df';context.fillRect(75, 202, 450, 102);
-      context.textAlign = 'center';context.fillStyle = '#2e4d35';context.font = '500 28px "Space Grotesk",sans-serif';context.fillText(state === 'paused' ? 'Time out.' : `${score} of 10. Nice shooting.`, 300, 243);
-      context.font = '14px "Space Grotesk",sans-serif';context.fillStyle = '#607054';context.fillText(state === 'paused' ? 'Resume when you’re ready.' : 'There’s always another round.', 300, 272);
+      context.textAlign = 'center';context.fillStyle = '#2e4d35';context.font = '500 28px "Space Grotesk",sans-serif';context.fillText('Time out.', 300, 243);
+      context.font = '14px "Space Grotesk",sans-serif';context.fillStyle = '#607054';context.fillText('Resume when you’re ready.', 300, 272);
     }
   }
   function resize() {
@@ -305,5 +305,5 @@
   else window.addEventListener('resize', () => { if (dialog.open) resize(); });
   if (motion.addEventListener) motion.addEventListener('change', () => { if (dialog.open) draw(); });
   drawCover();updateReadout();
-  window.OCHI_ARCADE.register('basketball', { title: 'Basketball', dialog, open, close });
+  window.OCHI_ARCADE.register('basketball', { title: 'Basketball', dialog, open, close, replay: () => { newRound();canvas.focus({ preventScroll: true }); } });
 })();

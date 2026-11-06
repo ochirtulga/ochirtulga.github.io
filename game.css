@@ -97,6 +97,8 @@
 .gk-dialog.arcade-dialog[data-state=ended] { height: min(780px, calc(100dvh - 24px)); }
 .gk-dialog.arcade-dialog[data-state=ended] .arcade-game-panel { flex: 1 1 0; }
 .gk-dialog.arcade-dialog[data-state=ended] .gk-canvas { width: min(100%, 320px); }
+.gk-dialog.arcade-dialog[data-state=ended] .gk-game-status { order: -2; }
+.gk-dialog.arcade-dialog[data-state=ended] .gk-canvas { order: -1; }
 @media (min-width: 600px) and (min-height: 501px) {
   .gk-dialog.arcade-dialog:is([data-state=ready], [data-state=starting]) .arcade-game-panel { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); align-items: center; gap: 14px 26px; }
   .gk-dialog:is([data-state=ready], [data-state=starting]) .gk-instructions { grid-column: 1; grid-row: 1; }

@@ -159,6 +159,32 @@
     while (heading.nextSibling) panel.append(heading.nextSibling);
     dialog.append(makeTabs('modal-' + id, true), panel);
     dialog.classList.add('arcade-dialog');
+    if (typeof controller.replay === 'function') {
+      const canvas = panel.querySelector('canvas');
+      const replay = element('button', 'arcade-replay');
+      replay.type = 'button';replay.title = 'Play again';
+      replay.setAttribute('aria-label', `Play ${controller.title} again`);
+      replay.innerHTML = '<svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10a9 9 0 1 1 1.8 7.4"/><path d="M3 4v6h6"/></svg>';
+      panel.append(replay);
+      let ended = false;
+      const positionReplay = () => {
+        if (!dialog.open || !canvas) { ended = false;return; }
+        const c = canvas.getBoundingClientRect(), p = panel.getBoundingClientRect();
+        replay.style.left = `${c.left - p.left - panel.clientLeft + panel.scrollLeft + c.width / 2}px`;
+        replay.style.top = `${c.top - p.top - panel.clientTop + panel.scrollTop + c.height / 2}px`;
+        const nextEnded = dialog.dataset.state === 'ended';
+        if (nextEnded && !ended && document.activeElement?.closest('dialog') === dialog && document.activeElement.matches('canvas, .gk-controls button, .bb-controls button')) replay.focus({ preventScroll: true });
+        ended = nextEnded;
+      };
+      replay.addEventListener('click', () => {
+        if (!dialog.open || dialog.dataset.state !== 'ended') return;
+        panel.scrollTop = 0;panel.scrollLeft = 0;
+        void controller.replay();
+      });
+      new MutationObserver(positionReplay).observe(dialog, { attributes: true, attributeFilter: ['data-state', 'open'] });
+      if (window.ResizeObserver) { const observer = new ResizeObserver(positionReplay);observer.observe(panel);if (canvas) observer.observe(canvas); }
+      else window.addEventListener('resize', positionReplay);
+    }
     dialog.addEventListener('close', () => {
       audio?.stop();
       if (active !== id) return;
