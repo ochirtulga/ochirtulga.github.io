@@ -29,9 +29,10 @@
   ]);
   function createWind(previous = null, random = Math.random) {
     const directions = windDirections.filter(value => value.key !== previous?.direction);
+    const strengths = windStrengths.filter(value => value.value !== previous?.strength);
     const sample = length => Math.floor(clamp(finite(random(), .5), 0, 1 - Number.EPSILON) * length);
     const direction = directions[sample(directions.length)];
-    const strength = windStrengths[sample(windStrengths.length)];
+    const strength = strengths[sample(strengths.length)];
     return Object.freeze({
       x: direction.x * strength.value, z: direction.z * strength.value,
       direction: direction.key, strength: strength.value, strengthName: strength.label,

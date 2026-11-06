@@ -22,11 +22,16 @@
 .bb-canvas { display: block; width: 100%; height: 100%; min-height: 0; touch-action: none; cursor: grab; }
 .bb-canvas:active { cursor: grabbing; }
 .bb-canvas:focus-visible { outline: 2px solid #6f8057; outline-offset: -4px; }
-.bb-shot-readout { display: flex; flex: 0 0 auto; align-items: center; justify-content: space-between; gap: 12px; font-size: 10px; line-height: 1.5; color: #68715c; }
-.bb-shot-readout > span { display: inline-flex; align-items: center; gap: 6px; }
-.bb-shot-readout output { color: #38563e; font-variant-numeric: tabular-nums; }
-.bb-power-track { width: 58px; height: 5px; overflow: hidden; background: #dde3d2; border-radius: 2px; }
-.bb-power-track i { display: block; height: 100%; background: #b47d49; }
+.bb-aim-assist, .bb-power-assist { position: absolute; z-index: 1; pointer-events: none; color: #543d29; font-size: 10px; line-height: 1.35; }
+.bb-aim-assist { left: calc(var(--bb-ball-x) - var(--bb-ball-radius) - 16px); top: calc(var(--bb-ball-y) - 10px); transform: translate(-100%,-50%); width: min(115px,calc(var(--bb-ball-x) - var(--bb-ball-radius) - 24px)); text-align: right; }
+.bb-aim-assist > span, .bb-aim-assist output, .bb-aim-assist small, .bb-power-assist span, .bb-power-assist output { display: block; }
+.bb-aim-assist output, .bb-power-assist output { color: #263e2c; font-size: 14px; font-weight: 500; font-variant-numeric: tabular-nums; }
+.bb-aim-assist small { margin-top: 3px; font-size: 9px; }
+.bb-power-assist { left: calc(var(--bb-ball-x) + var(--bb-ball-radius) + 16px); top: calc(var(--bb-ball-y) + var(--bb-ball-radius)); transform: translateY(-100%); display: flex; align-items: flex-end; gap: 7px; }
+.bb-power-track { position: relative; width: 9px; height: var(--bb-meter-height,76px); overflow: hidden; border: 1px solid #f6e8c4; border-radius: 3px; background: #7b604b5c; }
+.bb-power-track i { position: absolute; bottom: 0; left: 0; display: block; width: 100%; height: 40%; background: #fff4bc; }
+.bb-dialog[data-state=flight] .bb-aim-assist, .bb-dialog[data-state=flight] .bb-power-assist { opacity: .6; }
+.bb-dialog[data-state=ended] .bb-aim-assist, .bb-dialog[data-state=ended] .bb-power-assist, .bb-dialog[data-state=paused] .bb-aim-assist, .bb-dialog[data-state=paused] .bb-power-assist { visibility: hidden; }
 .bb-controls { display: flex; flex: 0 0 auto; align-items: center; gap: 8px; }
 .bb-controls button { display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-height: 44px; min-width: 58px; padding: 8px 12px; background: #e7ecdf; border: 1px solid #c5d0ba; border-radius: 5px; color: #3b563d; font: inherit; font-size: 11px; cursor: pointer; }
 .bb-controls .bb-shoot { margin-left: auto; min-width: 90px; color: #fff9ed; background: #865936; border-color: #794c30; }
@@ -41,7 +46,9 @@
   .bb-controls { gap: 6px; }
   .bb-controls button { padding-inline: 9px; }
   .bb-controls .bb-shoot { min-width: 81px; }
-  .bb-power-track { width: 43px; }
+  .bb-aim-assist { font-size: 9px; }
+  .bb-aim-assist output, .bb-power-assist output { font-size: 12px; }
+  .bb-aim-assist small { font-size: 8px; }
 }
 @media(max-height:500px) and (min-width:600px) {
   .bb-dialog { width: min(820px,calc(100vw - 20px)); padding: 12px 15px; }
@@ -53,12 +60,10 @@
   .bb-scoreboard strong { font-size: 16px; margin-left: 2px; }
   .bb-scoreboard small { font-size: 8px; }
   .bb-instructions { grid-column: 2; grid-row: 2; }
-  .bb-shot-readout { grid-column: 2; grid-row: 3; font-size: 9px; gap: 5px; }
-  .bb-power-track { width: 28px; }
-  .bb-controls { grid-column: 2; grid-row: 4; gap: 5px; }
+  .bb-controls { grid-column: 2; grid-row: 3; gap: 5px; }
   .bb-controls button { min-width: 0; padding-inline: 7px; font-size: 10px; }
   .bb-controls .bb-shoot { min-width: 64px; }
-  .bb-message { grid-column: 2; grid-row: 5; }
+  .bb-message { grid-column: 2; grid-row: 4/6; }
   .bb-keyboard { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
 }
 @media(prefers-reduced-motion:reduce) { .bb-dialog *, .bb-dialog *::before, .bb-dialog *::after { transition: none !important; animation: none !important; } }

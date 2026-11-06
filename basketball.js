@@ -13,11 +13,15 @@
       <div class="bb-dialog-heading"><div><p class="bb-kicker">A little intermission</p><h2 id="bb-title">Basketball</h2></div><button class="bb-close" type="button" aria-label="Close basketball">×</button></div>
       <div class="bb-scoreboard"><span>Baskets <strong id="bb-score">0</strong><small> / 10</small></span><span>Shot <strong id="bb-attempts">1</strong><small> / 10</small></span><span title="Personal best saved on this device">Best here <strong id="bb-best">0</strong><small> / 10</small></span></div>
       <p class="bb-instructions" id="bb-instructions">Drag up from the ball to aim; release to shoot.</p>
-      <div class="bb-court-wrap"><canvas class="bb-canvas" width="600" height="440" tabindex="0" role="application" aria-label="Basketball court" aria-describedby="bb-instructions bb-wind bb-keyboard" aria-keyshortcuts="ArrowLeft ArrowRight ArrowUp ArrowDown Space Enter"></canvas><div class="bb-wind" id="bb-wind" role="status" aria-live="polite"><span class="bb-wind-arrow" aria-hidden="true"></span><span><strong class="bb-wind-label"></strong><span class="bb-wind-hint"></span></span></div></div>
-      <div class="bb-shot-readout"><span>Aim <output id="bb-aim">Center</output></span><span>Power <output id="bb-power">40%</output><span class="bb-power-track" aria-hidden="true"><i></i></span></span></div>
+      <div class="bb-court-wrap">
+        <canvas class="bb-canvas" width="600" height="440" tabindex="0" role="application" aria-label="Basketball court" aria-describedby="bb-instructions bb-wind bb-aim-assist bb-power-assist bb-keyboard" aria-keyshortcuts="ArrowLeft ArrowRight ArrowUp ArrowDown Space Enter"></canvas>
+        <div class="bb-wind" id="bb-wind" role="status" aria-live="polite"><span class="bb-wind-arrow" aria-hidden="true"></span><span><strong class="bb-wind-label"></strong><span class="bb-wind-hint"></span></span></div>
+        <div class="bb-aim-assist" id="bb-aim-assist"><span>Aim</span><output id="bb-aim" aria-label="Shot aim">Center</output><small>Drag sideways</small></div>
+        <div class="bb-power-assist" id="bb-power-assist"><div class="bb-power-track" role="meter" aria-label="Shot power" aria-valuemin="0" aria-valuemax="100" aria-valuenow="40"><i></i></div><div><span>Power</span><output id="bb-power" aria-label="Shot power percentage">40%</output></div></div>
+      </div>
       <div class="bb-controls"><button class="bb-pause" type="button">Pause</button><button class="bb-reset" type="button">New round</button><button class="bb-shoot" type="button">Shoot <span aria-hidden="true">↗</span></button></div>
       <p class="bb-message" role="status" aria-live="polite">Start on the ball at the bottom. Aim for the distant hoop.</p>
-      <p class="bb-keyboard" id="bb-keyboard">Longer drag = more power. Keyboard: ← → aim, ↑ ↓ power, Space shoot. Wind changes each round. Best is saved on this device.</p>
+      <p class="bb-keyboard" id="bb-keyboard">Longer drag = more power. Keyboard: ← → aim, ↑ ↓ power, Space shoot. Wind changes after every basket. Best is saved on this device.</p>
     </dialog>`;
 
   const dialog = mount.querySelector('.bb-dialog');
@@ -30,6 +34,8 @@
   const powerLabel = mount.querySelector('#bb-power');
   const aimLabel = mount.querySelector('#bb-aim');
   const powerTrack = mount.querySelector('.bb-power-track i');
+  const powerMeter = mount.querySelector('.bb-power-track');
+  const court = mount.querySelector('.bb-court-wrap');
   const shootButton = mount.querySelector('.bb-shoot');
   const pauseButton = mount.querySelector('.bb-pause');
   const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -153,8 +159,6 @@
       context.fillStyle = '#eef0e1df';context.fillRect(75, 202, 450, 102);
       context.textAlign = 'center';context.fillStyle = '#2e4d35';context.font = '500 28px "Space Grotesk",sans-serif';context.fillText(state === 'paused' ? 'Time out.' : `${score} of 10. Nice shooting.`, 300, 243);
       context.font = '14px "Space Grotesk",sans-serif';context.fillStyle = '#607054';context.fillText(state === 'paused' ? 'Resume when you’re ready.' : 'There’s always another round.', 300, 272);
-    } else if (state === 'ready' && attempts === 0) {
-      context.fillStyle = '#4e6747';context.textAlign = 'center';context.font = '13px "Space Grotesk",sans-serif';context.fillText('Drag up from the ball', 300, H - 12);
     }
   }
   function resize() {
@@ -164,11 +168,17 @@
     canvas.width = Math.round(rect.width * dpr);canvas.height = Math.round(rect.height * dpr);
     const scale = Math.min(rect.width / W, rect.height / H);
     view = { width: rect.width, height: rect.height, scale, x: (rect.width - W * scale) / 2, y: (rect.height - H * scale) / 2, dpr };
+    // The controls follow the projected launch position, including letterboxing.
+    court.style.setProperty('--bb-ball-x', `${view.x + origin.x * scale}px`);
+    court.style.setProperty('--bb-ball-y', `${view.y + origin.y * scale}px`);
+    court.style.setProperty('--bb-ball-radius', `${24 * scale}px`);
+    court.style.setProperty('--bb-meter-height', `${clamp(rect.height * .19, 42, 76)}px`);
     draw();
   }
   function updateReadout() {
     powerLabel.value = `${Math.round(power * 100)}%`;aimLabel.value = Math.abs(aim) < .5 ? 'Center' : `${Math.round(Math.abs(aim))}° ${aim < 0 ? 'left' : 'right'}`;
-    powerTrack.style.width = `${Math.round(power * 100)}%`;
+    powerTrack.style.height = `${Math.round(power * 100)}%`;
+    powerMeter.setAttribute('aria-valuenow', String(Math.round(power * 100)));
     dialog.dataset.state = state;dialog.dataset.score = String(score);dialog.dataset.attempts = String(attempts);dialog.dataset.power = power.toFixed(3);dialog.dataset.aim = aim.toFixed(2);
     scoreLabel.textContent = String(score);attemptsLabel.textContent = String(Math.min(10, attempts + (state === 'ready' || state === 'aiming' ? 1 : 0)));bestLabel.textContent = String(best);
     shootButton.disabled = !['ready', 'aiming'].includes(state);pauseButton.disabled = state === 'ended';pauseButton.textContent = state === 'paused' ? 'Resume' : 'Pause';
@@ -180,7 +190,7 @@
     mount.querySelector('.bb-wind-arrow').textContent = wind.arrow;
     mount.querySelector('.bb-wind-label').textContent = wind.label;
     mount.querySelector('.bb-wind-hint').textContent = wind.hint;
-    mount.querySelector('.bb-wind').setAttribute('aria-label', `${wind.label}. ${wind.hint} Steady for all ten shots.`);
+    mount.querySelector('.bb-wind').setAttribute('aria-label', `${wind.label}. ${wind.hint} Wind changes after each basket.`);
     dialog.dataset.windX = String(wind.x);dialog.dataset.windZ = String(wind.z);
     dialog.dataset.windDirection = wind.direction;dialog.dataset.windStrength = String(wind.strength);
   }
@@ -188,7 +198,7 @@
     window.OCHI_ARCADE_AUDIO?.stop();
     cancelFrame();flight = null;aiming = null;attempts = 0;score = 0;aim = 0;power = .4;state = 'ready';previousState = 'ready';
     wind = physics.createWind(wind);updateWind();
-    updateReadout();setMessage('Ten shots. The wind stays steady until your next round.');draw();
+    updateReadout();setMessage('Ten shots. Each basket brings a new wind.');draw();
   }
   function resultMessage(result) {
     return result.reason === 'left' ? 'Just left. Aim a little right.' : result.reason === 'right' ? 'Just right. Aim a little left.' : result.reason === 'long' ? 'A little strong. Try less power.' : 'A little short. Give it more power.';
@@ -202,13 +212,18 @@
       try { localStorage.setItem('ochi-basketball-best', String(best)); } catch (_) { /* Saving a personal best is optional. */ }
       setMessage(`${score} baskets from 10 shots.${isBest ? ' A new best on this device!' : ' Want another round?'}`);
       window.OCHI_ARCADE_AUDIO?.play(isBest ? 'best' : 'end');
-    } else { state = 'ready';setMessage(made ? `Swish! ${score} ${score === 1 ? 'basket' : 'baskets'}. ${10 - attempts} shots left.` : `${message.textContent} ${10 - attempts} shots left.`); }
+    } else { state = 'ready';setMessage(made ? `Swish! New wind: ${wind.label.toLowerCase()}. ${10 - attempts} shots left.` : `${message.textContent} ${10 - attempts} shots left.`); }
     updateReadout();draw();
   }
   function tick(now) {
     if (state !== 'flight' || !flight || !dialog.open) return;
     const delta = Math.min((now - lastFrame) / 1000 || 0, .05);lastFrame = now;flight.t += delta;
-    if (!flight.scored && flight.made && flight.t >= flight.result.crossing.t) { flight.scored = true;score += 1;updateReadout();setMessage('Swish! Straight through the net.');window.OCHI_ARCADE_AUDIO?.play('swish'); }
+    if (!flight.scored && flight.made && flight.t >= flight.result.crossing.t) {
+      flight.scored = true;score += 1;
+      // This flight keeps its captured wind; the new condition is for the next shot.
+      wind = physics.createWind(wind);updateWind();updateReadout();
+      setMessage('Swish! The wind has changed for your next shot.');window.OCHI_ARCADE_AUDIO?.play('swish');
+    }
     if (!flight.made && !flight.feedback && flight.t >= (flight.result.crossing?.t || flight.duration * .8)) { flight.feedback = true;setMessage(resultMessage(flight.result));window.OCHI_ARCADE_AUDIO?.play('miss'); }
     if (flight.t >= flight.duration + .45) { finishShot();return; }
     draw();frame = requestAnimationFrame(tick);

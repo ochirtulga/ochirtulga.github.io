@@ -74,11 +74,17 @@
     tabGroups.push(tabs);return tabs;
   }
   const shell = element('div', 'arcade-shell');
+  const grip = element('div', 'arcade-grip');
+  grip.setAttribute('aria-hidden', 'true');
+  for (let i = 0; i < 3; i++) grip.append(element('span'));
   const header = element('div', 'arcade-heading');
   const headerTools = element('div', 'arcade-heading-tools');
-  headerTools.append(element('span', 'arcade-game-count', '2 games'), makeSoundButton());
-  header.append(element('span', '', 'The after-hours arcade'), headerTools);
-  shell.append(header, makeTabs('shelf'));
+  const title = element('h3', 'arcade-title', 'The after-hours arcade');
+  title.id = 'arcade-title';
+  shell.setAttribute('role', 'group');shell.setAttribute('aria-labelledby', title.id);
+  headerTools.append(makeSoundButton());
+  header.append(title, headerTools);
+  shell.append(grip, header, makeTabs('shelf'));
   games.forEach(game => {
     const panel = element('div', 'arcade-cartridge-panel');
     panel.id = `arcade-panel-${game.id}`;
@@ -88,6 +94,10 @@
     const gameMount = element('div');
     gameMount.id = game.id === 'leaf-keeper' ? 'leaf-keeper-mount' : 'basketball-mount';
     panel.append(gameMount);shell.append(panel);
+  });
+  ['left', 'right'].forEach(side => {
+    const screw = element('span', 'arcade-screw arcade-screw-' + side);
+    screw.setAttribute('aria-hidden', 'true');shell.append(screw);
   });
   mount.replaceChildren(shell);
   function updateTabs() {
