@@ -151,3 +151,72 @@
 @media (prefers-reduced-motion: reduce) {
   #architecture-story-widget *, #architecture-story-widget *::before, #architecture-story-widget *::after { animation: none !important; transition: none !important; }
 }
+
+/* Familiar architecture symbols keep the notebook sketches easy to scan. */
+#architecture-story-widget .as-symbol { display: block; flex: 0 0 auto; width: 40px; height: 40px; color: #45664b; background: currentColor; mask: var(--as-symbol-url) center / contain no-repeat; -webkit-mask: var(--as-symbol-url) center / contain no-repeat; }
+#architecture-story-widget [data-symbol=database] { --as-symbol-url: url('ink/architecture/database.svg'); color: #71628a; }
+#architecture-story-widget [data-symbol=service] { --as-symbol-url: url('ink/architecture/service.svg'); }
+#architecture-story-widget [data-symbol=topic] { --as-symbol-url: url('ink/architecture/topic.svg'); color: #4c6e84; }
+#architecture-story-widget [data-symbol=cluster] { --as-symbol-url: url('ink/architecture/cluster.svg'); }
+#architecture-story-widget [data-symbol=pipeline] { --as-symbol-url: url('ink/architecture/pipeline.svg'); }
+#architecture-story-widget [data-symbol=document] { --as-symbol-url: url('ink/architecture/document.svg'); color: #4c6e84; }
+#architecture-story-widget [data-symbol=check] { --as-symbol-url: url('ink/architecture/check.svg'); }
+#architecture-story-widget [data-symbol=warning] { --as-symbol-url: url('ink/architecture/warning.svg'); color: #8c623d; }
+#architecture-story-widget [data-symbol=speed] { --as-symbol-url: url('ink/architecture/speed.svg'); color: #4c6e84; }
+#architecture-story-widget [data-symbol=cost] { --as-symbol-url: url('ink/architecture/cost.svg'); }
+#architecture-story-widget [data-symbol=send] { --as-symbol-url: url('ink/architecture/send.svg'); color: #4c6e84; }
+#architecture-story-widget [data-symbol=router] { --as-symbol-url: url('ink/architecture/router.svg'); }
+#architecture-story-widget .as-node { align-items: center; min-height: 145px; gap: 10px; padding: 15px 10px; }
+#architecture-story-widget .as-node-copy { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+#architecture-story-widget .as-node-label { font-size: 20px; }
+#architecture-story-widget .as-node-detail { display: block; }
+#architecture-story-widget .as-node[data-icon=database] > .as-symbol { width: 46px; height: 46px; }
+#architecture-story-widget .as-node-repeated::before { content: ''; position: absolute; inset: -4px -3px 4px 3px; border: 1px solid #aabaad; border-radius: 3px 8px 4px 6px; z-index: -1; background: #f0f3e8; }
+#architecture-story-widget .as-diagram-key { display: flex; flex-wrap: wrap; gap: 10px 21px; color: var(--as-muted); font-size: 10px; line-height: 1.4; margin: -5px 0 17px; }
+#architecture-story-widget .as-diagram-key > span { display: inline-flex; align-items: center; gap: 6px; }
+#architecture-story-widget .as-diagram-key .as-symbol { width: 18px; height: 18px; }
+#architecture-story-widget .as-diagram.as-network { display: block; position: relative; flex: 0 0 auto; padding: 24px 20px 20px; }
+#architecture-story-widget .as-ingress, #architecture-story-widget .as-channel-path { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; align-items: stretch; }
+#architecture-story-widget .as-network .as-node { width: 100%; max-width: none; min-height: 145px; z-index: 2; }
+#architecture-story-widget .as-network .as-node-label { font-size: 19px; }
+#architecture-story-widget .as-network .as-node-detail { font-size: 10px; }
+#architecture-story-widget .as-channel-group { position: relative; border: 1px dashed #a3b69b; border-radius: 5px; padding: 27px 10px 17px; }
+#architecture-story-widget .as-ingress + .as-channel-group { margin-top: 77px; }
+#architecture-story-widget .as-group-label { position: absolute; top: -9px; left: 8px; max-width: calc(100% - 16px); padding: 0 5px; background: #f8f9ef; color: #4a6751; font-size: 11px; line-height: 1.5; }
+#architecture-story-widget .as-storage { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; margin: 56px 10px 0; }
+#architecture-story-widget .as-storage .as-node { grid-column: 2; min-height: 105px; padding: 0; background: none; }
+#architecture-story-widget .as-storage .as-node::after { display: none; }
+#architecture-story-widget .as-storage .as-node > .as-symbol { width: 56px; height: 56px; }
+#architecture-story-widget .as-node-badge { display: inline-flex; align-items: center; gap: 4px; padding: 3px 7px; background: #dce6be; border-radius: 3px; color: #36533a; font-size: 9px; font-weight: 600; line-height: 1.5; }
+#architecture-story-widget .as-node-badge::before { content: '↑'; font-size: 12px; line-height: 1; }
+#architecture-story-widget .as-connections { position: absolute; left: 0; top: 0; max-width: none; pointer-events: none; z-index: 1; overflow: visible; }
+#architecture-story-widget .as-edge-label { font-family: 'Space Grotesk', sans-serif; font-size: 10px; fill: #49634e; }
+@media (min-width: 621px) and (max-width: 1050px) {
+  #architecture-story-widget .as-node-label { font-size: 18px; }
+  #architecture-story-widget .as-diagram.as-network { padding-inline: 13px; }
+  #architecture-story-widget .as-ingress, #architecture-story-widget .as-channel-path, #architecture-story-widget .as-storage { gap: 24px; }
+  #architecture-story-widget .as-network .as-node-label { font-size: 17px; }
+  #architecture-story-widget .as-network .as-node { padding-inline: 7px; }
+}
+@media (max-width: 620px) {
+  #architecture-story-widget .as-node { display: grid; grid-template-columns: 38px minmax(0, 1fr); column-gap: 10px; min-height: 82px; padding: 12px; text-align: left; }
+  #architecture-story-widget .as-node > .as-symbol { width: 36px; height: 36px; }
+  #architecture-story-widget .as-node[data-icon=database] > .as-symbol { width: 40px; height: 40px; }
+  #architecture-story-widget .as-node-label { font-size: 18px; }
+  #architecture-story-widget .as-node-copy { gap: 3px; }
+  #architecture-story-widget[data-layout=constraints] .as-node, #architecture-story-widget[data-layout=components] .as-node { display: flex; min-height: 130px; text-align: center; padding: 12px 7px; }
+  #architecture-story-widget .as-diagram-key { font-size: 9px; gap: 10px 13px; margin-top: -4px; }
+  #architecture-story-widget .as-diagram-key .as-symbol { width: 16px; height: 16px; }
+  #architecture-story-widget .as-diagram.as-network { padding: 18px 28px 18px 12px; }
+  #architecture-story-widget .as-ingress, #architecture-story-widget .as-channel-path { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  #architecture-story-widget .as-network .as-node { min-height: 88px; padding: 10px; }
+  #architecture-story-widget .as-network .as-node-label { font-size: 18px; }
+  #architecture-story-widget .as-network .as-node-detail { font-size: 10px; }
+  #architecture-story-widget .as-ingress + .as-channel-group { margin-top: 48px; }
+  #architecture-story-widget .as-channel-group { padding: 26px 8px 15px; }
+  #architecture-story-widget .as-group-label { top: -12px; font-size: 10px; line-height: 1.4; max-width: calc(100% - 12px); left: 5px; }
+  #architecture-story-widget .as-storage { grid-template-columns: minmax(0, 1fr); margin: 23px 8px 0; }
+  #architecture-story-widget .as-storage .as-node { grid-column: 1; grid-template-columns: 46px minmax(0, 1fr); min-height: 85px; padding: 4px; }
+  #architecture-story-widget .as-storage .as-node > .as-symbol { width: 46px; height: 46px; }
+  #architecture-story-widget .as-node-badge { grid-column: 2; justify-self: start; font-size: 9px; margin-top: -3px; padding: 2px 5px; }
+}

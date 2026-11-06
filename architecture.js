@@ -4,81 +4,73 @@
   const root = document.getElementById('architecture-story-widget');
   if (!root) return;
 
+  // The owner supplied the notification topology; repeated groups show multiplicity,
+  // not a fixed number of categories, channels, topics, or service instances.
+  const notificationNodes = [
+    { id: 'core', label: 'Core transaction', detail: 'Microservice · produces a record', icon: 'service' },
+    { id: 'intake', label: 'Notification topic', detail: 'Kafka · incoming records', icon: 'topic' },
+    { id: 'processors', label: 'Notification processors', detail: 'Microservices · consume & route', icon: 'router' },
+    { id: 'categories', label: 'Category topics', detail: 'Kafka · one path per category', icon: 'topic', repeated: true },
+    { id: 'channels', label: 'Channel services', detail: 'Each consumes its own topic', icon: 'service', repeated: true, badge: 'Priority handling', kind: 'highlight' },
+    { id: 'send', label: 'Send notifications', detail: 'Through the specific channel', icon: 'send' },
+    { id: 'results', label: 'Cassandra', detail: 'Delivery success / failure', icon: 'database' }
+  ];
   const defaults = [
     {
       name: 'Before',
       title: 'One application, shared infrastructure.',
       summary: 'RabbitMQ, a .NET monolith, and a database server shared with other systems formed the original notification setup.',
       nodes: [
-        { label: 'RabbitMQ', detail: 'Message broker', kind: 'previous' },
-        { label: '.NET monolith', detail: 'Application and notifications', kind: 'previous' },
-        { label: 'Shared database server', detail: 'Also used by other systems', kind: 'shared' }
+        { label: 'RabbitMQ', detail: 'Message broker', icon: 'topic', kind: 'previous' },
+        { label: '.NET monolith', detail: 'Application and notifications', icon: 'service', kind: 'previous' },
+        { label: 'Shared database server', detail: 'Also used by other systems', icon: 'database', kind: 'shared' }
       ],
-      diagramDescription: 'The earlier system used RabbitMQ, a .NET monolith, and a database server shared with other systems.',
+      diagramDescription: 'Before: RabbitMQ connects to a .NET monolith, which uses a database server shared with other systems.',
       note: 'The earlier architecture, simplified.'
     },
     {
-      name: 'Challenges',
-      layout: 'constraints',
+      name: 'Challenges', layout: 'constraints',
       title: 'Scaling had more than one constraint.',
       summary: 'Scaling the monolith, maintaining the .NET application, and sharing the database server with other systems all had to be addressed.',
       nodes: [
-        { label: 'Monolithic application', detail: 'Scaling the workload', kind: 'highlight' },
-        { label: '.NET application', detail: 'Ongoing maintenance', kind: 'highlight' },
-        { label: 'Shared database server', detail: 'Resources shared with other systems', kind: 'shared' }
+        { label: 'Monolithic application', detail: 'Scaling the workload', icon: 'cluster', kind: 'highlight' },
+        { label: '.NET application', detail: 'Ongoing maintenance', icon: 'service', kind: 'highlight' },
+        { label: 'Shared database server', detail: 'Resources shared with other systems', icon: 'database', kind: 'shared' }
       ],
       diagramDescription: 'Three challenges: scaling a monolith, maintaining the .NET application, and sharing database-server resources with other systems.',
       note: 'The migration needed to address the application and its infrastructure.'
     },
     {
       name: 'Events',
-      title: 'Introduce an asynchronous event layer.',
-      summary: 'The new architecture used the bank’s first Kafka cluster for event streaming and asynchronous messaging.',
-      nodes: [
-        { label: 'Banking events', detail: 'The starting point' },
-        { label: 'Kafka cluster', detail: 'The bank’s first', kind: 'highlight' },
-        { label: 'Notifications', detail: 'Asynchronous processing' }
-      ],
-      diagramDescription: 'Banking events connect through the Kafka cluster to asynchronous notification processing.',
-      note: 'A dedicated event layer in the new architecture.'
+      title: 'Start with the transaction event.',
+      summary: 'The core transaction microservice produces a record in the Kafka notification topic. Notification processing microservices consume from that topic.',
+      nodes: notificationNodes.slice(0, 3),
+      diagramDescription: 'The core transaction microservice produces a record in the Kafka notification topic. Notification processing microservices consume from this topic.',
+      note: 'Kafka separates the transaction producer from notification processing.'
     },
     {
-      name: 'Service',
-      title: 'Give notifications a service of their own.',
-      summary: 'The SMS workload moved out of the monolith into a focused Java and Spring Boot microservice.',
-      nodes: [
-        { label: 'Banking events', detail: 'The starting point' },
-        { label: 'Kafka', detail: 'Event stream' },
-        { label: 'SMS notifications', detail: 'Java / Spring Boot', kind: 'highlight' }
-      ],
-      diagramDescription: 'Banking events connect through Kafka to a dedicated Java and Spring Boot SMS notification microservice.',
-      note: 'The notification responsibility has a focused service boundary.'
+      name: 'Routing',
+      title: 'Route work into category topics.',
+      summary: 'Notification processing microservices consume the incoming records and publish them into the appropriate category topics.',
+      nodes: [notificationNodes[1], { ...notificationNodes[2], kind: 'highlight' }, notificationNodes[3]],
+      diagramDescription: 'The initial notification topic feeds notification processing microservices, which publish records into category topics. Topics and services are shown as groups, not individual instances.',
+      note: 'The shared intake becomes a separate path for each category.'
     },
     {
-      name: 'Data',
-      title: 'A data layer built around notifications.',
-      summary: 'The notification microservice uses Cassandra for storage. It has a defined data layer alongside the Kafka event stream.',
-      nodes: [
-        { label: 'Banking events', detail: 'The starting point' },
-        { label: 'Kafka', detail: 'Event stream' },
-        { label: 'Notifications', detail: 'Java microservice' },
-        { label: 'Cassandra', detail: 'Data layer', kind: 'highlight' }
-      ],
-      diagramDescription: 'Banking events, Kafka, the Java notification microservice, and Cassandra form the migrated architecture.',
-      note: 'Cassandra supports the migrated notification service.'
+      name: 'Delivery', layout: 'delivery',
+      title: 'Each channel owns its delivery.',
+      summary: 'Channel services consume their own topics with priority handling, send notifications, and record delivery success or failure in Cassandra.',
+      nodes: notificationNodes.slice(3),
+      diagramDescription: 'Repeated for each category and channel: a category topic feeds its channel-specific service, which handles priority and sends notifications. The channel service also records success or failure in Cassandra.',
+      note: 'Each channel consumes its own topic; every delivery has a recorded outcome.'
     },
     {
-      name: 'Result',
-      title: 'One service. A clear job.',
-      summary: 'The result brings Kafka, a Java and Spring Boot notification service, and Cassandra together in a focused architecture.',
-      nodes: [
-        { label: 'Banking events', detail: 'The starting point' },
-        { label: 'Kafka', detail: 'Event stream' },
-        { label: 'Notifications', detail: 'Java microservice', kind: 'highlight' },
-        { label: 'Cassandra', detail: 'Data layer' }
-      ],
-      diagramDescription: 'The resulting notification architecture uses Kafka, a dedicated Java service, and Cassandra.',
-      fact: { label: 'Guaranteed SLA downtime per year', value: '2,000 minutes → 20 minutes' }
+      name: 'Result', layout: 'notification',
+      title: 'A clear responsibility at every step.',
+      summary: 'Transactions produce records; notification processors route them into category topics; channel services handle priority, delivery, and the outcome stored in Cassandra.',
+      nodes: notificationNodes,
+      diagramDescription: 'Core transaction microservice produces records in the Kafka notification topic. Notification processing microservices consume this topic and publish category topics. Each channel service consumes its own topic with priority handling, sends notifications, and records success or failure in Cassandra. The grouped path repeats for each category and channel; no fixed count is implied.',
+      fact: { label: 'Guaranteed SLA downtime per year, after the migration', value: '2,000 minutes → 20 minutes' }
     }
   ];
 
@@ -89,14 +81,15 @@
     return node;
   };
   const text = value => typeof value === 'string' ? value : '';
+  const symbolNames = new Set(['database', 'service', 'topic', 'cluster', 'pipeline', 'document', 'check', 'warning', 'speed', 'cost', 'send', 'router']);
   function normalizeSteps(value, fallback = defaults) {
     if (!Array.isArray(value) || value.length < 2) return fallback;
     const valid = value.slice(0, 10).filter(step => step && text(step.name) && text(step.title) && text(step.summary) && Array.isArray(step.nodes) && step.nodes.length > 0);
     if (valid.length < 2) return fallback;
     return valid.map(step => ({
       name: text(step.name), title: text(step.title), summary: text(step.summary),
-      layout: ['constraints', 'components'].includes(step.layout) ? step.layout : 'flow',
-      nodes: step.nodes.slice(0, 5).map(node => ({ label: text(node.label), detail: text(node.detail), kind: text(node.kind) })),
+      layout: ['notification', 'delivery'].includes(step.layout) ? (['categories', 'channels', 'send', 'results'].every(id => step.nodes.some(node => node.id === id)) ? step.layout : 'flow') : (['constraints', 'components'].includes(step.layout) ? step.layout : 'flow'),
+      nodes: step.nodes.slice(0, 7).map(node => ({ id: text(node.id), label: text(node.label), detail: text(node.detail), kind: text(node.kind), icon: symbolNames.has(node.icon) ? node.icon : 'service', repeated: Boolean(node.repeated), badge: text(node.badge) })),
       diagramDescription: text(step.diagramDescription) || step.nodes.map(node => text(node.label)).join(', '),
       note: text(step.note),
       fact: step.fact && text(step.fact.label) && text(step.fact.value) ? { label: text(step.fact.label), value: text(step.fact.value) } : null
@@ -199,28 +192,140 @@
   const summary = element('p', 'as-summary');
   const diagram = element('div', 'as-diagram');
   diagram.setAttribute('role', 'group');
-  const slots = [];
-  const connectors = [];
-  for (let index = 0; index < 5; index += 1) {
-    if (index) {
-      const connector = element('span', 'as-wire');
-      connector.textContent = '→';
-      connector.setAttribute('aria-hidden', 'true');
-      diagram.append(connector);
-      connectors.push(connector);
-    }
-    const node = element('div', 'as-node');
-    const label = element('strong', 'as-node-label');
-    const detail = element('span', 'as-node-detail');
-    node.append(label, detail);
-    diagram.append(node);
-    slots.push({ node, label, detail });
+  function symbol(name) {
+    const icon = element('span', 'as-symbol');
+    icon.dataset.symbol = symbolNames.has(name) ? name : 'service';
+    icon.setAttribute('aria-hidden', 'true');
+    return icon;
   }
+  function diagramNode(data) {
+    const node = element('div', 'as-node');
+    node.dataset.kind = data.kind || '';
+    node.dataset.icon = data.icon || 'service';
+    if (data.id) node.dataset.nodeId = data.id;
+    if (data.repeated) node.classList.add('as-node-repeated');
+    const copy = element('div', 'as-node-copy');
+    copy.append(element('strong', 'as-node-label', data.label), element('span', 'as-node-detail', data.detail));
+    node.append(symbol(data.icon), copy);
+    if (data.badge) node.append(element('span', 'as-node-badge', data.badge));
+    return node;
+  }
+  const svgNS = 'http://www.w3.org/2000/svg';
+  function svgElement(tag, attributes) {
+    const node = document.createElementNS(svgNS, tag);
+    Object.entries(attributes).forEach(([key, value]) => node.setAttribute(key, String(value)));
+    return node;
+  }
+  function renderDiagram(step) {
+    diagram.replaceChildren();
+    const network = ['notification', 'delivery'].includes(step.layout);
+    diagram.classList.toggle('as-network', network);
+    if (!network) {
+      step.nodes.forEach((data, i) => {
+        if (i && (step.layout || 'flow') === 'flow') {
+          const wire = element('span', 'as-wire', '→');
+          wire.setAttribute('aria-hidden', 'true');
+          diagram.append(wire);
+        }
+        diagram.append(diagramNode(data));
+      });
+      return;
+    }
+    if (step.layout === 'notification') {
+      const ingress = element('div', 'as-ingress');
+      step.nodes.slice(0, 3).forEach(data => ingress.append(diagramNode(data)));
+      diagram.append(ingress);
+    }
+    const perChannel = element('div', 'as-channel-group');
+    perChannel.append(element('p', 'as-group-label', 'Repeated for each category / channel'));
+    const path = element('div', 'as-channel-path');
+    step.nodes.filter(data => ['categories', 'channels', 'send'].includes(data.id)).forEach(data => path.append(diagramNode(data)));
+    perChannel.append(path);
+    const storage = element('div', 'as-storage');
+    storage.append(diagramNode(step.nodes.find(data => data.id === 'results')));
+    diagram.append(perChannel, storage);
+    const edges = svgElement('svg', { class: 'as-connections', 'aria-hidden': 'true', focusable: 'false' });
+    diagram.append(edges);
+    requestAnimationFrame(drawConnections);
+  }
+  function drawConnections() {
+    const svg = diagram.querySelector('.as-connections');
+    if (!svg) return;
+    const box = diagram.getBoundingClientRect();
+    if (!box.width || !box.height) return;
+    svg.setAttribute('viewBox', `0 0 ${box.width} ${box.height}`);
+    svg.setAttribute('width', box.width);
+    svg.setAttribute('height', box.height);
+    svg.replaceChildren();
+    const defs = svgElement('defs', {});
+    const marker = svgElement('marker', { id: 'as-flow-head', viewBox: '0 0 10 10', refX: 8, refY: 5, markerWidth: 6, markerHeight: 6, orient: 'auto-start-reverse' });
+    marker.append(svgElement('path', { d: 'M1 1L8 5L1 9', fill: 'none', stroke: '#617867', 'stroke-width': 1.6, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }));
+    defs.append(marker);svg.append(defs);
+    const bounds = id => {
+      const node = diagram.querySelector(`[data-node-id="${id}"]`);
+      if (!node) return null;
+      const r = node.getBoundingClientRect();
+      return { left: r.left - box.left, right: r.right - box.left, top: r.top - box.top, bottom: r.bottom - box.top, x: r.left - box.left + r.width / 2, y: r.top - box.top + r.height / 2 };
+    };
+    const line = (points, label) => {
+      const path = svgElement('path', { d: points.map((p, i) => `${i ? 'L' : 'M'}${p[0]} ${p[1]}`).join(' '), fill: 'none', stroke: '#617867', 'stroke-width': 1.6, 'stroke-linejoin': 'round', 'marker-end': 'url(#as-flow-head)' });
+      svg.append(path);
+      if (label) {
+        svg.append(svgElement('rect', { x: label.x - 58, y: label.y - 9, width: 116, height: 18, rx: 2, fill: '#f8f9ef' }));
+        const text = svgElement('text', { x: label.x, y: label.y, 'text-anchor': 'middle', 'dominant-baseline': 'middle', class: 'as-edge-label' });
+        text.textContent = label.text;svg.append(text);
+      }
+    };
+    const vertical = window.matchMedia('(max-width: 620px)').matches;
+    const pair = (from, to) => {
+      const a = bounds(from), b = bounds(to);
+      if (!a || !b) return;
+      line(vertical ? [[a.x, a.bottom + 2], [b.x, b.top - 4]] : [[a.right + 2, a.y], [b.left - 4, b.y]]);
+    };
+    pair('core', 'intake');pair('intake', 'processors');
+    pair('categories', 'channels');pair('channels', 'send');
+    const processors = bounds('processors'), categories = bounds('categories');
+    if (processors && categories) {
+      if (vertical) line([[processors.x, processors.bottom + 2], [categories.x, categories.top - 4]]);
+      else {
+        const y = processors.bottom + 29;
+        line([[processors.x, processors.bottom + 2], [processors.x, y], [categories.x, y], [categories.x, categories.top - 4]], { x: (processors.x + categories.x) / 2, y, text: 'Publish by category' });
+      }
+    }
+    const channels = bounds('channels'), results = bounds('results');
+    if (channels && results) {
+      if (vertical) {
+        const x = box.width - 13;
+        line([[channels.right + 2, channels.y], [x, channels.y], [x, results.y], [results.right + 4, results.y]]);
+      } else {
+        const y = channels.bottom + (results.top - channels.bottom) / 2;
+        line([[channels.x, channels.bottom + 2], [results.x, results.top - 4]], { x: channels.x, y, text: 'Record delivery result' });
+      }
+    }
+  }
+  if ('ResizeObserver' in window) new ResizeObserver(() => requestAnimationFrame(drawConnections)).observe(diagram);
+  else window.addEventListener('resize', drawConnections);
+  const diagramKey = element('div', 'as-diagram-key');
+  diagramKey.setAttribute('aria-label', 'Diagram symbols');
+  const symbolLabels = { service: 'Service', topic: 'Topic / queue', database: 'Database', cluster: 'Distributed compute', pipeline: 'Processing', document: 'Document / code', check: 'Validation', warning: 'Issue', speed: 'Performance', cost: 'Cost', send: 'Delivery', router: 'Routing' };
+  function renderKey(nodes) {
+    diagramKey.replaceChildren();
+    new Set(nodes.map(node => node.icon || 'service')).forEach(name => {
+      const item = element('span');item.append(symbol(name), document.createTextNode(symbolLabels[name]));diagramKey.append(item);
+    });
+  }
+  function keepChapterVisible() {
+    const selected = tabs[current];
+    if (!selected) return;
+    if (selected.offsetLeft < nav.scrollLeft) nav.scrollLeft = selected.offsetLeft;
+    else if (selected.offsetLeft + selected.offsetWidth > nav.scrollLeft + nav.clientWidth) nav.scrollLeft = selected.offsetLeft + selected.offsetWidth - nav.clientWidth;
+  }
+  if ('ResizeObserver' in window) new ResizeObserver(keepChapterVisible).observe(nav);
   const takeaway = element('div', 'as-takeaway');
   const takeawayLabel = element('span', 'as-takeaway-label');
   const takeawayValue = element('span', 'as-takeaway-value');
   takeaway.append(takeawayLabel, takeawayValue);
-  panel.append(title, summary, diagram, takeaway);
+  panel.append(title, summary, diagram, diagramKey, takeaway);
 
   const footer = element('div', 'as-footer');
   const pagination = element('div', 'as-pagination');
@@ -311,15 +416,9 @@
     summary.textContent = step.summary;
     diagram.setAttribute('aria-label', step.diagramDescription);
     diagram.dataset.nodes = String(step.nodes.length);
-    slots.forEach((slot, index) => {
-      const data = step.nodes[index];
-      slot.node.hidden = !data;
-      slot.label.textContent = data?.label || '';
-      slot.detail.textContent = data?.detail || '';
-      slot.node.dataset.kind = data?.kind || '';
-    });
     const layout = step.layout || 'flow';
-    connectors.forEach((connector, index) => { connector.hidden = layout !== 'flow' || index >= step.nodes.length - 1; });
+    renderDiagram(step);
+    renderKey(step.nodes);
     takeaway.classList.toggle('as-takeaway-fact', Boolean(step.fact));
     takeawayLabel.textContent = step.fact?.label || '';
     takeawayValue.textContent = step.fact?.value || step.note || '';
@@ -331,9 +430,7 @@
     panel.setAttribute('aria-labelledby', tabs[current].id);
     count.textContent = `${current + 1} of ${steps.length}`;
     nextLabel.textContent = current === steps.length - 1 ? 'Start again' : 'Next chapter';
-    const selected = tabs[current];
-    if (selected.offsetLeft < nav.scrollLeft) nav.scrollLeft = selected.offsetLeft;
-    else if (selected.offsetLeft + selected.offsetWidth > nav.scrollLeft + nav.clientWidth) nav.scrollLeft = selected.offsetLeft + selected.offsetWidth - nav.clientWidth;
+    keepChapterVisible();
     root.dataset.story = story.id;
     root.dataset.stage = String(current);
     root.dataset.layout = layout;

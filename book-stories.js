@@ -1,5 +1,5 @@
 /* Existing case studies supply documented outcomes.
-   The owner supplied the data-retention setback and book categorization. */
+   The owner supplied the notification topology, data-retention setback, and book categorization. */
 window.OCHI_BOOKS = [
   {
     id: 'career',
@@ -19,15 +19,15 @@ window.OCHI_BOOKS = [
       {
         id: 'notifications',
         title: 'A monolith, untangled.',
-        context: 'Khan Bank / SMS notifications',
+        context: 'Khan Bank / Notifications',
         kind: 'success',
-        summary: 'A focused notification service, built around the scaling and maintenance constraints of the earlier system.',
+        summary: 'From a monolith to an event-driven notification system with category topics, channel services, and recorded delivery outcomes.',
         skills: ['System design', 'Service boundaries', 'Problem solving'],
         sections: [
           { heading: 'Situation', paragraphs: ['The earlier notification setup used RabbitMQ, a .NET monolith, and a database server shared with other systems. Scaling the application, maintaining it, and sharing infrastructure were all constraints.'] },
-          { heading: 'Decisions', paragraphs: ['I moved SMS processing into a focused Java and Spring Boot microservice, with Kafka for event streaming and asynchronous messaging, and Cassandra for storage.'] },
+          { heading: 'Decisions', paragraphs: ['The migration used Java and Spring Boot, Kafka, and Cassandra. The core transaction microservice produces records into a Kafka notification topic. Notification processing microservices consume that topic and publish to category topics.', 'Each channel-specific service consumes its own topic with priority, sends notifications, and records whether delivery succeeded or failed in Cassandra.'] },
           { heading: 'Outcome', paragraphs: ['Guaranteed SLA downtime changed from roughly 2,000 to 20 minutes per year. The work was recognized by the Head of IT.'] },
-          { heading: 'Lesson', paragraphs: ['A scaling discussion needs to include service responsibilities and the infrastructure around them. A useful design makes those boundaries clear.'] }
+          { heading: 'Lesson', paragraphs: ['A scaling discussion needs to include service responsibilities and the infrastructure around them. This design separates transaction events, notification processing, and channel delivery, while keeping the delivery result visible in Cassandra.'] }
         ],
         outcome: { label: 'Guaranteed SLA downtime per year', value: '2,000 → 20 minutes' },
         architectureStory: 'notifications'
