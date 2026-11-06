@@ -1,4 +1,4 @@
-/* Existing case studies supply documented outcomes.
+/* Existing case studies supply documented outcomes. Hobby project details also use their implementation sources.
    The owner supplied the notification topology, data-retention setback, and book categorization. */
 window.OCHI_BOOKS = [
   {
@@ -117,9 +117,40 @@ window.OCHI_BOOKS = [
     id: 'hobbies',
     title: 'Hobby projects',
     subtitle: 'Built after hours, because I wanted them to exist.',
-    intro: 'Books, games, and a place on the internet that feels like me. These projects begin with curiosity and become something I can use, share, or play.',
+    intro: 'Personal finance, a community casebook, books, games, and a place on the internet that feels like me. These projects begin with curiosity and become something I can use, share, or play.',
     theme: 'orange',
     chapters: [
+      {
+        id: 'flowstate',
+        title: 'FlowState: a plan for the month.',
+        context: 'FlowState / Personal finance',
+        kind: 'project',
+        summary: 'A monthly view of income, expenses, and recurring bills, with a due-date roadmap and AI-generated financial insights.',
+        skills: ['React / TypeScript', 'API integration', 'Gemini'],
+        sections: [
+          { heading: 'Situation', paragraphs: ['A monthly total does not show which expenses are due next or how income covers them. FlowState brings those details into one view.'] },
+          { heading: 'Decisions', paragraphs: ['The interface groups income, expenses, and recurring expenses by month. A roadmap orders expenses by due date and shows how income covers upcoming obligations.', 'I built the interface with React and TypeScript, with Gemini-generated Financial Insight alongside the monthly summary.'] },
+          { heading: 'Outcome', paragraphs: ['A personal finance project connecting the monthly summary with a view of upcoming expenses. The website opens with account sign-in.'] },
+          { heading: 'Lesson', paragraphs: ['A monthly total is more useful when it is connected to the dates and commitments behind it.'] }
+        ],
+        url: 'https://flowstate-finance-91547830614.us-west1.run.app/',
+        urlLabel: 'Visit FlowState (sign-in required) ↗'
+      },
+      {
+        id: 'unveil',
+        title: 'Unveil: look up a suspicious contact.',
+        context: 'Unveil / A community casebook',
+        kind: 'project',
+        summary: 'A searchable community casebook for suspicious contacts, with reports, case details, and community voting.',
+        skills: ['React / TypeScript', 'Java / Spring Boot', 'PostgreSQL'],
+        sections: [
+          { heading: 'Situation', paragraphs: ['When checking an unfamiliar contact, reports and community feedback need to be easy to find and review. Unveil organizes them into a searchable casebook.'] },
+          { heading: 'Decisions', paragraphs: ['Readers can search by identifiers such as name, email, phone, or company, browse results, and open the details behind a case. The project also supports reporting and email-verified community voting.', 'The frontend uses React and TypeScript; the backend uses Java, Spring Boot, and PostgreSQL.'] },
+          { heading: 'Outcome', paragraphs: ['Search, case reporting, and community voting implemented across a web interface and an API. The source shows how the casebook is built.'] },
+          { heading: 'Lesson', paragraphs: ['A search result is more useful when readers can inspect the report behind it and see community feedback in context.'] }
+        ],
+        sourceUrl: 'https://github.com/ochirtulga/unveil-frontend'
+      },
       {
         id: 'bookworm',
         title: 'One more chapter.',

@@ -86,8 +86,12 @@
       watch.id = 'project-watch';actions.append(watch);
     }
     if (data.url) {
-      const visit = element('a', 'book-action', 'Visit the website ↗');
+      const visit = element('a', 'book-action', data.urlLabel || 'Visit the website ↗');
       visit.id = 'project-visit';visit.href = data.url;visit.target = '_blank';visit.rel = 'noopener noreferrer';actions.append(visit);
+    }
+    if (data.sourceUrl) {
+      const source = element('a', 'book-action', 'View project source ↗');
+      source.href = data.sourceUrl;source.target = '_blank';source.rel = 'noopener noreferrer';source.dataset.bookSource = '';actions.append(source);
     }
     if (data.architectureStory) {
       const sketch = actionButton('See the architecture ↗', () => leaveBook(() => window.dispatchEvent(new CustomEvent('ochi:open-architecture-story', { detail: { id: data.architectureStory } }))));
@@ -134,7 +138,7 @@
         const previous = units[i - 1];
         if (previous?.type !== 'prose' || previous.section !== unit.section) {
           const heading = element('h4', '', unit.heading);
-          if (unit.start > 0 || unit.paragraph > 0) heading.append(element('span', 'book-continuation', 'continued'));
+          if (unit.start > 0 || unit.paragraph > 0) heading.append(element('span', 'book-continuation', ' continued'));
           section.append(heading);
         }
         section.append(element('p', '', value));node.append(section);
@@ -326,6 +330,7 @@
   }
   function reflow() {
     if (!dialog.open) return;
+    byId('book-contents-toggle').setAttribute('aria-expanded', String(!mobile.matches || dialog.dataset.contentsOpen === 'true'));
     const focused = document.activeElement;
     const tocChapter = focused?.closest('.book-toc-button')?.dataset.chapterIndex;
     const hadTitleFocus = focused?.id === 'book-page-title';

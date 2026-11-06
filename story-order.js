@@ -9,7 +9,9 @@ window.OCHI_STORY_ORDER = Object.freeze([
   'pipeline-setup',
   'data-retention',
   'express-window',
-  'leaf-keeper',
+  'flowstate',
+  'unveil',
   'bookworm',
+  'leaf-keeper',
   'garden'
 ]);

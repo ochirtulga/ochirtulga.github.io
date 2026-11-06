@@ -6,7 +6,7 @@ Live at [ochirtulga.github.io](https://ochirtulga.github.io/).
 
 ## The site
 
-A buildless static website with direct About, Work, Education, and Hobbies navigation; three books with clickable contents and eleven story chapters; six selectable engineering stories with 28 diagram chapters; a seasonal tree with leaf stories; and an original playable game cartridge.
+A buildless static website with direct About, Work, Education, and Hobbies navigation; three books with clickable contents and thirteen story chapters; six selectable engineering stories with 28 diagram chapters; a seasonal tree with leaf stories; and an original playable game cartridge.
 
 - `index.html`, `styles.css`, `app.js`: content, layout, general navigation, and footer.
 - `book-stories.js`, `book-reader.js`, `book-reader.css`: the three volumes, contents, narrative chapters, pagination, and media actions.
@@ -63,11 +63,13 @@ The education section shows full degree levels, subjects, institutions, country 
 
 ## Three books
 
-**Professional career** links six strengths—system design, problem solving, trade-offs/tools, automation, learning quickly, and ownership—to six real stories. It includes the owner's data-retention setback and the lesson of designing retention and backups with stakeholder needs. The roughly one-week main-table need is contextual to that experience. **Hobby projects** contains Leaf keeper, Bookworm, and the garden. **Freelance & temporary work** contains Stellar AI, then Express Window.
+**Professional career** links six strengths—system design, problem solving, trade-offs/tools, automation, learning quickly, and ownership—to six real stories. It includes the owner's data-retention setback and the lesson of designing retention and backups with stakeholder needs. The roughly one-week main-table need is contextual to that experience. **Hobby projects** contains FlowState, Unveil, Bookworm, Leaf keeper, and the garden. **Freelance & temporary work** contains Stellar AI, then Express Window.
 
 The native reader has compact clickable contents and pages that fit the window. Previous/next controls stay visible; page counts and story counts are separate. Story text, summaries, strengths, and outcomes are paginated without truncation. Long paragraphs split at word boundaries with a continuation label. Arrow keys turn pages while native video controls keep their own keys. At a story boundary, navigation continues to the next story; the final page returns to contents.
 
 Desktop shows contents beside the page; mobile switches between them. Contents use one page when possible and their own page arrows on short windows. Resizing and font loading preserve a source-text reading anchor. Bookworm's sample-data video has its own fitted page and retains its element and playback position on resize; it pauses on contents navigation, leaving the page, and close. Express Window's website action, architecture handoffs, deep links, and legacy project aliases are preserved. Escape/close returns focus to the opener.
+
+FlowState's chapter covers monthly income and expense tracking, recurring expenses, a due-date coverage roadmap, and Gemini-generated Financial Insight, following its implementation source. Its website action opens the supplied Cloud Run site and labels sign-in as required. Unveil's chapter describes a searchable community casebook for suspicious contacts, with case reporting, details, and email-verified voting, using React/TypeScript and Java/Spring Boot/PostgreSQL. Its source action links to the public [frontend repository](https://github.com/ochirtulga/unveil-frontend); the [backend](https://github.com/ochirtulga/unveil-backend) provides the case and voting APIs. No account credentials or personal financial records are included.
 
 ## Work timeline
 
@@ -81,7 +83,7 @@ Five more stories draw on the original résumé: behavioral loan scoring (approv
 
 The owner's expanded AI story starts with learning the codebase and PR, writing tests for a correct implementation, and preparing agent instructions. Tests run before and after implementation. Agents unable to complete the task without hints retry with guidance about pitfalls and the solution approach, without direct answers. Ten coding agents attempt the work; every output is reviewed, with feedback on failures and strengths. No success-rate improvement or parallel-execution claim is made.
 
-`story-order.js` defines the relevance order: AI verification, notifications, order history, data platform, loan scoring, pipeline setup, data retention, Express Window, Leaf keeper, Bookworm, then the garden. Diagram lists and the initial selection follow it, as do book contents, pagination, and strength links within each volume. The three book themes retain their order; **Start with AI verification** opens the canonical AI chapter directly. The work timeline remains chronological. Tree story cycling starts with an AI note, retaining the nine original leaf positions and touch targets.
+`story-order.js` defines the relevance order: AI verification, notifications, order history, data platform, loan scoring, pipeline setup, data retention, Express Window, FlowState, Unveil, Bookworm, Leaf keeper, then the garden. Diagram lists and the initial selection follow it, as do book contents, pagination, and strength links within each volume. The three book themes retain their order; **Start with AI verification** opens the canonical AI chapter directly. The work timeline remains chronological. Tree story cycling starts with an AI note, retaining the nine original leaf positions and touch targets.
 
 The desktop index shows all six stories and their organizations; smaller screens use a native picker. Numbered chapters show progress, **See the result** opens the final chapter, and directional arrows follow the diagram flow horizontally on desktop and vertically on phones. Component layouts avoid implying an undocumented order.
 
