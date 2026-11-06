@@ -67,6 +67,7 @@
   }
   function leaveBook(callback) { afterClose = callback;dialog.close(); }
   function revealSection(id, focusSelector) {
+    if (id === 'hobbies' && focusSelector === '.gk-play') window.OCHI_ARCADE?.select('leaf-keeper');
     const target = byId(id);
     if (!target) return;
     if (location.hash !== '#' + id) history.pushState(null, '', '#' + id);

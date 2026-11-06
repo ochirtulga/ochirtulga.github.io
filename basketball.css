@@ -1,0 +1,70 @@
+.bb-cartridge { background: #d5b596; border-color: #b08b6b; border-top-color: #e7cbb0; box-shadow: inset 5px 0 #e1c5a8,inset -5px 0 #c39d7b,0 5px #ad8565,0 13px 20px -16px #4b453780; }
+.bb-cartridge .gk-cart-grip span { background: #e8cbb0; border-color: #af8667; }
+.bb-cartridge .gk-cart-label { background: #f5efdb; border-color: #8d7055; }
+.bb-cartridge .gk-cart-label h3 { color: #754b31; }
+.bb-cartridge .gk-cart-mark { color: #6b523d; font-size: 9px; }
+.bb-cartridge .gk-play { color: #fff9ec; background: #805337; border-color: #6e452f; box-shadow: 0 3px #523426; }
+.bb-cover-art { display: block; width: 100%; height: auto; margin: 7px 0 3px; }
+.bb-dialog { width: min(640px,calc(100vw - 20px)); max-width: calc(100vw - 20px); height: min(800px,calc(100dvh - 20px)); max-height: calc(100dvh - 20px); padding: 19px; overflow: hidden; border: 1px solid #b9b79b; border-radius: 14px; background: #f5f7f0; color: #294431; box-shadow: 0 24px 100px #18342645; font-family: 'Space Grotesk',sans-serif; }
+.bb-dialog[open] { display: flex; flex-direction: column; }
+.bb-dialog::backdrop { background: #142c24b3; backdrop-filter: blur(5px); }
+.bb-dialog .bb-dialog-heading { display: flex; flex: 0 0 auto; justify-content: space-between; align-items: center; gap: 16px; }
+.bb-dialog .bb-kicker { font-size: 10px; line-height: 1.4; color: #65735a; margin: 0 0 4px; }
+.bb-dialog h2 { font-size: 29px; line-height: 1.1; font-weight: 500; letter-spacing: -.7px; margin: 0; }
+.bb-dialog .bb-close { width: 44px; height: 44px; flex: 0 0 44px; padding: 0; color: #435443; background: #e9eee2; border: 1px solid #ccd7c6; border-radius: 50%; font: inherit; font-size: 26px; line-height: 1; cursor: pointer; }
+.bb-dialog .arcade-game-panel { display: flex; flex: 1 1 0; flex-direction: column; gap: 9px; min-height: 0; }
+.bb-scoreboard { display: flex; flex: 0 0 auto; align-items: baseline; justify-content: space-between; gap: 12px; padding-top: 2px; font-size: 11px; color: #5f6e55; }
+.bb-scoreboard strong { color: #2e4e35; font-size: 19px; font-weight: 500; font-variant-numeric: tabular-nums; margin-left: 5px; }
+.bb-scoreboard small { font-size: 10px; }
+.bb-scoreboard > span { white-space: nowrap; }
+.bb-dialog .bb-instructions { flex: 0 0 auto; font-size: 11px; line-height: 1.6; color: #5b6e55; margin: 0; }
+.bb-court-wrap { position: relative; display: flex; flex: 1 1 0; min-height: 110px; overflow: hidden; border: 1px solid #c0cbb1; border-radius: 7px; background: #e8eadb; }
+.bb-canvas { display: block; width: 100%; height: 100%; min-height: 0; touch-action: none; cursor: grab; }
+.bb-canvas:active { cursor: grabbing; }
+.bb-canvas:focus-visible { outline: 2px solid #6f8057; outline-offset: -4px; }
+.bb-shot-readout { display: flex; flex: 0 0 auto; align-items: center; justify-content: space-between; gap: 12px; font-size: 10px; line-height: 1.5; color: #68715c; }
+.bb-shot-readout > span { display: inline-flex; align-items: center; gap: 6px; }
+.bb-shot-readout output { color: #38563e; font-variant-numeric: tabular-nums; }
+.bb-power-track { width: 58px; height: 5px; overflow: hidden; background: #dde3d2; border-radius: 2px; }
+.bb-power-track i { display: block; height: 100%; background: #b47d49; }
+.bb-controls { display: flex; flex: 0 0 auto; align-items: center; gap: 8px; }
+.bb-controls button { display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-height: 44px; min-width: 58px; padding: 8px 12px; background: #e7ecdf; border: 1px solid #c5d0ba; border-radius: 5px; color: #3b563d; font: inherit; font-size: 11px; cursor: pointer; }
+.bb-controls .bb-shoot { margin-left: auto; min-width: 90px; color: #fff9ed; background: #865936; border-color: #794c30; }
+.bb-controls button:disabled { opacity: .45; cursor: default; }
+.bb-controls button:focus-visible,.bb-close:focus-visible,.bb-play:focus-visible { outline: 3px solid #657a9c; outline-offset: 3px; }
+.bb-dialog .bb-message { flex: 0 0 auto; min-height: 31px; font-size: 11px; line-height: 1.5; color: #4c6544; margin: 0; }
+.bb-dialog .bb-keyboard { flex: 0 0 auto; font-size: 9px; line-height: 1.5; color: #728067; margin: 0; }
+@media(max-width:380px) {
+  .bb-dialog { padding: 13px; }
+  .bb-dialog h2 { font-size: 27px; }
+  .bb-dialog .arcade-game-panel { gap: 7px; }
+  .bb-controls { gap: 6px; }
+  .bb-controls button { padding-inline: 9px; }
+  .bb-controls .bb-shoot { min-width: 81px; }
+  .bb-power-track { width: 43px; }
+}
+@media(max-height:500px) and (min-width:600px) {
+  .bb-dialog { width: min(820px,calc(100vw - 20px)); padding: 12px 15px; }
+  .bb-dialog .bb-kicker { display: none; }
+  .bb-dialog h2 { font-size: 25px; }
+  .bb-dialog .arcade-game-panel { display: grid; grid-template-columns: minmax(0,1fr) 210px; grid-template-rows: auto auto auto auto minmax(0,1fr); gap: 7px 14px; }
+  .bb-court-wrap { grid-column: 1; grid-row: 1/6; min-height: 0; }
+  .bb-scoreboard { grid-column: 2; grid-row: 1; font-size: 9px; gap: 4px; }
+  .bb-scoreboard strong { font-size: 16px; margin-left: 2px; }
+  .bb-scoreboard small { font-size: 8px; }
+  .bb-instructions { grid-column: 2; grid-row: 2; }
+  .bb-shot-readout { grid-column: 2; grid-row: 3; font-size: 9px; gap: 5px; }
+  .bb-power-track { width: 28px; }
+  .bb-controls { grid-column: 2; grid-row: 4; gap: 5px; }
+  .bb-controls button { min-width: 0; padding-inline: 7px; font-size: 10px; }
+  .bb-controls .bb-shoot { min-width: 64px; }
+  .bb-message { grid-column: 2; grid-row: 5; }
+  .bb-keyboard { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
+}
+@media(prefers-reduced-motion:reduce) { .bb-dialog *, .bb-dialog *::before, .bb-dialog *::after { transition: none !important; animation: none !important; } }
+
+@media(max-height:650px) {
+  .bb-dialog .bb-kicker { display: none; }
+  .bb-dialog .arcade-game-panel { gap: 6px; }
+  .bb-dialog .bb-keyboard { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
+}

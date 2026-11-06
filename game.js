@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const mount = document.getElementById('game-cartridge');
+  const mount = document.getElementById('leaf-keeper-mount');
   if (!mount) return;
 
   mount.innerHTML = `
@@ -18,7 +18,7 @@
     </div>
     <dialog class="gk-dialog" aria-labelledby="gk-title" aria-describedby="gk-instructions">
       <div class="gk-dialog-heading"><div><p class="gk-dialog-kicker">A little intermission</p><h2 id="gk-title">Leaf keeper</h2></div><button class="gk-close" type="button" aria-label="Close game">×</button></div>
-      <p id="gk-instructions" class="gk-instructions">Catch the leaves before they touch the ground. Move with ← → or A / D. You can also drag or use the buttons below.</p>
+      <p id="gk-instructions" class="gk-instructions">Catch falling leaves. Drag the basket, or move with ← → / A D and the buttons below.</p>
       <div class="gk-player"><label for="gk-player-name">Nickname <span>(optional)</span></label><input id="gk-player-name" type="text" maxlength="24" placeholder="Anonymous" autocomplete="nickname" aria-describedby="gk-player-note"><p id="gk-player-note">Your nickname and best score appear on the shared leaderboard.</p></div>
       <p class="gk-player-summary" hidden></p>
       <div class="gk-game-status"><span>Leaves <strong id="gk-score">0</strong></span><span>Time <strong id="gk-time">25</strong><span class="gk-seconds"> sec</span></span></div>
@@ -62,6 +62,7 @@
   let lastShownSecond = 25;
   let runVersion = 0;
   let currentRound = null;
+  let pauseAfterStart = false;
   let latestFinishedRound = null;
   let visibleResult = null;
   let showingPreviousRound = false;
@@ -254,6 +255,7 @@
   }
 
   function draw() {
+    if (dialog.dataset.state !== state) dialog.dataset.state = state;
     context.clearRect(0, 0, WORLD.width, WORLD.height);
     context.fillStyle = '#eef0de';
     context.fillRect(0, 0, WORLD.width, WORLD.height);
@@ -368,6 +370,7 @@
     playerSummary.textContent = `Playing as ${name}`;
     playerSummary.hidden = false;
     state = 'starting';
+    pauseAfterStart = false;
     startButton.disabled = true;
     startButton.textContent = 'Connecting…';
     pauseButton.disabled = true;
@@ -393,10 +396,12 @@
     pauseButton.textContent = 'Pause';
     message.textContent = round.session ? 'The canopy is sharing. Catch a few leaves.' : 'Playing without a leaderboard connection. This round won’t be posted.';
     lastFrame = performance.now();
-    animation = requestAnimationFrame(tick);
+    if (pauseAfterStart || document.hidden) setPaused(true, 'Paused while you were away. Resume when you’re ready.');
+    else { draw();animation = requestAnimationFrame(tick); }
   }
 
   function setPaused(paused, reason) {
+    if (paused && state === 'starting') { pauseAfterStart = true;return; }
     if (paused && state === 'playing') {
       state = 'paused';
       cancelAnimationFrame(animation);
@@ -420,7 +425,7 @@
     basketX = Math.max(38, Math.min(WORLD.width - 38, (event.clientX - rect.left) / rect.width * WORLD.width));
   }
 
-  playButton.addEventListener('click', () => {
+  function openGame() {
     if (dialog.open) return;
     dialog.showModal();
     runVersion += 1;
@@ -428,6 +433,7 @@
     visibleResult = null;
     board.hidden = true;
     state = 'ready';
+    pauseAfterStart = false;
     score = 0;
     remaining = 25;
     leaves = [];
@@ -448,7 +454,8 @@
     }
     resizeCanvas();
     nameInput.focus({ preventScroll: true });
-  });
+  }
+  playButton.addEventListener('click', () => window.OCHI_ARCADE.launch('leaf-keeper', playButton));
   mount.querySelector('.gk-close').addEventListener('click', () => dialog.close());
   dialog.addEventListener('close', () => {
     cancelAnimationFrame(animation);
@@ -456,9 +463,9 @@
     currentRound = null;
     visibleResult = null;
     state = 'ready';
+    pauseAfterStart = false;
     keys.left = false;
     keys.right = false;
-    playButton.focus();
   });
   dialog.addEventListener('click', event => {
     if (event.target !== dialog) return;
@@ -484,7 +491,7 @@
     });
   });
   window.addEventListener('keydown', event => {
-    if (!dialog.open) return;
+    if (!dialog.open || event.defaultPrevented || event.target?.closest?.('[role=tablist]')) return;
     if (event.ctrlKey || event.metaKey || event.altKey || event.target?.closest?.('input, textarea, select, [contenteditable="true"]')) return;
     const key = event.key.toLowerCase();
     if (['arrowleft', 'a', 'arrowright', 'd'].includes(key)) {
@@ -503,4 +510,5 @@
   if (window.ResizeObserver) new ResizeObserver(() => { if (dialog.open) resizeCanvas(); }).observe(canvas);
   else window.addEventListener('resize', () => { if (dialog.open) resizeCanvas(); });
   drawCover();
+  window.OCHI_ARCADE.register('leaf-keeper', { title: 'Leaf keeper', dialog, open: openGame, close: () => dialog.close() });
 })();

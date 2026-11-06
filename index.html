@@ -20,7 +20,9 @@
   <link rel="stylesheet" href="styles.css?v=4">
   <link rel="stylesheet" href="tree.css?v=4">
   <link rel="stylesheet" href="weather.css?v=2">
-  <link rel="stylesheet" href="game.css?v=2">
+  <link rel="stylesheet" href="game.css?v=3">
+  <link rel="stylesheet" href="arcade.css?v=1">
+  <link rel="stylesheet" href="basketball.css?v=1">
   <link rel="stylesheet" href="architecture.css?v=5">
   <link rel="stylesheet" href="experience.css?v=1">
   <link rel="stylesheet" href="education.css?v=1">
@@ -30,12 +32,15 @@
   <script src="tree.js?v=3" defer></script>
   <script src="weather.js?v=1" defer></script>
   <script src="game-config.js?v=1" defer></script>
-  <script src="game.js?v=2" defer></script>
+  <script src="arcade.js?v=1" defer></script>
+  <script src="game.js?v=3" defer></script>
+  <script src="basketball-physics.js?v=1" defer></script>
+  <script src="basketball.js?v=1" defer></script>
   <script src="app.js?v=5" defer></script>
   <script src="architecture-stories.js?v=3" defer></script>
   <script src="architecture.js?v=8" defer></script>
   <script src="book-stories.js?v=5" defer></script>
-  <script src="book-reader.js?v=4" defer></script>
+  <script src="book-reader.js?v=5" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -159,7 +164,7 @@
       </section>
     </section>
 
-    <section class="hobbies-section section-space" id="hobbies" aria-labelledby="hobbies-title"><div class="page-width"><div class="section-marker">Hobbies</div><div class="section-heading"><div><h2 id="hobbies-title">Life has side quests.</h2><p>Some things I do when I'm not writing code.</p></div><span class="hobby-note">A small corner of the internet that feels like me.</span></div><div class="hobbies-grid"><div class="reading-nook"><div class="hobby-label">Between the pages</div><h3>“Just one more chapter.”</h3><p>I love books enough to build an app around them. Bookworm started where a lot of my side projects do: something I wanted to use myself.</p><button class="text-link" type="button" data-project="bookworm" aria-haspopup="dialog">Meet Bookworm <span aria-hidden="true">↗</span></button><div class="little-library" aria-hidden="true"><span class="little-book">A good story</span><span class="little-book">Something to learn</span><span class="little-book">One more chapter</span><span class="library-plant"><i></i><i></i><i></i></span></div></div><div class="gaming-corner"><div id="game-cartridge"></div><div class="gaming-copy"><h3>One more round.</h3><p>GTA, WoW, Dota, League, Counter-Strike, and hundreds of other worlds. Horror games, too. I just scream and react a lot.</p><p class="game-invitation">This cartridge holds a little game of its own. Give it a play.</p></div></div></div>
+    <section class="hobbies-section section-space" id="hobbies" aria-labelledby="hobbies-title"><div class="page-width"><div class="section-marker">Hobbies</div><div class="section-heading"><div><h2 id="hobbies-title">Life has side quests.</h2><p>Some things I do when I'm not writing code.</p></div><span class="hobby-note">A small corner of the internet that feels like me.</span></div><div class="hobbies-grid"><div class="reading-nook"><div class="hobby-label">Between the pages</div><h3>“Just one more chapter.”</h3><p>I love books enough to build an app around them. Bookworm started where a lot of my side projects do: something I wanted to use myself.</p><button class="text-link" type="button" data-project="bookworm" aria-haspopup="dialog">Meet Bookworm <span aria-hidden="true">↗</span></button><div class="little-library" aria-hidden="true"><span class="little-book">A good story</span><span class="little-book">Something to learn</span><span class="little-book">One more chapter</span><span class="library-plant"><i></i><i></i><i></i></span></div></div><div class="gaming-corner"><div id="game-cartridge"></div><div class="gaming-copy"><h3>One more round.</h3><p>GTA, WoW, Dota, League, Counter-Strike, and hundreds of other worlds. Horror games, too. I just scream and react a lot.</p><p class="game-invitation">Two little games, one cartridge shelf. Catch a few leaves, or take ten shots at the hoop.</p></div></div></div>
       <div class="hobby-pursuits">
         <article class="hobby-pursuit" aria-labelledby="hobby-food-title">
           <div class="pursuit-art" aria-hidden="true"><div class="pursuit-object pursuit-meal"><span class="meal-fork"><i></i><i></i><i></i></span><span class="meal-plate"><i class="meal-greens"></i><i class="meal-greens"></i><i class="meal-greens"></i><i class="meal-bite"></i><i class="meal-bite"></i><i class="meal-bite"></i></span><span class="meal-knife"></span></div></div>
@@ -171,7 +176,7 @@
         </article>
         <article class="hobby-pursuit" aria-labelledby="hobby-basketball-title">
           <div class="pursuit-art" aria-hidden="true"><div class="pursuit-object pursuit-basketball"><span class="court-mark"></span><span class="basketball-object"><i></i><i></i></span></div></div>
-          <div class="pursuit-copy"><h3 id="hobby-basketball-title">See you on the court.</h3><p>I love playing basketball. A good game is one of my favorite ways to step away from the screen.</p></div>
+          <div class="pursuit-copy"><h3 id="hobby-basketball-title">See you on the court.</h3><p>I love playing basketball. A good game is one of my favorite ways to step away from the screen.</p><button class="text-link arcade-basketball-link" type="button" data-arcade-open="basketball" aria-haspopup="dialog">Take a shot <span aria-hidden="true">↗</span></button></div>
         </article>
       </div>
       <div class="off-screen"><span>And in between</span><p>Live music, good books, and the occasional rabbit hole about the markets.</p></div></div></section>

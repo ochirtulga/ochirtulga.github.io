@@ -6,13 +6,15 @@ Live at [ochirtulga.github.io](https://ochirtulga.github.io/).
 
 ## The site
 
-A buildless static website with direct About, Work, Education, and Hobbies navigation; three books with clickable contents and thirteen story chapters; six selectable engineering stories with 28 diagram chapters; a seasonal tree with leaf stories; and an original playable game cartridge.
+A buildless static website with direct About, Work, Education, and Hobbies navigation; three books with clickable contents and thirteen story chapters; six selectable engineering stories with 28 diagram chapters; a seasonal tree with leaf stories; and a tabbed arcade with two original playable games.
 
 - `index.html`, `styles.css`, `app.js`: content, layout, general navigation, and footer.
 - `book-stories.js`, `book-reader.js`, `book-reader.css`: the three volumes, contents, narrative chapters, pagination, and media actions.
 - `tree.css`, `tree.js`: the seasonal SVG tree and interactive stories.
 - `weather.css`, `weather.js`: seasonal weather behind the tree, with pause and reduced-motion support.
-- `game.css`, `game.js`: the Leaf keeper cartridge, game, and end-of-round leaderboard.
+- `arcade.css`, `arcade.js`: the Leaf keeper/Basketball tabs, cartridge panels, game switching, and focus handoff.
+- `game.css`, `game.js`: Leaf keeper and its shared end-of-round leaderboard.
+- `basketball.css`, `basketball.js`, `basketball-physics.js`: the perspective basketball court, shot controls, ten-shot rounds, and local personal best.
 - `game-config.js`: the public leaderboard API address; contains no secrets.
 - `architecture.css`, `architecture.js`: the desktop story index, mobile picker, directional diagrams, chapter progress, result shortcut, and automatic/manual playback.
 - `architecture-stories.js`: five additional problem-solving stories, including the six-step AI evaluation workflow.
@@ -50,6 +52,14 @@ The tree caption and 44px next-story button share one left-aligned strip. One co
 ## Portfolio navigation
 
 The **Portfolios** header menu identifies this site as **The garden**. The second portfolio is marked **Coming soon** while it is being planned. When it is built, replace that disabled entry with its URL and add a link back to this site in the second portfolio.
+
+## After-hours arcade
+
+The game cartridge has **Leaf keeper** and **Basketball** tabs, with the same switcher inside each game window. The tablists support pointer, Arrow keys, Home, and End. Switching closes and stops the old game before opening the next; pending Leaf keeper session starts cannot revive a closed game, and completed score saves can finish safely. The basketball hobby's **Take a shot** button opens the court directly. The Leaf keeper book action selects the right cartridge before handing over focus.
+
+Basketball gives you ten shots at a distant hoop. Drag upward from the ball at the bottom, then release: sideways distance sets aim and upward distance sets power. The ball follows a projected arc and shrinks with distance; a dotted guide, power meter, and directional feedback help with the next shot. Keyboard controls are left/right for aim, up/down for power, and Space/Enter to shoot; the Shoot button also works. Pause, New round, and close are always available. The game pauses when the window loses focus or becomes hidden, and renders frames only during an active shot. Its personal best is saved on this device; Leaf keeper retains its separate shared leaderboard.
+
+The UI fits phone and landscape layouts. Physics is deterministic and scores the descending rim crossing, rather than using random outcomes. All game art is drawn locally on canvas.
 
 ## Shared mini-game leaderboard
 

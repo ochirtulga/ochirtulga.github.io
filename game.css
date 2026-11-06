@@ -71,3 +71,46 @@
 .gk-dialog .gk-board-retry:hover { background: #dce7d1; }
 .gk-dialog .gk-board-retry:disabled { opacity: .55; cursor: default; }
 .gk-dialog [hidden] { display: none !important; }
+
+/* The switcher stays available while finished-round results are browsed. */
+.gk-dialog.arcade-dialog { width: min(600px, calc(100vw - 20px)); height: min(780px, calc(100dvh - 20px)); max-height: calc(100dvh - 20px); padding: 20px; overflow: hidden; }
+.gk-dialog.arcade-dialog[open] { display: flex; flex-direction: column; }
+.gk-dialog.arcade-dialog .gk-dialog-heading { flex: 0 0 auto; }
+.gk-dialog.arcade-dialog .arcade-game-panel { flex: 1 1 0; overflow-y: auto; overscroll-behavior: contain; padding: 2px 3px 4px; }
+.gk-dialog.arcade-dialog .gk-instructions { margin: 4px 0 12px !important; }
+.gk-dialog.arcade-dialog .gk-player { display: grid; grid-template-columns: auto minmax(0,1fr); align-items: center; gap: 7px 11px; margin: 10px 0 14px; }
+.gk-dialog.arcade-dialog .gk-player[hidden] { display: none; }
+.gk-dialog.arcade-dialog .gk-player label { display: block; margin: 0; }
+.gk-dialog.arcade-dialog .gk-player label span { display: block; }
+.gk-dialog.arcade-dialog .gk-player #gk-player-note { grid-column: 1 / -1; margin: 0; }
+.gk-dialog.arcade-dialog .gk-canvas { width: min(100%, 432px); margin-inline: auto; }
+.gk-dialog[data-state=ready] .gk-canvas, .gk-dialog[data-state=starting] .gk-canvas { width: min(100%, 192px); }
+.gk-dialog[data-state=ready] .gk-game-status, .gk-dialog[data-state=starting] .gk-game-status, .gk-dialog[data-state=ready] .gk-movement, .gk-dialog[data-state=ready] .gk-pause { display: none; }
+.gk-dialog[data-state=ready] .gk-controls { justify-content: flex-end; }
+.gk-dialog.arcade-dialog .gk-message { min-height: 30px; margin-top: 11px !important; }
+@media (max-width: 380px), (max-height: 620px) {
+  .gk-dialog.arcade-dialog { padding: 14px; }
+  .gk-dialog.arcade-dialog .gk-dialog-kicker, .gk-dialog.arcade-dialog .gk-game-credit { display: none; }
+  .gk-dialog.arcade-dialog h2 { font-size: 27px !important; }
+  .gk-dialog.arcade-dialog .gk-controls { gap: 7px; }
+  .gk-dialog.arcade-dialog .gk-controls button { padding-inline: 9px; font-size: 11px; }
+  .gk-dialog.arcade-dialog .gk-movement, .gk-dialog.arcade-dialog .gk-round-controls { gap: 5px; }
+}
+.gk-dialog[data-state=playing] .gk-start, .gk-dialog[data-state=paused] .gk-start { display: none; }
+@media (max-height: 540px) and (max-width: 599px) {
+  .gk-dialog[data-state=ready] .gk-canvas, .gk-dialog[data-state=starting] .gk-canvas { display: none; }
+  .gk-dialog[data-state=playing] .gk-instructions, .gk-dialog[data-state=paused] .gk-instructions, .gk-dialog[data-state=playing] .gk-player-summary, .gk-dialog[data-state=paused] .gk-player-summary { display: none; }
+}
+@media (max-height: 500px) and (min-width: 600px) {
+  .gk-dialog.arcade-dialog:not([data-state=ended]) .arcade-game-panel { display: grid; grid-template-columns: minmax(0,1fr) 200px; grid-template-rows: auto auto auto auto minmax(0,1fr); align-content: start; gap: 6px 12px; }
+  .gk-dialog.arcade-dialog .gk-canvas { grid-column: 1; grid-row: 1/6; width: 100%; height: 100%; max-width: none; object-fit: contain; }
+  .gk-dialog.arcade-dialog .gk-instructions { grid-column: 2; grid-row: 1; margin: 0 !important; font-size: 10px !important; line-height: 1.4 !important; }
+  .gk-dialog.arcade-dialog .gk-player, .gk-dialog.arcade-dialog .gk-game-status { grid-column: 2; grid-row: 2; margin: 0; }
+  .gk-dialog.arcade-dialog .gk-player { gap: 5px 8px; }
+  .gk-dialog.arcade-dialog .gk-player label { font-size: 10px; }
+  .gk-dialog.arcade-dialog .gk-player label span { font-size: 9px; }
+  .gk-dialog.arcade-dialog .gk-player #gk-player-note { font-size: 9px; line-height: 1.4; }
+  .gk-dialog.arcade-dialog .gk-player-summary { grid-column: 2; grid-row: 5; margin: 0; font-size: 10px; }
+  .gk-dialog.arcade-dialog .gk-controls { grid-column: 2; grid-row: 3; margin: 0; }
+  .gk-dialog.arcade-dialog .gk-message { grid-column: 2; grid-row: 4; margin: 0 !important; min-height: 28px; font-size: 10px !important; line-height: 1.4 !important; }
+}
