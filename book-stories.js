@@ -149,6 +149,8 @@ window.OCHI_BOOKS = [
           { heading: 'Outcome', paragraphs: ['Search, case reporting, and community voting implemented across a web interface and an API. The source shows how the casebook is built.'] },
           { heading: 'Lesson', paragraphs: ['A search result is more useful when readers can inspect the report behind it and see community feedback in context.'] }
         ],
+        url: 'https://unveil-community-h9i66499j-ochirtulgas-projects.vercel.app/',
+        urlLabel: 'Visit Unveil (Vercel sign-in) ↗',
         sourceUrl: 'https://github.com/ochirtulga/unveil-frontend'
       },
       {
