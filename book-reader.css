@@ -95,3 +95,12 @@
 @media(prefers-reduced-motion:reduce) {
   #project-dialog.book-reader *, #project-dialog.book-reader *::before, #project-dialog.book-reader *::after { animation: none !important; transition: none !important; }
 }
+
+/* One direct starting point keeps the AI chapter discoverable across volumes. */
+.work-section .shelf-start { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; padding-bottom: 3px; }
+.work-section .shelf-featured-story { display: inline-flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 44px; margin: 0; padding: 8px 0; border: 0; border-bottom: 1px solid #839575; background: none; color: var(--green); text-align: left; font-size: 12px; }
+.work-section .shelf-start .shelf-instruction { margin: 0; }
+@media (max-width: 620px) {
+  .work-section .shelf-start { align-items: flex-start; margin-top: 23px; }
+  .work-section .shelf-featured-story { font-size: 12px; }
+}

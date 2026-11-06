@@ -6,7 +6,7 @@ Live at [ochirtulga.github.io](https://ochirtulga.github.io/).
 
 ## The site
 
-A buildless static website with direct About, Work, Education, and Hobbies navigation; three books with clickable contents and eleven story chapters; six selectable engineering stories with diagram chapters; a seasonal tree with leaf stories; and an original playable game cartridge.
+A buildless static website with direct About, Work, Education, and Hobbies navigation; three books with clickable contents and eleven story chapters; six selectable engineering stories with 28 diagram chapters; a seasonal tree with leaf stories; and an original playable game cartridge.
 
 - `index.html`, `styles.css`, `app.js`: content, layout, general navigation, and footer.
 - `book-stories.js`, `book-reader.js`, `book-reader.css`: the three volumes, contents, narrative chapters, pagination, and media actions.
@@ -15,7 +15,8 @@ A buildless static website with direct About, Work, Education, and Hobbies navig
 - `game.css`, `game.js`: the Leaf keeper cartridge, game, and end-of-round leaderboard.
 - `game-config.js`: the public leaderboard API address; contains no secrets.
 - `architecture.css`, `architecture.js`: the desktop story index, mobile picker, directional diagrams, chapter progress, result shortcut, and automatic/manual playback.
-- `architecture-stories.js`: five additional problem-solving stories, each with Situation, Challenge, Approach, and Result chapters.
+- `architecture-stories.js`: five additional problem-solving stories, including the six-step AI evaluation workflow.
+- `story-order.js`: shared relevance priority for the diagram story index and book chapters.
 - `experience.css`: the always-visible vertical career timeline with dates, roles, project/story links, and résumé download.
 - `education.css`, `flags/`: degree records, the country study journey, visible certification groups, and local flag SVGs with their MIT license.
 - `ink/`, `fonts/`: original pen-outline SVGs and the self-hosted Kalam handwriting font with its SIL Open Font License.
@@ -40,9 +41,11 @@ GitHub Pages serves the `main` branch from the repository root. Commit and push 
 
 Replace `portrait-lights.jpeg` and push. The About portrait uses `object-fit: cover`; adjust `.portrait img`'s `object-position` in `styles.css` if the new crop needs changing. Update the intrinsic dimensions in `index.html` for a replacement image.
 
-The caption sits inside the bottom border of the photo frame. The tree opens in the current calendar season on every page load, using the visitor’s local month and Northern Hemisphere seasons. Manual season choices apply during the visit; **Use today's season** returns to the calendar.
+The caption sits inside the bottom border of the photo frame. The tree opens in the current calendar season on every page load, using the visitor’s local month and Northern Hemisphere seasons. Manual season choices apply during the visit; The calendar **Today** control returns to the calendar.
 
-Seasonal weather sits behind the tree: spring rain/clouds, summer sunshine, autumn wind/leaves, and winter snow. **Pause weather** keeps motion paused across season switches. Animations also pause offscreen and in hidden tabs. Reduced-motion preferences show a static scene with no motion control. Weather is decorative and uses no location or weather service.
+Seasonal weather sits behind the tree: spring rain/clouds, summer sunshine, autumn wind/leaves, and winter snow. The weather pause control keeps motion paused across season switches. Animations also pause offscreen and in hidden tabs. Reduced-motion preferences show a static scene with no motion control. Weather is decorative and uses no location or weather service.
+
+The tree caption and 44px next-story button share one left-aligned strip. One compact toolbar groups the four seasons, the calendar Today control, and a weather pause/play icon. Utility controls keep accessible names and native tooltips; on phones the calendar is an icon. All controls have 44px touch targets.
 
 ## Portfolio navigation
 
@@ -60,7 +63,7 @@ The education section shows full degree levels, subjects, institutions, country 
 
 ## Three books
 
-**Professional career** links six strengths—system design, problem solving, trade-offs/tools, automation, learning quickly, and ownership—to six real stories. It includes the owner's data-retention setback and the lesson of designing retention and backups with stakeholder needs. The roughly one-week main-table need is contextual to that experience. **Hobby projects** contains Bookworm, the garden, and Leaf keeper. **Freelance & temporary work** contains Express Window and Stellar AI.
+**Professional career** links six strengths—system design, problem solving, trade-offs/tools, automation, learning quickly, and ownership—to six real stories. It includes the owner's data-retention setback and the lesson of designing retention and backups with stakeholder needs. The roughly one-week main-table need is contextual to that experience. **Hobby projects** contains Leaf keeper, Bookworm, and the garden. **Freelance & temporary work** contains Stellar AI, then Express Window.
 
 The native reader has clickable contents, chapter headings, previous/next navigation, and page counts. Desktop shows contents beside the reading page; mobile switches between them. Chapters use Situation, Decisions, Outcome, and Lesson. Media pauses on chapter changes, contents navigation, and close. Bookworm's sample-data walkthrough and Express Window's website action are preserved. Architecture links close the reader, select the appropriate diagram story, and hand over keyboard focus. Escape/close returns focus to the opener.
 
@@ -72,7 +75,11 @@ The native reader has clickable contents, chapter headings, previous/next naviga
 
 The notification story has six chapters: Before, Challenges, Events, Routing, Delivery, and Result. It starts with RabbitMQ, a .NET monolith, and a shared database server. In the new architecture, a core transaction microservice produces records into a Kafka notification topic. Notification processing microservices consume this topic and publish category topics. Channel services consume their own topics with priority handling, send notifications, and record delivery success/failure in Cassandra. The repeated path represents each category/channel without inventing a count or channel names. The downtime figures are SLA guarantees, not measured outage totals.
 
-Five more stories draw on the original résumé: behavioral loan scoring (approval time from 3 days to 3 hours), asynchronous order history (50% lower API response time), pipeline setup (roughly 3–4 errors per 10 runs to 1), the distributed data platform (approximately 50% lower licensing costs), and AI engineering tasks with objective automated verification. Each follows Situation, Challenge, Approach, and Result. Component diagrams avoid implying an undocumented deployment topology.
+Five more stories draw on the original résumé: behavioral loan scoring (approval time from 3 days to 3 hours), asynchronous order history (50% lower API response time), pipeline setup (roughly 3–4 errors per 10 runs to 1), the distributed data platform (approximately 50% lower licensing costs), and coding-agent evaluation built around real open-source PRs. The four non-AI stories follow Situation, Challenge, Approach, and Result. AI verification uses six chapters: Study, Tests, Brief, Hints, Runs, and Review. Component diagrams avoid implying an undocumented deployment topology.
+
+The owner's expanded AI story starts with learning the codebase and PR, writing tests for a correct implementation, and preparing agent instructions. Tests run before and after implementation. Agents unable to complete the task without hints retry with guidance about pitfalls and the solution approach, without direct answers. Ten coding agents attempt the work; every output is reviewed, with feedback on failures and strengths. No success-rate improvement or parallel-execution claim is made.
+
+`story-order.js` defines the relevance order: AI verification, notifications, order history, data platform, loan scoring, pipeline setup, data retention, Express Window, Leaf keeper, Bookworm, then the garden. Diagram lists and the initial selection follow it, as do book contents, pagination, and strength links within each volume. The three book themes retain their order; **Start with AI verification** opens the canonical AI chapter directly. The work timeline remains chronological. Tree story cycling starts with an AI note, retaining the nine original leaf positions and touch targets.
 
 The desktop index shows all six stories and their organizations; smaller screens use a native picker. Numbered chapters show progress, **See the result** opens the final chapter, and directional arrows follow the diagram flow horizontally on desktop and vertically on phones. Component layouts avoid implying an undocumented order.
 

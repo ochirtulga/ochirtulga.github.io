@@ -8,14 +8,15 @@
 .season-tree .weather-wind { fill: none; stroke: #b19b77; stroke-width: 1.2; stroke-linecap: round; opacity: .5; animation: garden-wind 7s ease-in-out infinite; animation-delay: var(--weather-delay, 0s); }
 .season-tree .weather-leaf { opacity: .65; animation: garden-autumn-drift var(--weather-duration, 8s) ease-in-out infinite; animation-delay: var(--weather-delay, 0s); }
 .season-tree .weather-flake { opacity: .8; animation: garden-snowfall var(--weather-duration, 10s) linear infinite; animation-delay: var(--weather-delay, 0s); }
-.garden-season-options { display: flex; flex-basis: 100%; align-items: center; justify-content: center; gap: 12px; margin-top: 4px; }
-.garden-season-options .season-auto { flex-basis: auto; margin-top: 0; }
+.garden-season-options { display: flex; flex: 0 0 auto; align-items: center; justify-content: center; gap: 5px; margin: 0; }
+.garden-season-options .season-auto { flex-basis: auto; margin: 0; }
 .garden-weather-controls { display: flex; justify-content: center; }
 .garden-weather-controls[hidden] { display: none !important; }
-.weather-toggle { display: inline-flex; align-items: center; gap: 7px; min-height: 38px; padding: 7px 9px; border: 0; border-radius: 3px; background: none; color: var(--muted); font: inherit; font-size: 10px; line-height: 1.5; cursor: pointer; }
+.weather-toggle { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; min-height: 44px; padding: 0; border: 1px solid transparent; border-radius: 5px; background: none; color: var(--muted); font: inherit; line-height: 1; cursor: pointer; }
 .weather-toggle:hover { color: var(--green); background: #e9efdf; }
 .weather-toggle:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
-.weather-toggle-icon { font-size: 9px; width: 9px; text-align: center; }
+.weather-toggle-icon { font-size: 17px; width: 18px; text-align: center; }
+.weather-toggle-label { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
 @keyframes garden-cloud-drift { 0%, 100% { transform: translateX(-5px); } 50% { transform: translateX(7px); } }
 @keyframes garden-rain { 0% { transform: translate(4px, -26px); opacity: 0; } 18% { opacity: .52; } 80% { opacity: .52; } 100% { transform: translate(-12px, 32px); opacity: 0; } }
 @keyframes garden-sun-turn { to { transform: rotate(360deg); } }

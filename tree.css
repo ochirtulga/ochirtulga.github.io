@@ -135,3 +135,27 @@
     animation: none !important;
   }
 }
+
+/* Read one story, then adjust the garden in a single quiet toolbar. */
+.garden-story-strip { display: flex; align-items: center; gap: 18px; width: min(100%, 510px); min-height: 82px; margin: -5px auto 0; padding: 14px 4px 16px; }
+.garden-story-strip .leaf-story { flex: 1; min-width: 0; max-width: none; min-height: 0; margin: 0; padding: 0; text-align: left; font-size: 12px; line-height: 1.75; color: var(--muted); }
+.garden-story-strip .leaf-story-next { display: inline-flex; flex: 0 0 44px; align-items: center; justify-content: center; width: 44px; height: 44px; min-height: 44px; margin: 0; padding: 0; border: 1px solid #bdcbb2; border-radius: 50%; background: transparent; color: #476541; font-size: 23px; line-height: 1; }
+.garden-story-strip .leaf-story-next:hover { background: #e7eddf; border-color: #899d7a; }
+.garden-story-strip .leaf-story-next:focus-visible { outline: 2px solid #476541; outline-offset: 4px; }
+.garden-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: min(100%, 510px); margin: 0 auto; padding-top: 10px; border-top: 1px solid #cbd6c2; }
+.garden-toolbar .season-picker { display: grid; grid-template-columns: repeat(4, minmax(44px, 1fr)); gap: 3px; flex: 1; max-width: 310px; min-width: 0; }
+.garden-toolbar .season-button { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; margin: 0; padding: 8px; border: 1px solid transparent; border-radius: 5px; font-size: 11px; line-height: 1.4; white-space: nowrap; }
+.garden-toolbar .season-button:hover { color: #365c3d; background: #e9efdf; }
+.garden-toolbar .season-button[aria-pressed="true"] { color: #365c3d; border-color: #aaba9d; background: #e7eddf; }
+.garden-toolbar .season-button:focus-visible { outline: 2px solid #476541; outline-offset: 3px; }
+.garden-toolbar .season-auto { display: inline-flex; flex: 0 0 auto; gap: 7px; min-width: 44px; padding: 8px 10px; text-decoration: none; }
+.garden-toolbar .season-calendar-icon { display: block; flex: 0 0 18px; }
+@media (max-width: 620px) {
+  .garden-story-strip { gap: 13px; min-height: 103px; padding: 12px 4px 15px; }
+  .garden-story-strip .leaf-story { font-size: 11px; line-height: 1.8; }
+  .garden-toolbar { gap: 6px; padding-top: 9px; }
+  .garden-toolbar .season-picker { gap: 0; }
+  .garden-toolbar .season-button { font-size: 10px; padding: 7px 3px; }
+  .garden-toolbar .season-auto { width: 44px; padding: 7px; }
+  .garden-toolbar .season-auto-label { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
+}

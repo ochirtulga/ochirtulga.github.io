@@ -1,6 +1,12 @@
 (() => {
   'use strict';
-  const books = Array.isArray(window.OCHI_BOOKS) ? window.OCHI_BOOKS : [];
+  const priority = new Map((window.OCHI_STORY_ORDER || []).map((id, index) => [id, index]));
+  const rank = id => priority.get(id) ?? Infinity;
+  const books = Array.isArray(window.OCHI_BOOKS) ? window.OCHI_BOOKS.map(book => ({
+    ...book,
+    chapters: [...book.chapters].sort((a, b) => rank(a.id) - rank(b.id)),
+    strengths: book.strengths ? [...book.strengths].sort((a, b) => rank(a.chapterId) - rank(b.chapterId)) : undefined
+  })) : [];
   const dialog = document.getElementById('project-dialog');
   if (!dialog || !books.length) return;
   const byId = id => document.getElementById(id);

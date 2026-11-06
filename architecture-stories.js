@@ -1,4 +1,5 @@
-/* Story facts: resume.pdf, pages 1–2. Diagrams simplify the documented work. */
+/* Story facts: resume.pdf, pages 1–2; AI evaluation workflow supplied by the owner.
+   Diagrams simplify the documented work. */
 window.OCHI_ARCHITECTURE_STORIES = [
   {
     id: 'loan-scoring',
@@ -226,57 +227,81 @@ window.OCHI_ARCHITECTURE_STORIES = [
   {
     id: 'ai-verification',
     name: 'AI verification',
-    title: 'Make engineering tasks verifiable.',
-    project: 'Stellar AI / Engineering tasks',
+    title: 'Put coding agents to the test.',
+    project: 'Stellar AI / Coding-agent evaluation',
     steps: [
       {
-        name: 'Situation',
-        title: 'Start with real engineering changes.',
-        summary: 'My work used pull requests from open-source Java and Python projects, including Checkstyle and Black.',
+        name: 'Study',
+        title: 'Understand the change before the task.',
+        summary: 'I first learned the open-source codebase and the pull request, including work in projects such as Checkstyle and Black.',
         nodes: [
-          { icon: 'document', label: 'Checkstyle', detail: 'Java project' },
-          { icon: 'document', label: 'Black', detail: 'Python project' },
-          { icon: 'document', label: 'Pull requests', detail: 'Real engineering changes' }
+          { icon: 'document', label: 'Codebase', detail: 'Learn the project' },
+          { icon: 'document', label: 'Pull request', detail: 'Understand the intended change', kind: 'highlight' },
+          { icon: 'check', label: 'Expected behavior', detail: 'Define a correct implementation' }
+        ],
+        diagramDescription: 'I learn the project codebase and pull request to understand what a correct implementation should do.',
+        note: 'Task design starts with understanding the code and the change.'
+      },
+      {
+        name: 'Tests',
+        title: 'Make correct behavior testable.',
+        summary: 'I created the tests a successful implementation needed to pass. Tests run before and after an agent’s changes to validate its implementation.',
+        nodes: [
+          { icon: 'check', label: 'Before tests', detail: 'Check the starting state' },
+          { icon: 'service', label: 'Implementation', detail: 'The agent’s code change' },
+          { icon: 'check', label: 'After tests', detail: 'Validate the implementation', kind: 'highlight' }
+        ],
+        diagramDescription: 'Tests are defined for successful PR implementation, then run before and after the agent changes the code.',
+        note: 'The implementation has an explicit, testable target.'
+      },
+      {
+        name: 'Brief',
+        title: 'Turn the PR into an agent task.',
+        summary: 'I wrote instructions for coding agents to implement the same pull request, paired with the tests that would validate their work.',
+        nodes: [
+          { icon: 'document', label: 'Agent instructions', detail: 'Explain the implementation task', kind: 'highlight' },
+          { icon: 'document', label: 'Original PR', detail: 'The change to implement' },
+          { icon: 'check', label: 'Validation tests', detail: 'Check the resulting behavior' }
         ],
         layout: 'components',
-        diagramDescription: 'Open-source pull requests from projects including Java-based Checkstyle and Python-based Black supplied engineering task material.',
-        note: 'Real project changes formed the starting material.'
+        diagramDescription: 'The task combines agent instructions, the change described by the original pull request, and validation tests.',
+        note: 'Clear instructions and checks belong to the same task.'
       },
       {
-        name: 'Challenge',
-        title: 'Define what a correct solution means.',
-        summary: 'I needed to turn code changes into structured engineering tasks with evaluation criteria that could be checked objectively.',
+        name: 'Hints',
+        title: 'Guide the reasoning when an agent gets stuck.',
+        summary: 'Agents unable to implement the PR without hints tried again with hints. I explained pitfalls and the solution approach without giving direct answers.',
         nodes: [
-          { icon: 'document', label: 'Structured task', detail: 'Define the engineering work', kind: 'highlight' },
-          { icon: 'check', label: 'Evaluation criteria', detail: 'Define objective pass/fail conditions', kind: 'highlight' }
+          { icon: 'service', label: 'First attempt', detail: 'Implement without hints' },
+          { icon: 'warning', label: 'Unable to implement?', detail: 'Only then retry with hints' },
+          { icon: 'document', label: 'Guided retry', detail: 'Pitfalls & approach, not answers', kind: 'highlight' }
         ],
-        layout: 'constraints',
-        diagramDescription: 'The work required structured engineering tasks and objective pass/fail evaluation criteria.',
-        note: 'Task definition and verification had to work together.'
+        diagramDescription: 'An agent first attempts the task without hints. If it cannot implement the PR, it retries with hints explaining pitfalls and the approach rather than direct answers.',
+        note: 'Hints support another attempt without supplying the implementation.'
       },
       {
-        name: 'Approach',
-        title: 'Pair each task with automated checks.',
-        summary: 'I reviewed pull requests, converted them into structured tasks, and authored automated verifiers and evaluation criteria.',
+        name: 'Runs',
+        title: 'Evaluate the work across ten agents.',
+        summary: 'Ten coding agents attempted the PR implementation. Before-and-after tests checked the work, with hinted retries for agents that could not implement it unaided.',
         nodes: [
-          { icon: 'document', label: 'Project pull request', detail: 'Review the code change' },
-          { icon: 'document', label: 'Structured task', detail: 'Define the engineering problem', kind: 'highlight' },
-          { icon: 'check', label: 'Automated verifier', detail: 'Check the solution', kind: 'highlight' }
+          { icon: 'document', label: 'Prepared task', detail: 'Instructions, tests & hints' },
+          { icon: 'cluster', label: '10 coding agents', detail: 'Attempt the PR implementation', kind: 'highlight' },
+          { icon: 'check', label: 'Run outputs', detail: 'Before / after test results' }
         ],
-        diagramDescription: 'Project pull requests are reviewed and converted into structured engineering tasks with automated verifiers.',
-        note: 'Verification is part of the task design.'
+        diagramDescription: 'Ten agents attempt the prepared PR implementation task. Tests run before and after implementation; agents unable to implement without hints retry with guidance.',
+        note: 'Test results and agent outputs provide the material for review.'
       },
       {
-        name: 'Result',
-        title: 'A result that can be checked.',
-        summary: 'The tasks have automated verifiers and objective evaluation criteria, giving each solution explicit pass/fail conditions.',
+        name: 'Review',
+        title: 'Read every output. Explain the result.',
+        summary: 'After all runs, I reviewed every output and gave feedback on what agents missed in failed attempts and what they did well.',
         nodes: [
-          { icon: 'document', label: 'Task solution', detail: 'The work being evaluated' },
-          { icon: 'check', label: 'Automated verifier', detail: 'Apply evaluation criteria' },
-          { icon: 'check', label: 'Pass / fail', detail: 'Objective conditions', kind: 'highlight' }
+          { icon: 'document', label: 'All run outputs', detail: 'Review every attempt' },
+          { icon: 'check', label: 'Human review', detail: 'Missed details & good decisions', kind: 'highlight' },
+          { icon: 'document', label: 'Feedback', detail: 'Explain failures and strengths' }
         ],
-        diagramDescription: 'Automated verifiers evaluate task solutions using objective pass/fail conditions.',
-        note: 'Objective pass/fail checks'
+        diagramDescription: 'After all agent runs, I review every output and provide feedback covering what failed attempts missed and what agents did well.',
+        fact: { label: 'Coding agents evaluated in the workflow', value: '10 agents, with every output reviewed' }
       }
     ]
   }

@@ -171,7 +171,7 @@ window.OCHI_BOOKS = [
     id: 'independent',
     title: 'Freelance & temporary work',
     subtitle: 'Practical work. Real responsibilities.',
-    intro: 'Focused work across business tools and AI engineering tasks: the public website and internal tools for Express Window, and structured, verifiable coding tasks at Stellar AI.',
+    intro: 'Focused work across coding-agent evaluation and business tools: testable PR implementation tasks and reviewed agent runs at Stellar AI, and the public website and internal tools for Express Window.',
     theme: 'sage',
     chapters: [
       {
@@ -191,18 +191,18 @@ window.OCHI_BOOKS = [
       },
       {
         id: 'ai-verification',
-        title: 'Make engineering tasks verifiable.',
-        context: 'Stellar AI / Engineering tasks',
+        title: 'Put coding agents to the test.',
+        context: 'Stellar AI / Coding-agent evaluation',
         kind: 'learning',
-        summary: 'Turning real Java and Python changes into structured tasks with objective checks for a solution.',
-        skills: ['Learning quickly', 'Automation', 'Verification'],
+        summary: 'Turning real open-source pull requests into tested coding-agent tasks, then reviewing the work across ten agents.',
+        skills: ['Codebase learning', 'Test design', 'Agent instructions', 'Evaluation & feedback'],
         sections: [
-          { heading: 'Situation', paragraphs: ['The work used real pull requests from open-source Java and Python projects, including Checkstyle and Black. Code changes needed to become structured engineering tasks.'] },
-          { heading: 'Decisions', paragraphs: ['I reviewed pull requests, converted them into tasks, and authored automated verifiers with objective evaluation criteria.'] },
-          { heading: 'Outcome', paragraphs: ['Solutions could be evaluated against explicit pass/fail conditions defined by those verifiers.'] },
-          { heading: 'Lesson', paragraphs: ['Understanding a problem includes defining what a correct solution looks like. Checkable criteria give the work a clear target.'] }
+          { heading: 'Situation', paragraphs: ['The work started with real pull requests in open-source projects such as Checkstyle and Black. I first became familiar with the codebase and the PR so I understood the change an agent would need to implement.'] },
+          { heading: 'Decisions', paragraphs: ['I created the tests a successful implementation needed to pass, then wrote instructions for agents to implement the same PR. Tests ran before and after their changes to validate whether the implementation was correct.', 'I also prepared hints explaining pitfalls and the approach to the solution, without giving direct answers. Agents that could not implement the PR without hints tried again with those hints.'] },
+          { heading: 'Outcome', paragraphs: ['Ten coding agents attempted the PR implementation. After all runs, I checked every output and gave feedback on what agents missed in failed attempts and what they did well.'] },
+          { heading: 'Lesson', paragraphs: ['Evaluating an agent takes more than a pass/fail result. It also takes a well-understood task, useful tests, guidance that supports reasoning, and a review of the decisions behind each attempt.'] }
         ],
-        outcome: { label: 'Evaluation', value: 'Objective pass/fail checks' },
+        outcome: { label: 'Evaluation workflow', value: '10 agents, with every output reviewed' },
         architectureStory: 'ai-verification'
       }
     ]

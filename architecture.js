@@ -112,6 +112,8 @@
       stories.push({ id, name: value.name, title: value.title, project: value.project, steps: normalized });
     });
   }
+  const priority = new Map((window.OCHI_STORY_ORDER || []).map((id, index) => [id, index]));
+  stories.sort((a, b) => (priority.get(a.id) ?? Infinity) - (priority.get(b.id) ?? Infinity));
   let story = stories[0];
   let steps = story.steps;
   const motion = window.matchMedia('(prefers-reduced-motion: reduce)');

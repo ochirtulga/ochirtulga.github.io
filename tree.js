@@ -125,15 +125,15 @@
   svg.append(fallen);
 
   const stories = [
-    { x: 145, y: 211, angle: -38, name: 'Mongolia', text: 'From Mongolia. The roots of my story, and the place I still call home.' },
-    { x: 204, y: 138, angle: -22, name: 'Java', text: 'Java is one of my everyday tools, from banking services to life-sciences software.' },
-    { x: 281, y: 79, angle: 17, name: 'Reading', text: 'A good reading habit became Bookworm: my own reading companion for iOS.' },
+    { x: 204, y: 138, angle: -22, name: 'AI verification', text: 'I tested ten coding agents on real Java and Python PRs, with hints for retries and feedback on their work.' },
     { x: 371, y: 125, angle: 28, name: 'Kafka', text: 'Kafka helps the systems I build keep information moving, one event at a time.' },
-    { x: 447, y: 203, angle: 38, name: 'Video games', text: 'Off duty, you might find me exploring a different world in a video game.' },
-    { x: 441, y: 292, angle: 55, name: 'Austin', text: 'Based in Austin, Texas. A new place to build, explore, and find live music.' },
     { x: 348, y: 290, angle: 21, name: 'Cassandra', text: 'Data outlives code. Cassandra is one of the tools I use to build around that idea.' },
-    { x: 238, y: 304, angle: -34, name: 'Basketball', text: 'Away from the keyboard: basketball, live music, and usually another book.' },
-    { x: 172, y: 273, angle: -53, name: 'AWS', text: 'AWS is part of the infrastructure behind the systems and independent projects I build.' }
+    { x: 172, y: 273, angle: -53, name: 'AWS', text: 'AWS is part of the infrastructure behind the systems and independent projects I build.' },
+    { x: 145, y: 211, angle: -38, name: 'Mongolia', text: 'From Mongolia. The roots of my story, and the place I still call home.' },
+    { x: 441, y: 292, angle: 55, name: 'Austin', text: 'Based in Austin, Texas. A new place to build, explore, and find live music.' },
+    { x: 281, y: 79, angle: 17, name: 'Reading', text: 'A good reading habit became Bookworm: my own reading companion for iOS.' },
+    { x: 447, y: 203, angle: 38, name: 'Video games', text: 'Off duty, you might find me exploring a different world in a video game.' },
+    { x: 238, y: 304, angle: -34, name: 'Basketball', text: 'Away from the keyboard: basketball, live music, and usually another book.' }
   ];
   const interactive = make('g', { class: 'tree-stories' });
   const storyActions = [];
