@@ -1,0 +1,155 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1200" viewBox="0,0,1920,1200" fill="none">
+  <defs>
+    <linearGradient id="wall" x1="0" y1="90" x2="1710" y2="1020" gradientUnits="userSpaceOnUse"><stop stop-color="#233A36"/><stop offset=".52" stop-color="#30453D"/><stop offset="1" stop-color="#1D302C"/></linearGradient>
+    <linearGradient id="windowSky" x1="1465" y1="120" x2="1480" y2="760" gradientUnits="userSpaceOnUse"><stop stop-color="#263D4B"/><stop offset=".64" stop-color="#6E7971"/><stop offset="1" stop-color="#A18D6A"/></linearGradient>
+    <linearGradient id="windowGlass" x1="1270" y1="160" x2="1720" y2="720" gradientUnits="userSpaceOnUse"><stop stop-color="#B9CFBA" stop-opacity=".16"/><stop offset=".45" stop-color="#DADBC0" stop-opacity=".02"/><stop offset="1" stop-color="#E9C88E" stop-opacity=".1"/></linearGradient>
+    <linearGradient id="timber" x1="1050" y1="780" x2="1050" y2="1010" gradientUnits="userSpaceOnUse"><stop stop-color="#6C4E38"/><stop offset=".12" stop-color="#543D2F"/><stop offset="1" stop-color="#3D3028"/></linearGradient>
+    <linearGradient id="floor" x1="1000" y1="875" x2="1150" y2="1200" gradientUnits="userSpaceOnUse"><stop stop-color="#493C31"/><stop offset="1" stop-color="#67503B"/></linearGradient>
+    <linearGradient id="counterTop" x1="1000" y1="760" x2="1440" y2="825" gradientUnits="userSpaceOnUse"><stop stop-color="#A0825A"/><stop offset=".55" stop-color="#7C6144"/><stop offset="1" stop-color="#B08E63"/></linearGradient>
+    <linearGradient id="brass" x1="0" y1="0" x2="0" y2="130"><stop stop-color="#7C6847"/><stop offset=".45" stop-color="#C0A06A"/><stop offset="1" stop-color="#6F5D40"/></linearGradient>
+    <linearGradient id="lampCone" x1="0" y1="0" x2="0" y2="590"><stop stop-color="#EFCB88" stop-opacity=".18"/><stop offset="1" stop-color="#EFCB88" stop-opacity="0"/></linearGradient>
+    <radialGradient id="lampGlow"><stop stop-color="#F4D69B" stop-opacity=".17"/><stop offset="1" stop-color="#E7C181" stop-opacity="0"/></radialGradient>
+    <radialGradient id="windowSpill" cx="0" cy="0" r="1" gradientTransform="translate(1435,816) rotate(90) scale(410,640)" gradientUnits="userSpaceOnUse"><stop stop-color="#D9BA7F" stop-opacity=".13"/><stop offset="1" stop-color="#C5B38B" stop-opacity="0"/></radialGradient>
+    <radialGradient id="vignette"><stop offset=".34" stop-color="#111F1D" stop-opacity="0"/><stop offset="1" stop-color="#0C1918" stop-opacity=".46"/></radialGradient>
+    <linearGradient id="plantLeaf" x1="1710" y1="600" x2="1840" y2="820" gradientUnits="userSpaceOnUse"><stop stop-color="#6F8659"/><stop offset="1" stop-color="#314B39"/></linearGradient>
+    <linearGradient id="pot" x1="1753" y1="815" x2="1838" y2="990" gradientUnits="userSpaceOnUse"><stop stop-color="#BA8A61"/><stop offset="1" stop-color="#73543D"/></linearGradient>
+    <clipPath id="windowClip"><path d="M1254,719V344C1254,210,1363,102,1497,102C1631,102,1740,210,1740,344V719Z"/></clipPath>
+    <filter id="streetBlur" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="5"/></filter>
+    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="15"/></filter>
+    <filter id="tableShadow" x="-30%" y="-50%" width="160%" height="200%"><feGaussianBlur stdDeviation="10"/></filter>
+  </defs>
+
+  <!-- Quiet painted plaster, with a deep walnut dado rail. -->
+  <path fill="url(#wall)" d="M0,0h1920v1200H0z"/>
+  <path fill="#192E2A" d="M0,813h1920v130H0z"/>
+  <path fill="#3B4A3D" d="M0,812h1920v9H0z"/>
+  <path fill="#172A26" d="M0,825h1920v5H0z"/>
+  <path fill="#35443A" d="M0,927h1920v8H0z"/>
+  <path d="M134,835v88M322,835v88M510,835v88M698,835v88M886,835v88M1074,835v88M1262,835v88M1450,835v88M1638,835v88M1826,835v88" stroke="#7B8264" stroke-opacity=".12" stroke-width="3"/>
+
+  <!-- Tall arched window: an indistinct evening street beyond the glass. -->
+  <path d="M1235,738V344C1235,199,1352,82,1497,82C1642,82,1759,199,1759,344V738Z" fill="#122B29" stroke="#667363" stroke-width="3"/>
+  <g clip-path="url(#windowClip)">
+    <path fill="url(#windowSky)" d="M1254,102h486v617h-486z"/>
+    <g filter="url(#streetBlur)">
+      <path fill="#334A4A" d="M1217,343h123v279h-123zM1361,413h120v214h-120zM1500,359h136v271h-136zM1656,299h127v332h-127z"/>
+      <path fill="#48544A" d="M1281,398h86v229h-86zM1434,440h114v187h-114zM1590,392h112v239h-112z"/>
+      <g fill="#D3B783" opacity=".56"><path d="M1269,398h11v27h-11zM1304,398h11v27h-11zM1377,448h12v25h-12zM1450,470h11v23h-11zM1550,410h12v25h-12zM1590,409h11v26h-11zM1691,354h13v29h-13zM1723,354h13v29h-13z"/></g>
+      <path d="M1199,624C1373,591,1565,599,1801,616V736H1199Z" fill="#233C3A"/>
+      <path d="M1227,668C1434,629,1631,643,1782,665" stroke="#9B936F" stroke-opacity=".43" stroke-width="4"/>
+      <path d="M1274,631v-88M1264,546h20M1700,624V496M1687,499h26" stroke="#1F3533" stroke-width="6"/>
+      <circle cx="1274" cy="547" r="19" fill="#E5C084" opacity=".18"/><circle cx="1274" cy="547" r="6" fill="#E8CA90"/>
+      <circle cx="1700" cy="501" r="25" fill="#F6D499" opacity=".18"/><circle cx="1700" cy="501" r="7" fill="#F3D295"/>
+      <g fill="#D9B77B"><circle cx="1343" cy="648" r="5"/><circle cx="1396" cy="656" r="3"/><circle cx="1596" cy="642" r="5"/><circle cx="1641" cy="654" r="3"/></g>
+      <path d="M1343,664v31M1596,657v45M1700,638v47" stroke="#D9B77B" stroke-opacity=".25" stroke-width="6"/>
+      <path d="M1281,633C1299,573,1270,520,1286,470M1294,588l-33-35M1284,528l30-26M1721,624c-27-56-15-116-29-169M1704,560l34-35M1701,522l-31-25" stroke="#213B33" stroke-width="12" stroke-linecap="round"/>
+      <g fill="#294538"><ellipse cx="1288" cy="480" rx="57" ry="45"/><ellipse cx="1257" cy="527" rx="53" ry="42"/><ellipse cx="1301" cy="555" rx="55" ry="44"/><ellipse cx="1700" cy="465" rx="60" ry="47"/><ellipse cx="1729" cy="513" rx="54" ry="49"/><ellipse cx="1686" cy="540" rx="53" ry="42"/></g>
+    </g>
+    <path fill="url(#windowGlass)" d="M1254,102h486v617h-486z"/>
+    <path d="M1278,350l112-177M1311,395l130-210M1568,620l139-221M1592,651l139-220" stroke="#E7E3C8" stroke-opacity=".045" stroke-width="20"/>
+    <path d="M1287,310l-2,31M1321,493l-2,45M1393,236l-2,29M1451,566l-3,41M1530,383l-2,35M1605,258l-2,39M1677,564l-2,45M1712,351l-2,23" stroke="#D8DDC7" stroke-opacity=".19" stroke-width="2" stroke-linecap="round"/>
+  </g>
+  <path d="M1254,719V344C1254,210,1363,102,1497,102C1631,102,1740,210,1740,344V719Z" stroke="#A18C67" stroke-width="6"/>
+  <path d="M1497,103v616M1257,361h480M1257,548h480" stroke="#2E4038" stroke-width="12"/>
+  <path d="M1494,110v603M1261,357h472M1261,544h472" stroke="#C1AD7D" stroke-opacity=".32" stroke-width="2"/>
+  <path fill="#776043" d="M1221,723h552v19h-552z"/>
+  <path fill="#453D2E" d="M1234,741h526v12h-526z"/>
+  <path fill="#B5A275" fill-opacity=".25" d="M1221,723h552v3h-552z"/>
+
+  <!-- A framed print and practical shelves mark the counter end of the room. -->
+  <path d="M929,325h167v206H929z" fill="#1D302B" stroke="#6D634B" stroke-width="8"/>
+  <path d="M944,340h137v176H944z" fill="#B6AF91"/>
+  <path d="M950,477c20-40,36-76,58-91,22,25,33,54,67,91v32H950z" fill="#69765A"/>
+  <path d="M950,488c27-21,51-15,73-4,19-23,36-28,52-28v53H950z" fill="#405C49"/>
+  <circle cx="1045" cy="370" r="13" fill="#DED0A5"/>
+  <path d="M1072,425h140v13h-140zM1090,434v13h104v-13" fill="#725A3E"/>
+  <path d="M1093,418v-40h12v40M1108,418v-54h13v54M1125,418v-47h15v47" stroke="#A8AD85" stroke-width="5"/>
+  <path d="M1096,378v40M1129,374v44" stroke="#D0C59D" stroke-width="2"/>
+  <path d="M1161,395h26v21c0,10-26,10-26,0z" fill="#D1CBB4"/>
+  <path d="M1188,400c15-2,14,17-1,15" stroke="#D1CBB4" stroke-width="5"/>
+  <path d="M1065,570h147v13h-147z" fill="#725A3E"/>
+  <path d="M1086,535h29l-4,27h-21z" fill="#A7AB8E"/><path d="M1098,537v-30M1098,517c-15,0-17-12-17-16,13,0,19,8,17,16M1098,524c14-4,17-14,15-18-12,1-16,11-15,18" fill="#6B8258" stroke="#6B8258" stroke-width="2"/>
+  <path d="M1140,543h24v19c0,9-24,9-24,0z" fill="#D2BE94"/><path d="M1164,548c13-2,13,13-1,13" stroke="#D2BE94" stroke-width="4"/>
+  <path d="M1172,546h24v16c0,9-24,9-24,0z" fill="#829A84"/>
+
+  <!-- Walnut coffee counter with an espresso machine and stacked cups. -->
+  <path d="M827,776h1093v194H827z" fill="url(#timber)"/>
+  <path d="M827,776h1093v18H827z" fill="#2E2C25"/>
+  <path d="M804,765h1116v22H804z" fill="url(#counterTop)"/>
+  <path d="M812,766h1108" stroke="#C4A474" stroke-opacity=".4" stroke-width="3"/>
+  <path d="M866,811h154v128H866zM1040,811h155v128h-155zM1215,811h156v128h-156zM1391,811h155v128h-155zM1566,811h155v128h-155zM1741,811h145v128h-145z" stroke="#96724D" stroke-opacity=".23" stroke-width="2"/>
+  <path d="M846,960h1074v13H846z" fill="#2F2B24"/>
+  <g>
+    <path d="M951,672c0-16,13-29,29-29h128c16,0,28,13,28,29v75H951z" fill="#343C37" stroke="#7E8B76" stroke-width="2"/>
+    <path d="M961,651h164v18H961z" fill="#B4B5A2"/>
+    <path d="M961,675h164v14H961z" fill="#566358"/>
+    <path d="M964,691h158v43H964z" fill="#23352E"/>
+    <path d="M953,736h184v11H953z" fill="#ABAC96"/>
+    <path d="M974,704h44M1054,704h44" stroke="#989F89" stroke-width="6" stroke-linecap="round"/>
+    <path d="M989,704v11M1069,704v11" stroke="#B2B7A1" stroke-width="4"/>
+    <path d="M979,716h20v14c0,7-20,7-20,0zM1059,716h20v14c0,7-20,7-20,0z" fill="#DED4B7"/>
+    <circle cx="985" cy="680" r="3" fill="#CFAC72"/><circle cx="1001" cy="680" r="3" fill="#81917A"/>
+    <circle cx="1081" cy="680" r="3" fill="#CFAC72"/><circle cx="1097" cy="680" r="3" fill="#81917A"/>
+    <path d="M971,646v-11h25v11M1005,646v-11h25v11M1039,646v-11h25v11" fill="#C8BDA1"/>
+    <path d="M1136,688l15,6v26" stroke="#A5AE97" stroke-width="5" stroke-linecap="round"/>
+    <path d="M1179,728h39v23h-39z" fill="#8B977D"/><path d="M1177,726h43v5h-43z" fill="#C3C7A8"/>
+    <path d="M1185,725v-18h27v18M1188,707v-17h22v17" stroke="#C8CCB1" stroke-width="3"/>
+    <ellipse cx="1291" cy="753" rx="37" ry="8" fill="#302E25" opacity=".55"/>
+    <path d="M1267,705h49v39c0,12-49,12-49,0z" fill="#A79C79"/><path d="M1268,707h47" stroke="#D0C1A0" stroke-width="3"/><path d="M1318,714c24-3,24,27-2,25" stroke="#A79C79" stroke-width="7"/>
+    <path d="M1274,751h40" stroke="#D3C4A0" stroke-opacity=".5" stroke-width="2"/>
+  </g>
+
+  <!-- Floor boards recede to the window, leaving room for the visitor's avatar. -->
+  <path d="M0,973h1920v227H0z" fill="url(#floor)"/>
+  <path d="M0,1012h1920M0,1065h1920M0,1131h1920" stroke="#322E27" stroke-opacity=".4" stroke-width="3"/>
+  <path d="M120,1200l607-227M490,1200l389-227M876,1200l171-227M1263,1200l-46-227M1649,1200l-263-227M1920,1130l-365-157" stroke="#2F2C25" stroke-opacity=".34" stroke-width="3"/>
+  <path d="M0,1016h1920M0,1069h1920M0,1135h1920" stroke="#AD8D5E" stroke-opacity=".06" stroke-width="2"/>
+  <ellipse cx="1460" cy="1068" rx="293" ry="55" fill="#10241F" opacity=".26" filter="url(#tableShadow)"/>
+  <path d="M0,0h1920v1200H0z" fill="url(#windowSpill)"/>
+
+  <!-- Pendants: a restrained pool of light, rather than glowing UI decoration. -->
+  <ellipse cx="681" cy="491" rx="385" ry="430" fill="url(#lampGlow)"/>
+  <ellipse cx="1810" cy="476" rx="340" ry="425" fill="url(#lampGlow)"/>
+  <path d="M678,0v139M1809,0v180" stroke="#182B27" stroke-width="5"/>
+  <path d="M678,139c-33,0-62,28-74,66h148c-12-38-41-66-74-66Z" fill="#52614A" stroke="#8F9471" stroke-width="2"/>
+  <ellipse cx="678" cy="204" rx="74" ry="11" fill="#C6AD79"/>
+  <ellipse cx="678" cy="207" rx="59" ry="5" fill="#EDD8AA"/>
+  <path d="M1809,180c-31,0-58,27-69,63h138c-11-36-38-63-69-63Z" fill="#59634B" stroke="#969B78" stroke-width="2"/>
+  <ellipse cx="1809" cy="242" rx="69" ry="10" fill="#C9B17E"/>
+  <ellipse cx="1809" cy="245" rx="54" ry="5" fill="#F0DDB0"/>
+  <path d="M635,212h86l152,442H483z" fill="url(#lampCone)"/><path d="M1771,251h76l104,393h-284z" fill="url(#lampCone)"/>
+
+  <!-- A tall indoor plant anchors the edge of the window. -->
+  <path d="M1783,867c-3-88-6-160-7-248M1780,831l-53-106M1780,782l61-91M1777,744l-48-99M1780,823l69-42" stroke="#7B8960" stroke-width="5" stroke-linecap="round"/>
+  <g fill="url(#plantLeaf)">
+    <path d="M1776,675c-42-21-57-71-47-101,37,6,57,54,47,101Z"/>
+    <path d="M1779,718c5-59,38-89,70-95,8,42-15,80-70,95Z"/>
+    <path d="M1759,736c-52-5-83-35-88-71,41-5,80,23,88,71Z"/>
+    <path d="M1783,781c17-48,57-67,91-58-8,37-48,61-91,58Z"/>
+    <path d="M1782,835c36-48,79-61,106-45-15,35-57,54-106,45Z"/>
+    <path d="M1756,805c-48,5-79-19-88-51,38-15,74,7,88,51Z"/>
+    <path d="M1776,642c-17-47-9-84,15-103,21,29,15,70-15,103Z"/>
+  </g>
+  <path d="M1736,858h92l-14,115c-3,18-60,18-64,0Z" fill="url(#pot)"/>
+  <ellipse cx="1782" cy="858" rx="46" ry="10" fill="#C49A71"/><ellipse cx="1782" cy="858" rx="38" ry="6" fill="#3D3D2D"/>
+  <path d="M1757,888h47M1759,896h45" stroke="#D3AE80" stroke-opacity=".17" stroke-width="2"/>
+
+  <!-- Small café table at the edge: cup, saucer, an open notebook. -->
+  <ellipse cx="1870" cy="1165" rx="199" ry="27" fill="#10241F" opacity=".32" filter="url(#tableShadow)"/>
+  <path d="M1847,1026l-27,158M1886,1025l33,159" stroke="#242F28" stroke-width="13" stroke-linecap="round"/>
+  <ellipse cx="1870" cy="1010" rx="183" ry="47" fill="#47372A"/>
+  <ellipse cx="1870" cy="1001" rx="183" ry="46" fill="#98764F"/>
+  <path d="M1701,1004c88,35,245,36,336-1" stroke="#C3A273" stroke-opacity=".25" stroke-width="2"/>
+  <path d="M1871,968l84,12-18,25-79-13-73,3-6-25,80-5z" fill="#D4C8A6"/>
+  <path d="M1859,969l-1,23M1797,976l47-2M1799,982l46-2M1877,976l57,9M1874,982l54,8" stroke="#8A896D" stroke-opacity=".55" stroke-width="2"/>
+  <ellipse cx="1772" cy="988" rx="45" ry="12" fill="#CBC9AF"/>
+  <ellipse cx="1772" cy="986" rx="35" ry="8" fill="#A8AC91"/>
+  <path d="M1745,948h52v30c0,17-52,17-52,0Z" fill="#DDD6BA"/>
+  <ellipse cx="1771" cy="948" rx="26" ry="9" fill="#E9DFC1"/><ellipse cx="1771" cy="949" rx="21" ry="6" fill="#62452F"/>
+  <path d="M1798,953c25-4,25,28-1,26" stroke="#D5CEB2" stroke-width="7"/>
+  <path d="M1765,948c6-5,7,3,12-2" stroke="#E6D1A2" stroke-width="2" stroke-linecap="round"/>
+  <path d="M1765,931c-13-14,13-21,1-37M1780,929c-8-10,10-16,2-27" stroke="#E6DEBF" stroke-opacity=".3" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Filmic edge falloff keeps the room atmospheric behind the interface. -->
+  <path fill="url(#vignette)" d="M0,0h1920v1200H0z"/>
+</svg>
