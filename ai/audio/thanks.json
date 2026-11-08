@@ -1,0 +1,48 @@
+{
+ "words": [
+  "You're",
+  "welcome.",
+  "Ask",
+  "me",
+  "anything",
+  "else",
+  "about",
+  "my",
+  "work",
+  "or",
+  "email",
+  "me."
+ ],
+ "wtimes": [
+  0,
+  200,
+  720,
+  800,
+  980,
+  1180,
+  1460,
+  1640,
+  1820,
+  2020,
+  2340,
+  2580
+ ],
+ "wdurations": [
+  200,
+  220,
+  80,
+  180,
+  200,
+  280,
+  180,
+  180,
+  200,
+  320,
+  240,
+  240
+ ],
+ "textHash": "ab87c271ffb59337294f62a86f5cc2b874a7291e1e7c3c638b9b30e09b330370",
+ "seed": 1,
+ "score": 1.0,
+ "narrate": "35c8fd2e1ca8c569bbc2ed34d53ff289b9936918760b07f72144a537dbd32e4f"
+}

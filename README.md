@@ -114,3 +114,13 @@ The section uses an engineering-notebook design with hand-drawn SVG outlines and
 The selected story advances every ten seconds while visible and loops within that story. Selecting another story starts at chapter 1 and pauses automatic playback. Manual chapter selection, hovering the chapter body, and keyboard focus also pause it for reading. Explicit Play resumes from the controls. Reduced-motion preferences start it paused. Simple chapters reserve reading space; the full notification diagram expands to keep its nodes and connections readable.
 
 Tree story leaves use subdued colors and soft idle halos, with stronger hover, focus, and selected states. Transparent touch targets are retained.
+
+
+## Secondary portfolio
+
+The avatar-based portfolio lives at [ochirtulga.github.io/ai/](https://ochirtulga.github.io/ai/).
+The garden's Portfolios menu opens it; its Classic portfolio link returns to the garden.
+The release uses the latest uploaded model, recorded voice, locally matched approved
+answers, expandable work stories, and accessible chat controls. The conversational
+local-model upgrade is being developed separately and is not part of this release.
+The secondary source is maintained on Omarchy in `/home/ochrono/Projects/portfolio/site`.
