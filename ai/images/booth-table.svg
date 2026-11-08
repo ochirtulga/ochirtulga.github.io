@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="380" viewBox="0,0,1000,380" fill="none">
+<defs>
+  <linearGradient id="wood" x1="500" y1="66" x2="500" y2="354" gradientUnits="userSpaceOnUse"><stop stop-color="#7B5C3E"/><stop offset=".08" stop-color="#AC8458"/><stop offset=".43" stop-color="#9B7048"/><stop offset="1" stop-color="#6E4D33"/></linearGradient>
+  <linearGradient id="edge" x1="500" y1="321" x2="500" y2="374" gradientUnits="userSpaceOnUse"><stop stop-color="#8B6543"/><stop offset=".18" stop-color="#674830"/><stop offset="1" stop-color="#33281F"/></linearGradient>
+  <radialGradient id="tableLight" cx=".35" cy=".1" r=".9"><stop stop-color="#F5D29A" stop-opacity=".15"/><stop offset="1" stop-color="#C5A277" stop-opacity="0"/></radialGradient>
+  <linearGradient id="cup" x1="174" y1="147" x2="276" y2="264" gradientUnits="userSpaceOnUse"><stop stop-color="#F0E8CE"/><stop offset=".48" stop-color="#D9D3B9"/><stop offset="1" stop-color="#A7AD94"/></linearGradient>
+  <linearGradient id="smallCup" x1="695" y1="56" x2="761" y2="139" gradientUnits="userSpaceOnUse"><stop stop-color="#A2B094"/><stop offset="1" stop-color="#546D55"/></linearGradient>
+  <linearGradient id="coffee" x1="200" y1="145" x2="232" y2="190" gradientUnits="userSpaceOnUse"><stop stop-color="#B78950"/><stop offset="1" stop-color="#6B482C"/></linearGradient>
+  <linearGradient id="bread" x1="786" y1="210" x2="832" y2="260" gradientUnits="userSpaceOnUse"><stop stop-color="#E3BC71"/><stop offset=".35" stop-color="#BD8748"/><stop offset="1" stop-color="#86552C"/></linearGradient>
+  <linearGradient id="paper" x1="460" y1="185" x2="500" y2="261" gradientUnits="userSpaceOnUse"><stop stop-color="#F3E9CD"/><stop offset="1" stop-color="#D8C9A6"/></linearGradient>
+  <filter id="softShadow" x="-40%" y="-80%" width="180%" height="260%"><feGaussianBlur stdDeviation="5"/></filter>
+  <filter id="cupShadow" x="-30%" y="-80%" width="160%" height="260%"><feGaussianBlur stdDeviation="3"/></filter>
+  <clipPath id="surface"><path d="M47,77Q55,69,69,69H931Q945,69,953,77L1025,314Q1040,339,1004,345H-4Q-40,339,-25,314Z"/></clipPath>
+</defs>
+<!-- A table seen from the visitor's seat, with a broad near edge. -->
+<path d="M44,88H955L1028,328Q1042,352,1002,363H-2Q-42,352,-28,328Z" fill="#0F1C16" opacity=".5" filter="url(#softShadow)"/>
+<path d="M-20,319H1020V349Q1006,369,979,371H21Q-6,369,-20,349Z" fill="url(#edge)"/>
+<path d="M47,77Q55,69,69,69H931Q945,69,953,77L1025,314Q1040,339,1004,345H-4Q-40,339,-25,314Z" fill="url(#wood)"/>
+<g clip-path="url(#surface)">
+  <path d="M289,69L179,347M537,69L556,347M742,69L901,347" stroke="#4F3827" stroke-opacity=".25" stroke-width="2"/>
+  <path d="M292,69L182,347M540,69L559,347M745,69L904,347" stroke="#D9B780" stroke-opacity=".12" stroke-width="2"/>
+  <path d="M108,137C173,116,226,148,279,131M44,206C114,169,188,200,231,188M-5,282C71,250,144,282,187,263M312,116C360,100,433,115,481,107M302,171C356,153,444,176,510,158M270,244C349,210,438,250,533,227M246,312C334,282,459,316,549,292M561,111C609,126,654,108,713,126M571,162C632,186,681,160,745,186M581,236C655,259,707,230,793,260M597,304C691,336,768,294,839,319M790,112C819,109,856,117,878,132M830,169C860,157,918,179,946,191M891,247C942,243,989,266,1034,278" stroke="#E5BC82" stroke-opacity=".13" stroke-width="2" stroke-linecap="round"/>
+  <path d="M100,158C161,151,219,174,258,155M284,276C358,249,453,284,541,262M577,207C642,221,695,201,775,223M837,292C888,270,961,300,1010,292" stroke="#4C3423" stroke-opacity=".15" stroke-width="1" stroke-linecap="round"/>
+  <path fill="url(#tableLight)" d="M0,65H1000V350H0Z"/>
+</g>
+<path d="M55,77H943M2,342H998" stroke="#E7C48F" stroke-opacity=".34" stroke-width="2"/>
+<path d="M0,350H1000" stroke="#261E17" stroke-opacity=".5" stroke-width="2"/>
+<g transform="translate(0,-10)">
+<!-- The opposite cup is smaller and farther from the viewer. -->
+<ellipse cx="724" cy="145" rx="65" ry="12" fill="#3D3426" opacity=".27" filter="url(#cupShadow)"/>
+<ellipse cx="723" cy="137" rx="62" ry="14" fill="#B8BDA2"/>
+<ellipse cx="723" cy="134" rx="48" ry="10" fill="#DFDCC2"/>
+<path d="M755,68C786,61,789,105,759,110" stroke="#657E63" stroke-width="12"/>
+<path d="M757,69C777,67,778,98,759,101" stroke="#ADB69A" stroke-width="4"/>
+<path d="M687,62H760L755,115C754,137,696,138,692,116Z" fill="url(#smallCup)"/>
+<path d="M696,76L698,113" stroke="#D4DBBA" stroke-opacity=".22" stroke-width="3" stroke-linecap="round"/>
+<ellipse cx="724" cy="62" rx="37" ry="12" fill="#BBC4A5"/>
+<ellipse cx="724" cy="63" rx="31" ry="9" fill="#57442E"/>
+<path d="M706,62C716,57,730,57,740,62C729,63,724,66,717,66" stroke="#BC9863" stroke-width="2" stroke-linecap="round"/>
+<path d="M718,44C708,31,732,24,720,9M735,42C729,33,743,25,738,16" stroke="#F1E7CB" stroke-opacity=".3" stroke-width="2" stroke-linecap="round"/>
+</g>
+<g transform="translate(0,-130)">
+<!-- An open notebook and a pencil: a quiet personal touch, no legible copy. -->
+<path d="M408,197L504,185L606,211L583,266L492,252L396,254Z" fill="#4B3826" opacity=".28" filter="url(#cupShadow)"/>
+<path d="M403,190L505,181L607,207L586,260L492,246L392,250Z" fill="#536B4B"/>
+<path d="M407,185L505,178L600,204L581,253L493,240L399,243Z" fill="url(#paper)"/>
+<path d="M505,178L493,240" stroke="#A49170" stroke-opacity=".7" stroke-width="2"/>
+<path d="M507,180L497,236" stroke="#FFF7DE" stroke-opacity=".8" stroke-width="2"/>
+<path d="M420,198L484,194M417,208L481,204M414,219L478,214M411,230L474,225M522,195L580,211M519,205L576,221M516,216L572,232M514,227L566,242" stroke="#9A987E" stroke-opacity=".35" stroke-width="1.3"/>
+<path d="M500,238L505,265L516,259L518,242" fill="#AB7251"/>
+<path d="M628,200L678,251" stroke="#382D22" stroke-opacity=".3" stroke-width="7" stroke-linecap="round"/>
+<path d="M624,197L674,248" stroke="#B4A373" stroke-width="6" stroke-linecap="round"/>
+<path d="M624,197L631,204" stroke="#4A5E4A" stroke-width="6"/>
+<path d="M674,248L679,255L670,251Z" fill="#E9D7AF"/><path d="M677,253L679,255L675,253" fill="#3A342A"/>
+<!-- A warm pastry at the viewer's right. -->
+<ellipse cx="819" cy="268" rx="99" ry="20" fill="#483A2B" opacity=".28" filter="url(#cupShadow)"/>
+<ellipse cx="815" cy="260" rx="96" ry="23" fill="#B2B7A0"/>
+<ellipse cx="815" cy="257" rx="84" ry="18" fill="#E0DDC6"/>
+<path d="M751,246C755,218,782,203,815,207C846,201,876,221,879,247C862,256,843,259,816,255C790,259,768,254,751,246Z" fill="url(#bread)"/>
+<path d="M753,245C766,243,775,246,782,252M775,216C767,229,773,242,784,253M795,208C785,225,790,244,802,255M817,208C806,224,810,244,822,256M839,210C828,226,832,245,843,254M858,221C849,234,852,246,861,251M878,246C868,242,865,245,862,252" stroke="#7B512C" stroke-opacity=".66" stroke-width="3" stroke-linecap="round"/>
+<path d="M779,218C790,207,808,205,820,211M827,214C841,210,852,219,857,229" stroke="#F1CD86" stroke-opacity=".75" stroke-width="3" stroke-linecap="round"/>
+<g fill="#B17F43"><ellipse cx="741" cy="262" rx="3" ry="1.5"/><ellipse cx="891" cy="258" rx="2" ry="1.3"/><ellipse cx="879" cy="274" rx="2.5" ry="1.3"/></g>
+<!-- The near coffee belongs to the viewer. -->
+<path d="M117,211L270,190L332,267L153,291Z" fill="#E3D9BC"/>
+<path d="M132,219L276,202M145,234L290,217M159,249L303,232" stroke="#C3B99A" stroke-opacity=".6" stroke-width="1.2"/>
+<ellipse cx="219" cy="263" rx="103" ry="23" fill="#49392A" opacity=".3" filter="url(#cupShadow)"/>
+<ellipse cx="215" cy="255" rx="101" ry="25" fill="#B8BCA3"/>
+<ellipse cx="215" cy="251" rx="88" ry="19" fill="#E7E3CB"/>
+<path d="M269,170C311,158,320,221,275,229" stroke="#B5BAA1" stroke-width="16"/>
+<path d="M274,171C302,168,305,211,278,215" stroke="#E5E1C7" stroke-width="5"/>
+<path d="M162,164H271L264,226C261,259,177,259,171,228Z" fill="url(#cup)"/>
+<path d="M178,182L183,223" stroke="#FFF8E3" stroke-opacity=".36" stroke-width="4" stroke-linecap="round"/>
+<ellipse cx="217" cy="164" rx="55" ry="18" fill="#EFE8CF"/>
+<ellipse cx="217" cy="165" rx="47" ry="13" fill="url(#coffee)"/>
+<path d="M217,174C211,170,195,167,197,161C199,155,209,157,217,162C224,155,236,156,238,161C240,168,223,172,217,174Z" fill="#EDDDAC"/>
+<path d="M216,171L226,160" stroke="#C9A56C" stroke-width="1.3" stroke-linecap="round"/>
+<path d="M203,140C183,119,221,106,205,84M231,140C218,124,243,111,234,94" stroke="#EEE5CC" stroke-opacity=".34" stroke-width="3" stroke-linecap="round"/>
+<path d="M302,246L338,261" stroke="#9B997F" stroke-width="4" stroke-linecap="round"/><ellipse cx="342" cy="263" rx="9" ry="4" transform="rotate(21,342,263)" fill="#C9C6A9"/>
+</g>
+</svg>
