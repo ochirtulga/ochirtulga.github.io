@@ -4,5 +4,5 @@
   <path d="M13 23h32v16a13 13 0 0 1-13 13h-6a13 13 0 0 1-13-13z" fill="#f7edcc"/>
   <ellipse cx="29" cy="24" rx="16" ry="5" fill="#c69658"/>
   <path d="M29 28c-2-4-9-5-9-1 0 4 9 7 9 7s9-3 9-7c0-4-7-3-9 1" fill="#f7edcc"/>
-  <path d="M12 55h37M24 15c-4-5 4-5 0-10M34 16c-4-5 4-5 0-10" fill="none" stroke="#e6cd96" stroke-width="3" stroke-linecap="round"/>
+  <path d="M9 55h40M24 15c-4-5 4-5 0-10M34 16c-4-5 4-5 0-10" fill="none" stroke="#e6cd96" stroke-width="3" stroke-linecap="round"/>
 </svg>

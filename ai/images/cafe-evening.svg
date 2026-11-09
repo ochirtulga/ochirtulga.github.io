@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1200" viewBox="0,0,1920,1200" fill="none">
+<svg id="cafe-still" xmlns="http://www.w3.org/2000/svg" width="1920" height="1200" viewBox="0,0,1920,1200" fill="none">
   <defs>
     <linearGradient id="wall" x1="0" y1="90" x2="1710" y2="1020" gradientUnits="userSpaceOnUse"><stop stop-color="#233A36"/><stop offset=".52" stop-color="#30453D"/><stop offset="1" stop-color="#1D302C"/></linearGradient>
     <linearGradient id="windowSky" x1="1465" y1="120" x2="1480" y2="760" gradientUnits="userSpaceOnUse"><stop stop-color="#263D4B"/><stop offset=".64" stop-color="#6E7971"/><stop offset="1" stop-color="#A18D6A"/></linearGradient>
@@ -18,6 +18,31 @@
     <filter id="soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="15"/></filter>
     <filter id="tableShadow" x="-30%" y="-50%" width="160%" height="200%"><feGaussianBlur stdDeviation="10"/></filter>
   </defs>
+  <style>
+    /* Small actions, long rests: the room stays secondary to the conversation. */
+    .cafe-motion { transform-box: view-box; }
+    .cafe-pour-motion { transform-origin: 1227px 708px; animation: cafePour 14s ease-in-out infinite; }
+    .cafe-pour-stream { opacity: 0; animation: cafePourStream 14s ease-in-out infinite; }
+    .cafe-drinking-arm { transform-origin: 292px 879px; animation: cafeSipArm 18s ease-in-out -5s infinite; }
+    .cafe-drinking-cup { transform-origin: 332px 891px; animation: cafeSipCup 18s ease-in-out -5s infinite; }
+    .cafe-pickup-arm { transform-origin: 811px 778px; animation: cafePickup 16s ease-in-out -3s infinite; }
+    .cafe-steam { opacity: 0; animation: cafeSteam 9s ease-out infinite; }
+    .cafe-steam-later { animation-delay: -4s; }
+    @keyframes cafePour { 0%,18%,52%,100% { transform: rotate(0deg); } 28%,41% { transform: rotate(-16deg); } }
+    @keyframes cafePourStream { 0%,26%,44%,100% { opacity: 0; } 30%,40% { opacity: .55; } }
+    @keyframes cafeSipArm { 0%,50%,82%,100% { transform: rotate(0deg); } 62%,72% { transform: rotate(-95deg); } }
+    @keyframes cafeSipCup { 0%,50%,82%,100% { transform: rotate(0deg); } 62%,72% { transform: rotate(83deg); } }
+    @keyframes cafePickup { 0%,62%,86%,100% { transform: rotate(0deg); } 71%,77% { transform: rotate(-12deg); } }
+    @keyframes cafeSteam { 0%,32% { opacity: 0; transform: translateY(4px); } 48% { opacity: .25; } 82%,100% { opacity: 0; transform: translateY(-13px); } }
+    /* #cafe-still is also an image-URL pause mode for the page's motion control. */
+    :root:target .cafe-motion { animation: none !important; }
+    :root:target .cafe-pour-stream, :root:target .cafe-steam { display: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .cafe-motion { animation: none !important; }
+      .cafe-pour-stream, .cafe-steam { display: none; }
+    }
+  </style>
+
 
   <!-- Quiet painted plaster, with a deep walnut dado rail. -->
   <path fill="url(#wall)" d="M0,0h1920v1200H0z"/>
@@ -72,6 +97,35 @@
   <path d="M1140,543h24v19c0,9-24,9-24,0z" fill="#D2BE94"/><path d="M1164,548c13-2,13,13-1,13" stroke="#D2BE94" stroke-width="4"/>
   <path d="M1172,546h24v16c0,9-24,9-24,0z" fill="#829A84"/>
 
+  <!-- Small everyday details belong to the same painted café, behind its counter. -->
+  <g id="cafe-menu" transform="translate(1090,196)">
+    <rect x="-4" y="-4" width="138" height="172" rx="3" fill="#594B37"/>
+    <rect width="130" height="164" rx="1" fill="#1B302A" stroke="#98835C" stroke-opacity=".55" stroke-width="2"/>
+    <path d="M13,38H117M14,135H116" stroke="#C5B48A" stroke-opacity=".3"/>
+    <g fill="#D3CFB4" font-family="Georgia,serif" text-anchor="middle"><text x="65" y="25" font-size="17" font-style="italic">Coffee &amp; company</text><text x="65" y="153" font-size="9" opacity=".7">Freshly brewed, all day</text></g>
+    <g fill="#C7CBB1" font-family="Georgia,serif" font-size="12"><text x="14" y="61">Coffee</text><text x="116" y="61" text-anchor="end">3.50</text><text x="14" y="88">Latte</text><text x="116" y="88" text-anchor="end">4.50</text><text x="14" y="115">Tea</text><text x="116" y="115" text-anchor="end">3.00</text></g>
+  </g>
+  <g id="cafe-barista">
+    <path d="M1150,767L1156,664Q1161,643,1188,642Q1214,644,1220,666L1230,767Z" fill="#596655"/>
+    <path d="M1176,631V651Q1188,662,1200,650V629" fill="#AF9577"/>
+    <path d="M1166,591Q1187,572,1208,591L1210,620Q1204,644,1188,642Q1170,638,1166,619Z" fill="#B8A181"/>
+    <path d="M1163,609Q1154,582,1180,574Q1205,566,1215,589L1211,608L1202,593Q1184,600,1166,597Z" fill="#3A352B"/>
+    <path d="M1186,612L1182,621H1189M1195,629L1185,630" stroke="#7B755E" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M1171,653L1166,693L1158,765H1218L1208,693L1205,653" fill="#344F40"/>
+    <path d="M1170,651L1179,672H1199L1205,651M1180,671L1174,705H1207L1200,672" stroke="#A7AA87" stroke-opacity=".6" stroke-width="3"/>
+    <path d="M1176,712H1205V736Q1191,741,1176,736Z" fill="#425E49" stroke="#708268" stroke-opacity=".4"/>
+    <path d="M1159,674L1143,709L1179,733M1215,672L1227,708" stroke="#596655" stroke-width="17" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M1179,733L1187,734" stroke="#B8A181" stroke-width="10" stroke-linecap="round"/>
+    <g class="cafe-motion cafe-pour-motion">
+      <path d="M1227,708L1240,715" stroke="#596655" stroke-width="16" stroke-linecap="round"/>
+      <path d="M1208,695H1233L1236,720Q1224,730,1211,721Z" fill="#B8BDA5"/>
+      <path d="M1208,697L1202,699L1209,705M1234,698Q1252,695,1248,711L1236,716" stroke="#B8BDA5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M1241,714L1237,717" stroke="#B8A181" stroke-width="9" stroke-linecap="round"/>
+      <path d="M1214,701V717" stroke="#E0DFCA" stroke-opacity=".35" stroke-width="2"/>
+    </g>
+    <path class="cafe-motion cafe-pour-stream" d="M1206,708Q1208,719,1199,731" stroke="#D8C8A2" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+
   <!-- Walnut coffee counter with an espresso machine and stacked cups. -->
   <path d="M827,776h1093v194H827z" fill="url(#timber)"/>
   <path d="M827,776h1093v18H827z" fill="#2E2C25"/>
@@ -79,11 +133,34 @@
   <path d="M812,766h1108" stroke="#C4A474" stroke-opacity=".4" stroke-width="3"/>
   <path d="M866,811h154v128H866zM1040,811h155v128h-155zM1215,811h156v128h-156zM1391,811h155v128h-155zM1566,811h155v128h-155zM1741,811h145v128h-145z" stroke="#96724D" stroke-opacity=".23" stroke-width="2"/>
   <path d="M846,960h1074v13H846z" fill="#2F2B24"/>
+  <!-- A stocked glass fridge fits inside the existing counter panel. -->
+  <g id="cafe-fridge">
+    <rect x="864" y="806" width="160" height="140" rx="3" fill="#27372F" stroke="#87714E" stroke-width="4"/>
+    <rect x="872" y="815" width="143" height="121" rx="1" fill="#1B302B"/>
+    <path d="M876,817H1011" stroke="#D2D7B5" stroke-opacity=".5" stroke-width="3"/>
+    <path d="M875,862H1011M875,901H1011" stroke="#748570" stroke-width="3"/>
+    <g fill="#8FA78E" stroke="#BDCAA8" stroke-opacity=".5">
+      <path d="M882,840V829H887V840L891,845V859H878V845Z"/><path d="M901,840V829H906V840L910,845V859H897V845Z"/><path d="M920,840V829H925V840L929,845V859H916V845Z"/><path d="M939,840V829H944V840L948,845V859H935V845Z"/>
+    </g>
+    <g fill="#B39C64"><path d="M959,837H967V844L970,847V859H956V847L959,844Z"/><path d="M979,837H987V844L990,847V859H976V847L979,844Z"/></g>
+    <g fill="#C1C6AD"><path d="M882,870H894L897,896H879Z"/><path d="M902,870H914L917,896H899Z"/><path d="M922,870H934L937,896H919Z"/></g>
+    <g fill="#AD8561"><rect x="948" y="876" width="13" height="20" rx="2"/><rect x="967" y="876" width="13" height="20" rx="2"/><rect x="986" y="876" width="13" height="20" rx="2"/></g>
+    <g fill="#CBBE96" stroke="#70866A" stroke-width="2"><path d="M882,928L894,908L910,928Z"/><path d="M919,928L932,908L949,928Z"/><path d="M958,928L971,908L988,928Z"/></g>
+    <rect x="872" y="815" width="143" height="121" fill="url(#windowGlass)"/>
+    <path d="M882,820L875,854M894,820L876,890M1003,850V904" stroke="#C2CBB3" stroke-opacity=".25" stroke-width="2"/>
+  </g>
+  <g id="cafe-pickup">
+    <path d="M836,739H898V763H836Z" fill="#384C3D" stroke="#99835D" stroke-width="2"/>
+    <text x="867" y="755" fill="#C8C8AB" font-family="Georgia,serif" font-size="11" text-anchor="middle">Pick up</text>
+    <path d="M905,727H927L924,757H909Z" fill="#D2C9A9"/><path d="M903,726H929V732H903Z" fill="#526554"/><path d="M908,739H925V748H908Z" fill="#A4875E"/>
+  </g>
   <g>
     <path d="M951,672c0-16,13-29,29-29h128c16,0,28,13,28,29v75H951z" fill="#343C37" stroke="#7E8B76" stroke-width="2"/>
     <path d="M961,651h164v18H961z" fill="#B4B5A2"/>
     <path d="M961,675h164v14H961z" fill="#566358"/>
     <path d="M964,691h158v43H964z" fill="#23352E"/>
+    <path class="cafe-motion cafe-steam" d="M1006,631C993,616,1013,610,1002,595" stroke="#E2D4AD" stroke-width="2" stroke-linecap="round"/>
+    <path class="cafe-motion cafe-steam cafe-steam-later" d="M1032,632C1021,621,1041,610,1031,599" stroke="#E2D4AD" stroke-width="2" stroke-linecap="round"/>
     <path d="M953,736h184v11H953z" fill="#ABAC96"/>
     <path d="M974,704h44M1054,704h44" stroke="#989F89" stroke-width="6" stroke-linecap="round"/>
     <path d="M989,704v11M1069,704v11" stroke="#B2B7A1" stroke-width="4"/>
@@ -106,6 +183,61 @@
   <path d="M0,1016h1920M0,1069h1920M0,1135h1920" stroke="#AD8D5E" stroke-opacity=".06" stroke-width="2"/>
   <ellipse cx="1460" cy="1068" rx="293" ry="55" fill="#10241F" opacity=".26" filter="url(#tableShadow)"/>
   <path d="M0,0h1920v1200H0z" fill="url(#windowSpill)"/>
+
+  <!-- A takeaway order and two quiet conversations add everyday life, at room scale. -->
+  <g id="cafe-takeaway-customer">
+    <ellipse cx="767" cy="995" rx="49" ry="9" fill="#162A25" opacity=".35"/>
+    <path d="M744,842L744,912L738,982H760L775,891L783,982H806L796,843Z" fill="#34483E"/>
+    <path d="M738,981H760L762,993H729Q728,986,738,981M783,981H806L817,993H781Z" fill="#262E27"/>
+    <path d="M732,839L737,737Q741,706,769,704Q797,708,803,739L809,850Q771,868,732,839Z" fill="#8A7554"/>
+    <path d="M756,692V714Q771,724,783,710V689" fill="#A58E73"/>
+    <path d="M746,660Q759,646,782,654L792,671L786,696Q772,713,757,697L749,683Z" fill="#B6A080"/>
+    <path d="M744,677Q734,659,748,647Q766,633,785,647Q796,656,793,670L779,660Q759,667,747,662Z" fill="#3C3A2E"/>
+    <path d="M783,675L788,682L781,684M775,693L782,692" stroke="#7C755B" stroke-width="2" stroke-linecap="round"/>
+    <path d="M750,724L744,794M790,723L780,782" stroke="#AD9670" stroke-opacity=".4" stroke-width="2"/>
+    <path d="M797,743L811,778" stroke="#8A7554" stroke-width="19" stroke-linecap="round"/>
+    <path d="M733,751L722,807L737,849" stroke="#8A7554" stroke-width="17" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M738,848L741,860" stroke="#B6A080" stroke-width="9" stroke-linecap="round"/>
+    <g class="cafe-motion cafe-pickup-arm">
+      <path d="M811,778L835,759" stroke="#8A7554" stroke-width="19" stroke-linecap="round"/>
+      <path d="M834,760L841,751" stroke="#B6A080" stroke-width="10" stroke-linecap="round"/>
+      <path d="M829,721H853L849,755H834Z" fill="#D3CEB1"/><path d="M827,720H855V726H827Z" fill="#506653"/><path d="M833,735H851V746H833Z" fill="#A18A61"/>
+    </g>
+    <path d="M741,780L778,789L768,832L731,824Z" fill="#3D5142"/>
+    <path d="M770,717L741,786" stroke="#3D5142" stroke-width="5"/>
+  </g>
+  <g id="cafe-seated-customers" opacity=".75">
+    <ellipse cx="373" cy="991" rx="148" ry="16" fill="#172C26" opacity=".3"/>
+    <path d="M251,938L242,992M290,942L299,992M464,943L455,992M503,938L512,992" stroke="#303C2F" stroke-width="8" stroke-linecap="round"/>
+    <path d="M240,899Q240,883,255,883H292Q307,883,307,900V949H240Z" fill="#455E47"/>
+    <path d="M448,900Q448,883,464,883H500Q515,883,515,900V949H448Z" fill="#455E47"/>
+    <path d="M269,897L266,941L306,946L324,979" stroke="#35483B" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M486,899L489,942L451,947L432,979" stroke="#37463C" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M249,896L253,850Q259,831,279,836Q299,841,299,864L299,910Z" fill="#8B8466"/>
+    <path d="M458,904L458,858Q460,837,480,834Q500,832,508,853L512,896Z" fill="#566E5B"/>
+    <path d="M265,829V844H284V829M472,829V844H492V829" fill="#AD987A"/>
+    <ellipse cx="275" cy="809" rx="21" ry="27" fill="#B7A182"/>
+    <path d="M253,815Q241,793,260,781Q283,771,294,792L293,808L284,790Q270,799,254,797Z" fill="#514635"/>
+    <path d="M472,786Q493,776,504,797L500,825Q493,839,477,831L466,813Z" fill="#A58F73"/>
+    <path d="M466,814Q452,793,469,780Q494,767,506,794L505,814L493,793Q479,803,466,799Z" fill="#3C3E30"/>
+    <path d="M293,863L292,879" stroke="#8B8466" stroke-width="13" stroke-linecap="round"/>
+    <path d="M464,865L434,899" stroke="#A79474" stroke-width="11" stroke-linecap="round"/>
+    <path d="M369,917V990M340,990H398" stroke="#344031" stroke-width="8" stroke-linecap="round"/>
+    <ellipse cx="371" cy="914" rx="87" ry="16" fill="#5F4C35"/>
+    <ellipse cx="371" cy="908" rx="87" ry="15" fill="#97794F"/>
+    <ellipse cx="333" cy="905" rx="21" ry="5" fill="#B3B69A"/><ellipse cx="408" cy="905" rx="21" ry="5" fill="#B3B69A"/>
+    <g class="cafe-motion cafe-drinking-arm">
+      <path d="M292,879L326,893" stroke="#A79474" stroke-width="11" stroke-linecap="round"/>
+      <g class="cafe-motion cafe-drinking-cup">
+        <path d="M321,881H343V900Q332,907,322,899Z" fill="#C4B99A"/>
+        <path d="M344,886Q355,884,352,894L344,897" stroke="#C4B99A" stroke-width="3"/>
+        <path d="M325,882H340" stroke="#6C5840" stroke-width="2"/>
+      </g>
+    </g>
+    <path d="M397,883H418V900Q408,906,399,899Z" fill="#C4B99A"/>
+    <path d="M418,887Q430,885,427,895L418,898" stroke="#C4B99A" stroke-width="3"/>
+    <path d="M358,900L379,896L395,902L378,908Z" fill="#B2AA88"/>
+  </g>
 
   <!-- Pendants: a restrained pool of light, rather than glowing UI decoration. -->
   <ellipse cx="681" cy="491" rx="385" ry="430" fill="url(#lampGlow)"/>
